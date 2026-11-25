@@ -1,0 +1,1 @@
+export default function Wishlist(){return <main className="wrap section"><p className="eyebrow">SAVED FOR LATER</p><h1 className="section-title">Your wishlist.</h1><p className="mt-5 text-sm text-[#77736b]">Wishlist storage will be enabled with customer authentication or local account storage.</p></main>}
