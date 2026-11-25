@@ -1,2 +1,53 @@
 import Link from "next/link";
-export function Footer(){return <footer className="bg-[#191916] py-14 text-[#eee9df]"><div className="wrap grid gap-9 sm:grid-cols-2 lg:grid-cols-4"><div><div className="serif text-2xl tracking-[2px]">AYC</div><p className="mt-2 text-[10px] tracking-[2px]">ADJOA YEBOAH CLOTHING</p><p className="mt-5 text-xs text-[#aaa59a]">Contemporary fashion. Individual expression.</p></div><div><b className="text-[9px] tracking-[2px] text-[#c6a77c]">EXPLORE</b>{[["Shop","/shop"],["Lookbook","/lookbook"],["Bridal","/bridal"],["Our story","/about"]].map(([n,u])=><Link key={u} className="mt-3 block text-xs text-[#d0cbc2]" href={u}>{n}</Link>)}</div><div><b className="text-[9px] tracking-[2px] text-[#c6a77c]">CLIENT CARE</b>{[["Book an appointment","/book-appointment"],["Shopping bag","/cart"],["Wishlist","/wishlist"]].map(([n,u])=><Link key={u} className="mt-3 block text-xs text-[#d0cbc2]" href={u}>{n}</Link>)}</div><div><b className="text-[9px] tracking-[2px] text-[#c6a77c]">CONNECT</b><a className="mt-3 block text-xs" href="https://ayc.fashion/" target="_blank" rel="noreferrer">Existing AYC storefront ↗</a><p className="mt-3 text-xs text-[#aaa59a]">Accra, Ghana · contact details to be confirmed</p></div></div><div className="wrap mt-12 border-t border-[#3b3934] pt-5 text-[9px] text-[#99948b]">Independent, uncommissioned website concept. Brand approval required before public launch.</div></footer>}
+
+export function Footer() {
+  return (
+    <footer className="bg-[#0c0a09] border-t border-stone-800/60 mt-24">
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
+        <div className="grid md:grid-cols-4 gap-12">
+          <div>
+            <p className="font-serif text-2xl text-amber-50 mb-4">Adjoa Yeboah</p>
+            <p className="text-stone-400 text-sm leading-relaxed">
+              An independent website concept exploring a premium Ghanaian fashion storefront.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-amber-100/80 text-xs tracking-widest uppercase mb-5">Explore</h4>
+            <ul className="space-y-3 text-sm text-stone-400">
+              <li><Link href="/shop" className="hover:text-amber-200 transition">Shop</Link></li>
+              <li><Link href="/bridal" className="hover:text-amber-200 transition">Bridal</Link></li>
+              <li><Link href="/lookbook" className="hover:text-amber-200 transition">Lookbook</Link></li>
+              <li><Link href="/press" className="hover:text-amber-200 transition">Press</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-amber-100/80 text-xs tracking-widest uppercase mb-5">Client Care</h4>
+            <ul className="space-y-3 text-sm text-stone-400">
+              <li><Link href="/book-appointment" className="hover:text-amber-200 transition">Book a Fitting</Link></li>
+              <li><Link href="/cart" className="hover:text-amber-200 transition">Shopping Bag</Link></li>
+              <li><Link href="/wishlist" className="hover:text-amber-200 transition">Wishlist</Link></li>
+              <li><Link href="/about" className="hover:text-amber-200 transition">About</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-amber-100/80 text-xs tracking-widest uppercase mb-5">Studio</h4>
+            <p className="text-stone-400 text-sm leading-relaxed">
+              Accra, Ghana
+            </p>
+            <p className="text-stone-500 text-xs mt-4 leading-relaxed">
+              Studio address and contact details will be added after confirmation by the brand.
+            </p>
+          </div>
+        </div>
+
+        <div className="border-t border-stone-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500 tracking-wide">
+          <p>© {new Date().getFullYear()} Adjoa Yeboah Clothing. Independent concept.</p>
+          <p>Not the official brand website. Brand approval is required before public launch.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
