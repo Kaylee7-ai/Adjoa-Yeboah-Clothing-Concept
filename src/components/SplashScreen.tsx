@@ -1,17 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 export default function SplashScreen() {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const timeout = window.setTimeout(() => setVisible(false), 1100);
-    return () => window.clearTimeout(timeout);
-  }, []);
-
-  if (!visible) return null;
-
   return (
     <div
       role="status"
