@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
+import { CartProvider } from "@/context/CartContext";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);
@@ -22,7 +23,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <>
+    <CartProvider>
       {showSplash && <SplashScreen />}
       <div
         className={
@@ -33,6 +34,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       >
         {children}
       </div>
-    </>
+    </CartProvider>
   );
 }
