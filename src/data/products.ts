@@ -1,7 +1,7 @@
-import type { Product } from "@/types/product";
+import type { LegacyProduct } from "@/types/product";
 
 // Concept catalogue only. Confirm all names, images, prices and availability with AYC.
-export const products: Product[] = [
+export const products: LegacyProduct[] = [
  {id:"p1",slug:"royal-ember-kente-corset-gown",name:"The Royal Ember Kente Corset Gown",description:"A statement occasion silhouette inspired by the visual richness of Kente.",category:"Bridal & Occasion",fabric:["Kente-inspired"],occasions:["Traditional wedding","Engagement","Gala"],priceGhs:1000,image:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=85",fulfilment:"BESPOKE",featured:true,available:true},
  {id:"p2",slug:"aqua-bloom-elegance-dress",name:"Aqua Bloom Elegance Dress",description:"An expressive dress concept for celebrations and special occasions.",category:"Women's",fabric:["Not confirmed"],occasions:["Occasion","Celebration"],priceGhs:1000,image:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=85",fulfilment:"READY_TO_WEAR",featured:true,available:true},
  {id:"p3",slug:"sunrise-bloom-ankara-corset-dress",name:"The Sunrise Bloom Ankara Corset Dress",description:"A bold Ankara-inspired look with a defined, contemporary silhouette.",category:"Women's",fabric:["Ankara"],occasions:["Engagement","Celebration"],priceGhs:1500,image:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85",fulfilment:"BESPOKE",featured:true,available:true},
