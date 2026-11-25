@@ -33,28 +33,7 @@ export interface Product {
   fulfillment: FulfillmentType;
   isFeatured?: boolean;
   isNew?: boolean;
-  leadTimeDays?: number; // mainly for bespoke
+  leadTimeDays?: number;
   sizes?: string[];
   tags?: string[];
 }
-
-/**
- * Temporary compatibility type for the original concept catalogue.
- * Migrate these records to Product before removing this type.
- */
-export type LegacyFulfilment = "READY_TO_WEAR" | "BESPOKE";
-export type LegacyProduct = {
-  id: string;
-  slug: string;
-  name: string;
-  description: string;
-  category: string;
-  fabric: string[];
-  occasions: string[];
-  priceGhs: number;
-  image: string;
-  fulfilment: LegacyFulfilment;
-  featured?: boolean;
-  available: boolean;
-  sizes?: string[];
-};
