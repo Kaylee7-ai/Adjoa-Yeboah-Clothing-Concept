@@ -1,3 +1,39 @@
-import type {Metadata} from "next";import "./globals.css";import {Header} from "@/components/layout/Header";import {Footer} from "@/components/layout/Footer";
-export const metadata:Metadata={title:{default:"Adjoa Yeboah Clothing | Contemporary African Fashion",template:"%s | Adjoa Yeboah Clothing"},description:"An independent digital storefront concept for Adjoa Yeboah Clothing."};
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body><div className="bg-[#6d4c32] px-3 py-2 text-center text-[9px] tracking-[1.4px] text-white">INDEPENDENT WEBSITE CONCEPT · NOT THE OFFICIAL BRAND STORE</div><Header/>{children}<Footer/></body></html>}
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Adjoa Yeboah Clothing | Contemporary African Fashion",
+    template: "%s | Adjoa Yeboah Clothing"
+  },
+  description: "An independent digital storefront concept for Adjoa Yeboah Clothing.",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg"
+  },
+  applicationName: "Adjoa Yeboah Clothing"
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0c0a09",
+  width: "device-width",
+  initialScale: 1
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <div className="bg-[#6d4c32] px-3 py-2 text-center text-[9px] tracking-[1.4px] text-white">
+          INDEPENDENT WEBSITE CONCEPT · NOT THE OFFICIAL BRAND STORE
+        </div>
+        <Header />
+        {children}
+        <Footer />
+      </body>
+    </html>
+  );
+}
