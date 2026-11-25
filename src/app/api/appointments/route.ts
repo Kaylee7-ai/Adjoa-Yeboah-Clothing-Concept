@@ -1,1 +1,17 @@
-import {NextResponse} from "next/server";import {z} from "zod";const schema=z.object({name:z.string().min(2).max(100),email:z.string().email(),kind:z.string().min(2).max(80),date:z.string().min(8),notes:z.string().max(1000).optional()});export async function POST(req:Request){const parsed=schema.safeParse(await req.json().catch(()=>null));if(!parsed.success)return NextResponse.json({error:"Invalid appointment request"},{status:400});return NextResponse.json({message:"Appointment API scaffold ready. Connect database storage, email notification and calendar confirmation before accepting requests."},{status:501});}}
+import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const schema = z.object({
+  name: z.string().min(2).max(100),
+  email: z.string().email(),
+  kind: z.string().min(2).max(80),
+  date: z.string().min(8),
+  notes: z.string().max(1000).optional()
+});
+
+export async function POST(req: Request) {
+  const parsed = schema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) return NextResponse.json({ error: "Invalid appointment request" }, { status: 400 });
+  // Intentionally not persisted until a database, owner-approved workflow and notification channel are configured.
+  return NextResponse.json({ message: "Appointment API scaffold ready. Connect database storage, email notification and calendar confirmation before accepting requests." }, { status: 501 });
+}
