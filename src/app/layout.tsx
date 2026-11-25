@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
+import Header from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import AppShell from "@/components/AppShell";
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: "Adjoa Yeboah Clothing | Premium Ghanaian Fashion",
     template: "%s | Adjoa Yeboah Clothing"
   },
-  description: "Bridal, Kente, Ankara and occasion wear — designed in Accra.",
+  description: "An independent premium Ghanaian fashion storefront concept.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: "/icon.svg",
@@ -38,7 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             INDEPENDENT WEBSITE CONCEPT · NOT THE OFFICIAL BRAND STORE
           </div>
           <Header />
-          {children}
+          <main className="pt-16 md:pt-20 min-h-screen">
+            {children}
+          </main>
           <Footer />
         </AppShell>
       </body>
