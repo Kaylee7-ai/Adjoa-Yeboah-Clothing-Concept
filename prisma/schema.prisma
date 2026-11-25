@@ -1,0 +1,61 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+model Product {
+ id String @id @default(cuid())
+ slug String @unique
+ name String
+ description String
+ category String
+ fabrics String[]
+ occasions String[]
+ fulfilment Fulfilment @default(READY_TO_WEAR)
+ price Int // pesewas
+ currency String @default("GHS")
+ images Json
+ sizes String[]
+ active Boolean @default(true)
+ stock Int?
+ createdAt DateTime @default(now())
+ updatedAt DateTime @updatedAt
+ orderItems OrderItem[]
+}
+model Order {
+ id String @id @default(cuid())
+ orderNumber String @unique
+ customerEmail String
+ customerPhone String?
+ status OrderStatus @default(PENDING_PAYMENT)
+ paymentMethod String
+ paymentRef String?
+ totalAmount Int // pesewas
+ currency String @default("GHS")
+ shippingAddress Json?
+ isBespoke Boolean @default(false)
+ notes String?
+ createdAt DateTime @default(now())
+ updatedAt DateTime @updatedAt
+ items OrderItem[]
+ statusHistory OrderStatusHistory[]
+}
+model OrderItem {
+ id String @id @default(cuid())
+ orderId String
+ productId String
+ name String
+ quantity Int
+ price Int // unit price in pesewas
+ size String?
+ measurements Json?
+ order Order @relation(fields:[orderId],references:[id],onDelete:Cascade)
+ product Product @relation(fields:[productId],references:[id])
+}
+model OrderStatusHistory {
+ id String @id @default(cuid())
+ orderId String
+ status OrderStatus
+ note String?
+ createdAt DateTime @default(now())
+ order Order @relation(fields:[orderId],references:[id],onDelete:Cascade)
+}
+enum Fulfilment { READY_TO_WEAR BESPOKE }
+enum OrderStatus { PENDING_PAYMENT PAID IN_PRODUCTION QUALITY_CHECK READY_FOR_PICKUP SHIPPED DELIVERED CANCELLED }
