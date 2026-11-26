@@ -14,6 +14,7 @@ export default function Shop() {
           Explore a considered edit of bridal, occasion and contemporary African-inspired pieces.
         </p>
       </section>
+      <section className="atelier-promises" aria-label="Atelier service notes"><div><span>01</span><strong>Thoughtful fitting</strong><small>Consultation-led guidance for bespoke pieces.</small></div><div><span>02</span><strong>Clear timelines</strong><small>Production and delivery estimates confirmed before order.</small></div><div><span>03</span><strong>Atelier concierge</strong><small>Ask about fabric, fit and styling before you decide.</small></div></section>
       <section className="wrap section">
         <div className="mb-8 flex flex-col gap-4 border-b border-[#e4dbcf] pb-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
