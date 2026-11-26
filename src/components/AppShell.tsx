@@ -1,42 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
+import BottomNav from "@/components/layout/BottomNav";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/lib/auth";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
+  const [introChecked, setIntroChecked] = useState(false);
 
   useEffect(() => {
-    const hasSeen = sessionStorage.getItem("ayc-splash");
-    if (hasSeen) {
-      setShowSplash(false);
-      return;
+    try {
+      setShowIntro(window.sessionStorage.getItem("ayc-onboarding-complete") !== "true");
+    } catch {
+      setShowIntro(false);
     }
+    setIntroChecked(true);
+  }, []);
 
-    const timer = window.setTimeout(() => {
-      sessionStorage.setItem("ayc-splash", "true");
-      setShowSplash(false);
-    }, 2800);
-
-    return () => window.clearTimeout(timer);
+  const finishIntro = useCallback(() => {
+    try {
+      window.sessionStorage.setItem("ayc-onboarding-complete", "true");
+    } catch {
+      // The intro can still be dismissed when storage is unavailable.
+    }
+    setShowIntro(false);
   }, []);
 
   return (
     <AuthProvider>
-    <CartProvider>
-      {showSplash && <SplashScreen />}
-      <div
-        className={
-          showSplash
-            ? "opacity-0"
-            : "opacity-100 transition-opacity duration-700"
-        }
-      >
-        {children}
-      </div>
-    </CartProvider>
+      <CartProvider>
+        <div className="ay-app-shell">
+          {children}
+          <BottomNav />
+        </div>
+        {introChecked && showIntro && <SplashScreen onContinue={finishIntro} />}
+      </CartProvider>
     </AuthProvider>
   );
 }
