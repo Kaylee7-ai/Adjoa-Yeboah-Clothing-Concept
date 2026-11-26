@@ -634,3 +634,58 @@ body{background:radial-gradient(ellipse at 50% 0%,rgba(107,36,49,.16),transparen
   .btn:before,.lookbook-add:before,.pairing-line button:before{animation:none!important}
   .btn,.lookbook-add,.pairing-line button{transition:none!important}
 }
+
+
+/* REPAIR PASS — make the Noir Lumière light visible and consistent on every route */
+.noir-glow-surface{position:relative;isolation:isolate}
+.home-page>.luxury-hero:before{
+  background:
+    radial-gradient(ellipse at 76% 24%,rgba(226,189,128,.42),transparent 34%),
+    radial-gradient(ellipse at 18% 76%,rgba(157,57,72,.42),transparent 38%),
+    radial-gradient(ellipse at 52% 48%,rgba(226,189,128,.12),transparent 58%),
+    linear-gradient(90deg,rgba(9,9,11,.22),transparent 78%)!important;
+  opacity:1!important;filter:blur(1px);
+}
+.home-page>.luxury-hero{box-shadow:inset 0 0 100px rgba(157,57,72,.14),0 18px 60px rgba(0,0,0,.42),0 0 46px rgba(157,57,72,.16)!important}
+.home-page>.luxury-collection{position:relative;isolation:isolate}
+.home-page>.luxury-collection:before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(157,57,72,.3),transparent 48%),radial-gradient(ellipse at 50% 55%,rgba(226,189,128,.075),transparent 65%);
+}
+.home-page>.luxury-collection>div{position:relative;z-index:1}
+.product-card{box-shadow:0 14px 38px rgba(0,0,0,.38),0 0 22px rgba(157,57,72,.16),inset 0 1px rgba(255,255,255,.045)!important}
+.btn,.lookbook-add,.pairing-line button,.luxury-hero a:first-child,.luxury-cta a{
+  background-size:220% 100%!important;
+  animation:noir-button-surface 4.4s ease-in-out infinite;
+  box-shadow:0 8px 26px rgba(0,0,0,.42),0 0 18px rgba(157,57,72,.46),0 0 34px rgba(226,189,128,.26),inset 0 1px rgba(255,248,237,.14)!important;
+}
+.btn:before,.lookbook-add:before,.pairing-line button:before{display:none!important}
+.btn:hover,.lookbook-add:hover,.pairing-line button:hover,.luxury-hero a:first-child:hover{
+  box-shadow:0 12px 34px rgba(0,0,0,.46),0 0 28px rgba(157,57,72,.62),0 0 48px rgba(226,189,128,.42)!important;
+}
+@keyframes noir-button-surface{
+  0%,100%{background-position:0% 50%;filter:brightness(1)}
+  50%{background-position:100% 50%;filter:brightness(1.22)}
+}
+.quickview-backdrop{z-index:300!important}
+.quickview-panel{position:relative;z-index:301!important;max-height:min(92dvh,900px);overflow:auto;overscroll-behavior:contain}
+.quickview-close{position:sticky!important;top:10px!important;float:right!important;z-index:20!important;cursor:pointer}
+.quickview-view-note{display:block;padding:10px 12px;color:#e5d5c8;background:rgba(16,14,13,.84);font-size:10px;line-height:1.5}
+.quickview-content .story-block p,.quickview-content>p{color:#e2d4ca!important}
+.quickview-content .field-label{color:#e8bd83!important}
+.shop-page{background:#09090b!important;color:#fff8ed!important}
+.shop-page>section:first-child{
+  background:radial-gradient(ellipse at 50% 0%,rgba(157,57,72,.32),transparent 58%),linear-gradient(145deg,#171014,#09090b 78%)!important;
+  border-bottom:1px solid rgba(226,189,128,.26)
+}
+.shop-page>section:first-child h1,.shop-page>section:first-child p{color:#fff8ed!important}
+.shop-page .section{color:#fff8ed}
+.shop-page .section h2,.shop-page .section p{color:inherit}
+.shop-page .collection-tools .field{background:#21171c!important;color:#fff8ed!important}
+.product-detail-page{color:#fff8ed!important}
+.product-detail-page .text-\[\#746960\],.product-detail-page .text-\[\#62564e\],.product-detail-page .text-\[\#805a46\]{color:#c5b4aa!important}
+.product-detail-page .border-\[\#e4dbcf\]{border-color:rgba(226,189,128,.25)!important}
+.product-detail-page .bg-\[\#eee6dc\]{background:#21171c!important}
+@media(prefers-reduced-motion:reduce){
+  .btn,.lookbook-add,.pairing-line button,.luxury-hero a:first-child,.luxury-cta a{animation:none!important}
+}
