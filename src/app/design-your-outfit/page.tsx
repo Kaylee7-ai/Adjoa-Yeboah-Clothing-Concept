@@ -280,5 +280,5 @@ function DesignWizard() {
 }
 
 export default function DesignYourOutfitPage() {
-  return <DesignWizard />;
+  return <Suspense fallback={<main className="wrap section">Preparing your design studio…</main>}><DesignWizard /></Suspense>;
 }
