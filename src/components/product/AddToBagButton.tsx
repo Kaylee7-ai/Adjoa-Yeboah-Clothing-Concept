@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Check, Heart, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/types/product";
-import { formatPrice } from "@/lib/formatPrice";
+import { formatPrice } from "@/lib/formatPrice";\nimport { useSaved } from "@/context/SavedContext";
 
 const SIZE_SETS = {
   women: ["XS", "S", "M", "L", "XL", "XXL"],
@@ -15,12 +15,12 @@ const SIZE_SETS = {
 };
 
 export default function AddToBagButton({ product }: { product: Product }) {
-  const { addItem } = useCart();
+  const { addItem } = useCart();\n  const { isSaved, toggleSaved } = useSaved();
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const saved = isSaved(product.id);
 
   const colors = product.colors ?? [];
   const sizes = product.sizes?.length ? product.sizes : product.sizeType ? SIZE_SETS[product.sizeType] : [];
@@ -86,7 +86,7 @@ export default function AddToBagButton({ product }: { product: Product }) {
       )}
 
       <div className="product-sticky-action">
-        <button type="button" onClick={() => setSaved((value) => !value)} aria-label={saved ? "Remove from saved items" : "Save item"} aria-pressed={saved} className="round-icon-button h-12 w-12"><Heart size={19} fill={saved ? "currentColor" : "none"} /></button>
+        <button type="button" onClick={() => toggleSaved(product.id)} aria-label={saved ? "Remove from saved items" : "Save item"} aria-pressed={saved} className="round-icon-button h-12 w-12"><Heart size={19} fill={saved ? "currentColor" : "none"} /></button>
         <button type="button" onClick={handleAdd} disabled={(needsSize && !selectedSize) || (needsColor && !selectedColor)} className="btn min-h-[52px] flex-1 disabled:cursor-not-allowed disabled:opacity-45">
           {needsSize && !selectedSize ? "Please choose your size" : needsColor && !selectedColor ? "Choose a colour" : `Add to Bag · ${formatPrice(product.price)}`}
         </button>
