@@ -36,5 +36,6 @@ export interface Product {
   isNew?: boolean;
   leadTimeDays?: number;
   sizes?: string[];
+  colors?: string[];
   tags?: string[];
 }

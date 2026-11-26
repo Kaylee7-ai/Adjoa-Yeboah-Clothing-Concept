@@ -7,53 +7,22 @@ import type { Product } from "@/types/product";
 export default function AddToBagButton({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState("");
-  const [added, setAdded] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("As pictured");
   const sizes = product.fulfillment === "ready-to-wear" ? product.sizes ?? [] : [];
   const needsSize = sizes.length > 0;
+  const colors = product.colors ?? ["As pictured"];
 
   function handleAdd() {
     if (needsSize && !selectedSize) return;
-    addItem(product, 1, selectedSize || undefined);
-    setAdded(true);
-    window.setTimeout(() => setAdded(false), 2200);
+    addItem(product, 1, selectedSize || undefined, undefined, selectedColor);
   }
 
   return (
     <div>
-      {needsSize && (
-        <fieldset className="mb-7">
-          <legend className="mb-3 text-sm tracking-wide text-stone-400">Select size</legend>
-          <div className="flex flex-wrap gap-3">
-            {sizes.map((size) => (
-              <button
-                key={size}
-                type="button"
-                aria-pressed={selectedSize === size}
-                onClick={() => setSelectedSize(size)}
-                className={`h-12 min-w-12 border px-3 text-sm transition ${
-                  selectedSize === size
-                    ? "border-amber-300 bg-amber-100 text-[#0c0a09]"
-                    : "border-stone-700 text-stone-300 hover:border-amber-300/70 hover:text-amber-100"
-                }`}
-              >
-                {size}
-              </button>
-            ))}
-          </div>
-        </fieldset>
-      )}
-
-      <button
-        type="button"
-        onClick={handleAdd}
-        disabled={needsSize && !selectedSize}
-        className="w-full bg-amber-100 py-5 text-xs uppercase tracking-[0.2em] text-[#0c0a09] transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        {added ? "Added to bag" : needsSize && !selectedSize ? "Select a size to continue" : "Add to bag"}
-      </button>
-      <p aria-live="polite" className="mt-3 min-h-5 text-center text-xs text-amber-200/80">
-        {added ? "Added to your shopping bag. Your bag is saved on this device." : ""}
-      </p>
+      {needsSize && <fieldset className="mb-6"><legend className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#746960]">Select size</legend><div className="flex flex-wrap gap-2">{sizes.map((size) => <button key={size} type="button" aria-pressed={selectedSize === size} onClick={() => setSelectedSize(size)} className={`min-h-11 min-w-11 border px-3 text-xs transition ${selectedSize === size ? "border-[#30251f] bg-[#30251f] text-white" : "border-[#d9cfc3] bg-[#fffdf9] text-[#30251f] hover:border-[#9b7560]"}`}>{size}</button>)}</div></fieldset>}
+      <fieldset className="mb-7"><legend className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#746960]">Colour / finish</legend><div className="flex flex-wrap gap-2">{colors.map((color) => <button key={color} type="button" aria-pressed={selectedColor === color} onClick={() => setSelectedColor(color)} className={`min-h-10 border px-3 text-xs transition ${selectedColor === color ? "border-[#30251f] bg-[#30251f] text-white" : "border-[#d9cfc3] bg-[#fffdf9] text-[#30251f]"}`}>{color}</button>)}</div></fieldset>
+      <button type="button" onClick={handleAdd} disabled={needsSize && !selectedSize} className="btn w-full disabled:cursor-not-allowed disabled:opacity-50">Add to bag</button>
+      <p className="mt-3 text-center text-[10px] leading-5 text-[#746960]">A celebration appears when your selection is added. No order or payment is made.</p>
     </div>
   );
 }

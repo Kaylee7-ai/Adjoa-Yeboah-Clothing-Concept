@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
-
   const reveal = (y: number, delay: number) => ({
     initial: reduceMotion ? false : { opacity: 0, y },
     animate: { opacity: 1, y: 0 },
@@ -13,55 +12,41 @@ export default function Hero() {
   });
 
   return (
-    <section className="relative flex min-h-[min(850px,calc(100svh-5rem))] items-center justify-center overflow-hidden bg-[#0c0a09]">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute left-1/2 top-1/4 h-[min(600px,80vw)] w-[min(600px,80vw)] -translate-x-1/2 rounded-full bg-amber-500/[0.08] blur-[120px]" />
-        <div className="absolute bottom-0 left-0 h-1/3 w-full bg-gradient-to-t from-black/60 to-transparent" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-5xl px-6 py-24 text-center">
-        <motion.p {...reveal(12, 0.2)} className="mb-6 text-xs uppercase tracking-[0.35em] text-amber-200/70 sm:text-sm">
-          Accra · Since 2013
-        </motion.p>
-
-        <motion.h1 {...reveal(20, 0.4)} className="font-serif text-4xl leading-tight tracking-wide text-amber-50 sm:text-5xl md:text-6xl lg:text-7xl">
-          Made for the moments
-          <br />
-          <span className="text-amber-200">that matter</span>
-        </motion.h1>
-
-        <motion.p {...reveal(16, 0.7)} className="mx-auto mt-6 max-w-xl text-base font-light leading-relaxed text-stone-300/90 sm:text-lg">
-          Bridal gowns, Kente masterpieces and occasion wear — designed and crafted in Accra with intention and beauty.
-        </motion.p>
-
-        <motion.div
-          initial={reduceMotion ? false : { scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: reduceMotion ? 0 : 1.1, delay: reduceMotion ? 0 : 1 }}
-          className="mx-auto mt-10 h-px w-24 origin-center bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"
+    <section className="relative isolate flex min-h-[min(790px,calc(100svh-5rem))] items-center overflow-hidden bg-[#F2ECE1]">
+      <div className="absolute inset-0 -z-20">
+        <img
+          src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2200&q=88"
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover object-center"
         />
-
-        <motion.div {...reveal(16, 1.2)} className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-          <Link href="/shop" className="group relative overflow-hidden bg-amber-100 px-8 py-3.5 text-sm font-medium uppercase tracking-widest text-[#0c0a09]">
-            <span className="relative z-10">Shop Collection</span>
-            <span aria-hidden="true" className="absolute inset-0 translate-y-full bg-amber-200 transition-transform duration-300 group-hover:translate-y-0" />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#211812]/85 via-[#211812]/55 to-[#211812]/10" />
+      <div className="wrap relative z-10 py-28 text-left">
+        <motion.p {...reveal(12, 0.2)} className="mb-5 text-[10px] font-semibold uppercase tracking-[0.34em] text-[#F2DCC0] sm:text-xs">
+          Accra · Contemporary African Occasionwear
+        </motion.p>
+        <motion.p {...reveal(10, 0.3)} className="mb-7 inline-flex items-center gap-3 border-y border-white/35 py-3 text-[9px] font-semibold uppercase tracking-[0.24em] text-[#F7E8D4]">
+          <span>Collection 01</span><span aria-hidden="true" className="h-px w-7 bg-[#B88A44]"/><span>Limited Capsule</span>
+        </motion.p>
+        <motion.h1 {...reveal(20, 0.4)} className="serif max-w-3xl text-5xl leading-[1.05] tracking-tight text-[#fffaf3] sm:text-6xl md:text-7xl lg:text-[84px]">
+          Elegance, woven
+          <br />
+          <em className="font-normal text-[#E8C99E]">into every moment.</em>
+        </motion.h1>
+        <motion.p {...reveal(16, 0.7)} className="mt-7 max-w-lg text-sm leading-7 text-[#fffaf3]/90 sm:text-base">
+          A fashion concept celebrating thoughtful tailoring, expressive African textiles and occasionwear with a modern point of view.
+        </motion.p>
+        <motion.div {...reveal(16, 1.1)} className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <Link href="/shop" className="inline-flex min-h-12 items-center justify-center bg-[#FAF7F2] px-8 text-[10px] font-bold uppercase tracking-[.18em] text-[#181512] transition hover:bg-white">
+            Explore the collection
           </Link>
-
-          <Link href="/book-appointment" className="border border-amber-200/40 px-8 py-3.5 text-sm uppercase tracking-widest text-amber-100 transition-all duration-300 hover:border-amber-200 hover:bg-amber-200/5">
-            Book a Fitting
+          <Link href="/book-appointment" className="inline-flex min-h-12 items-center justify-center border border-white/75 px-8 text-[10px] font-bold uppercase tracking-[.18em] text-white transition hover:bg-white/10">
+            Book a fitting
           </Link>
         </motion.div>
       </div>
-
-      <motion.div
-        aria-hidden="true"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: reduceMotion ? 0 : 1.8, duration: reduceMotion ? 0 : 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <div className="h-12 w-px bg-gradient-to-b from-amber-400/40 to-transparent" />
-      </motion.div>
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#30251f]/20 to-transparent" />
     </section>
   );
 }

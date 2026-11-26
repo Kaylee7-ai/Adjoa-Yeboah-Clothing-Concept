@@ -4,10 +4,7 @@ export interface CartItem {
   product: Product;
   quantity: number;
   size?: string;
-  notes?: string; // bespoke measurements / special requests
+  color?: string;
+  notes?: string;
 }
-
-export interface Cart {
-  items: CartItem[];
-  updatedAt: number;
-}
+export interface Cart { items: CartItem[]; updatedAt: number; }

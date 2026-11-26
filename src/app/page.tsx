@@ -5,37 +5,27 @@ import { ProductCard } from "@/components/product/ProductCard";
 
 export default function HomePage() {
   const featuredProducts = getFeaturedProducts();
-
   return (
     <main>
       <Hero />
       <section className="wrap section text-center">
         <p className="eyebrow">MORE THAN WHAT YOU WEAR</p>
-        <h2 className="section-title">Fashion is a feeling.<br /><em>Make yours unforgettable.</em></h2>
-        <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-[#77736b]">
-          Explore a wardrobe concept inspired by contemporary African fashion, expressive prints and occasionwear.
-        </p>
+        <h2 className="section-title mt-4">Fashion is a feeling.<br /><em>Make yours unforgettable.</em></h2>
+        <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-[#746960]">A wardrobe concept inspired by contemporary African fashion, expressive textiles and beautifully considered occasionwear.</p>
       </section>
-      <section className="bg-[#eeeae2]">
+      <section className="bg-[#f0e9df]">
         <div className="wrap section">
-          <div className="mb-9 flex items-end justify-between">
-            <div>
-              <p className="eyebrow">A FEW PIECES TO DISCOVER</p>
-              <h2 className="section-title">Selected styles</h2>
-            </div>
-            <Link className="text-xs uppercase tracking-wider underline" href="/shop">View all ↗</Link>
+          <div className="mb-9 flex items-end justify-between gap-4">
+            <div><p className="eyebrow">A FEW PIECES TO DISCOVER</p><h2 className="section-title mt-3">Selected styles</h2></div>
+            <Link className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-[#805a46] underline underline-offset-4" href="/shop">View all ↗</Link>
           </div>
-          <div className="product-grid">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <div className="product-grid">{featuredProducts.map((product) => <ProductCard key={product.id} product={product} />)}</div>
         </div>
       </section>
-      <section className="bg-[#25231f] px-5 py-20 text-center text-white">
-        <p className="eyebrow">BESPOKE · BRIDAL · OCCASION</p>
-        <h2 className="serif text-4xl md:text-6xl">A moment made <em className="text-[#c9a77a]">yours.</em></h2>
-        <Link className="btn mt-8" href="/book-appointment">Book a consultation ↗</Link>
+      <section className="bg-[#30251f] px-5 py-20 text-center text-[#fffaf3] md:py-24">
+        <p className="text-[10px] font-bold uppercase tracking-[.24em] text-[#e8c9ac]">BESPOKE · BRIDAL · OCCASION</p>
+        <h2 className="serif mt-5 text-4xl md:text-6xl">A moment made <em className="text-[#e8c9ac]">yours.</em></h2>
+        <Link className="mt-8 inline-flex min-h-12 items-center justify-center border border-[#f5e9dc] px-7 text-[10px] font-bold uppercase tracking-widest text-[#fffaf3] transition hover:bg-[#fffaf3] hover:text-[#30251f]" href="/book-appointment">Book a consultation ↗</Link>
       </section>
     </main>
   );
