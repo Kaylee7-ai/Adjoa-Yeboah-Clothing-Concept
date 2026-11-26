@@ -46,3 +46,51 @@ img { max-width: 100%; }
 .site-footer a:hover { color: #fff; }
 @media (max-width: 760px) { .product-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 17px 13px; } }
 @media (max-width: 390px) { .wrap { width: 91%; } .product-grid { gap: 16px 10px; } .product-card h3 { font-size: 16px; } }
+
+
+/* Floral add-to-bag celebration + responsive checkout drawer */
+.floral-celebration{position:fixed;inset:0;z-index:120;display:grid;place-items:center;overflow:hidden;padding:22px;background:rgba(38,29,24,.55);backdrop-filter:blur(7px);animation:floral-fade-in .25s ease-out both}
+.floral-card{position:relative;z-index:2;width:min(100%,440px);padding:36px 30px 27px;border:1px solid rgba(177,138,98,.55);background:rgba(255,253,249,.98);box-shadow:0 28px 90px rgba(27,19,14,.28);text-align:center;animation:floral-card-in .48s cubic-bezier(.2,.8,.2,1) both}
+.floral-close,.bag-close{display:grid;place-items:center;width:38px;height:38px;border:1px solid #e4dbcf;border-radius:50%;background:#fffdf9;color:#30251f;font-size:24px;line-height:1}
+.floral-close{position:absolute;top:12px;right:12px}
+.floral-ornament{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:19px;color:#a77b55;font-size:22px}
+.floral-ornament i{width:42px;height:1px;background:#c8a783}
+.floral-heading{margin-top:10px;font-size:clamp(34px,8vw,45px);line-height:1.1;color:#30251f}
+.floral-copy{margin:14px auto 20px;max-width:330px;color:#746960;font-size:13px;line-height:1.7}
+.floral-copy strong{color:#30251f}
+.floral-added-product{display:flex;align-items:center;gap:14px;margin:0 0 23px;padding:12px;background:#f4eee6;text-align:left}
+.floral-added-product img{width:62px;height:76px;object-fit:cover;background:#e9e1d7}
+.floral-added-product p{margin:0 0 5px;font-size:12px;line-height:1.4}
+.floral-added-product p+p{color:#746960;font-size:10px}
+.floral-added-product strong{font-size:12px}
+.floral-keep-shopping{display:inline-block;padding:13px 16px;color:#6f5747;font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
+.floral-note{margin-top:9px;color:#82776e;font-size:9px;line-height:1.6}
+.floral-particles{position:absolute;inset:0;z-index:1;pointer-events:none;display:grid;place-items:center}
+.floral-petal{position:absolute;left:50%;top:50%;color:#bd9976;font-size:var(--petal-size);opacity:0;transform:translate(-50%,-50%);animation:petal-burst 2.35s cubic-bezier(.12,.72,.26,1) var(--delay) both}
+.petal-kind-1{color:#c58c91}.petal-kind-2{color:#d1b477}
+.bag-backdrop{position:fixed;inset:0;z-index:121;display:flex;justify-content:flex-end;background:rgba(38,29,24,.48);backdrop-filter:blur(3px);animation:floral-fade-in .2s ease-out both}
+.bag-drawer{display:flex;width:min(100%,510px);height:100%;max-height:100dvh;flex-direction:column;background:#f8f5ef;box-shadow:-18px 0 60px rgba(30,20,15,.2);animation:drawer-slide-in .32s cubic-bezier(.2,.8,.2,1) both}
+.bag-drawer-header{display:flex;flex:0 0 auto;align-items:center;justify-content:space-between;gap:15px;padding:25px 25px 20px;border-bottom:1px solid #e4dbcf;background:#fffdf9}
+.bag-drawer-body{flex:1 1 auto;overflow-y:auto;padding:24px 25px;overscroll-behavior:contain}
+.bag-drawer-footer{flex:0 0 auto;padding:20px 25px max(22px,env(safe-area-inset-bottom));border-top:1px solid #e4dbcf;background:#fffdf9}
+.bag-total-row{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#30251f;font-size:13px}
+.bag-total-row strong{font-size:16px}
+.quantity-control{display:inline-flex;align-items:center;border:1px solid #d9cfc3;background:#fffdf9}
+.quantity-control button{width:34px;height:34px;color:#30251f;font-size:17px}
+.quantity-control span{min-width:26px;text-align:center;font-size:12px;font-variant-numeric:tabular-nums}
+.bag-back-link{margin-bottom:12px;color:#805a46;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+.demo-warning{margin:12px 0 20px;border:1px solid #d7c3a9;background:#f3eadc;padding:12px 14px;color:#574535;font-size:11px;line-height:1.65}
+.demo-warning strong{display:block;margin-bottom:3px}
+.payment-choice{display:flex;align-items:flex-start;gap:11px;margin-top:9px;border:1px solid #e0d6ca;background:#fffdf9;padding:13px;cursor:pointer}
+.payment-choice input{margin-top:3px;accent-color:#795b43}
+.payment-choice span{display:flex;flex-direction:column;gap:4px}
+.payment-choice strong{color:#30251f;font-size:12px}
+.payment-choice small{color:#746960;font-size:10px;line-height:1.5}
+.bag-confirmation{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;padding:35px;text-align:center}
+.bag-confirmation-flower{display:grid;width:76px;height:76px;place-items:center;margin-bottom:24px;border:1px solid #c6a17c;border-radius:50%;color:#a77b55;font-size:40px}
+@keyframes floral-fade-in{from{opacity:0}to{opacity:1}}
+@keyframes floral-card-in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes drawer-slide-in{from{transform:translateX(30px);opacity:.7}to{transform:translateX(0);opacity:1}}
+@keyframes petal-burst{0%{opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.3)}12%{opacity:1}72%{opacity:.8}100%{opacity:0;transform:translate(calc(-50% + cos(var(--angle))*135px),calc(-50% + sin(var(--angle))*135px)) rotate(240deg) scale(1.05)}}
+@media(max-width:520px){.floral-card{padding:33px 20px 22px}.bag-drawer-header{padding:20px 18px 16px}.bag-drawer-body{padding:20px 18px}.bag-drawer-footer{padding-inline:18px}}
+@media(prefers-reduced-motion:reduce){.floral-celebration,.floral-card,.floral-petal,.bag-backdrop,.bag-drawer{animation:none!important}}
