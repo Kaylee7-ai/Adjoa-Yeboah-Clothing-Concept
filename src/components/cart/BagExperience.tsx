@@ -4,19 +4,28 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/formatPrice";
 
-const petals = Array.from({length:24},(_,i)=>({id:i,angle:i*137.5,delay:(i%8)*35,size:9+(i%4)*3,kind:i%3}));
+const fallingFlowers = Array.from({length:38},(_,i)=>({
+ id:i,
+ left:(i*37+11)%100,
+ delay:(i%10)*85,
+ duration:3300+(i%7)*190,
+ drift:((i*29)%150)-75,
+ size:17+(i%5)*5,
+ spin:i%2===0?360:-360,
+ flower:["🌸","🌺","🌼","🌷","💮"][i%5],
+}));
 export default function BagExperience(){
  const {cart,totalItems,subtotal,recentAddition,dismissCelebration,isBagOpen,openBag,closeBag,removeItem,updateQuantity}=useCart();
  const [petalsOn,setPetalsOn]=useState(true);
  const [step,setStep]=useState<"bag"|"checkout"|"done">("bag");
  const [payment,setPayment]=useState("momo");
- useEffect(()=>{if(!recentAddition)return;setPetalsOn(true);const t=window.setTimeout(()=>setPetalsOn(false),2500);return()=>window.clearTimeout(t)},[recentAddition]);
+ useEffect(()=>{if(!recentAddition)return;setPetalsOn(true);const t=window.setTimeout(()=>setPetalsOn(false),4800);return()=>window.clearTimeout(t)},[recentAddition]);
  useEffect(()=>{if(isBagOpen)setStep("bag")},[isBagOpen]);
  useEffect(()=>{if(!recentAddition&&!isBagOpen)return;const f=(e:KeyboardEvent)=>{if(e.key==="Escape"){dismissCelebration();closeBag()}};window.addEventListener("keydown",f);return()=>window.removeEventListener("keydown",f)},[recentAddition,isBagOpen,dismissCelebration,closeBag]);
  function complete(e:FormEvent<HTMLFormElement>){e.preventDefault();setStep("done")}
  return <>
  {recentAddition&&<div className="floral-celebration" role="dialog" aria-modal="true" aria-labelledby="floral-title" onMouseDown={e=>{if(e.target===e.currentTarget)dismissCelebration()}}>
-  {petalsOn&&<div className="floral-particles" aria-hidden="true">{petals.map(p=><span key={p.id} className={`floral-petal petal-kind-${p.kind}`} style={{"--angle":`${p.angle}deg`,"--delay":`${p.delay}ms`,"--petal-size":`${p.size}px`,"--x":`${Math.cos(p.angle*Math.PI/180)*135}px`,"--y":`${Math.sin(p.angle*Math.PI/180)*135}px`} as React.CSSProperties}>{p.kind===0?"✿":p.kind===1?"❀":"✧"}</span>)}</div>}
+  {petalsOn&&<div className="floral-rain" aria-hidden="true">{fallingFlowers.map(f=><span key={f.id} className="falling-flower" style={{"--flower-left":`${f.left}%`,"--flower-delay":`${f.delay}ms`,"--flower-duration":`${f.duration}ms`,"--flower-drift":`${f.drift}px`,"--flower-size":`${f.size}px`,"--flower-spin":`${f.spin}deg`} as React.CSSProperties}>{f.flower}</span>)}</div>}
   <section className="floral-card"><button className="floral-close" onClick={dismissCelebration} aria-label="Close">×</button><div className="floral-ornament" aria-hidden="true">✿ <i/> ❀</div><p className="eyebrow">A LOVELY CHOICE</p><h2 id="floral-title" className="serif floral-heading">Congratulations!</h2><p className="floral-copy">You've added <strong>{recentAddition.product.name}</strong> to your bag.</p>
    <div className="floral-added-product"><img src={recentAddition.product.images[0]} alt=""/><div><p className="font-semibold">{recentAddition.product.name}</p><p>{recentAddition.size?`Size ${recentAddition.size} · `:""}{recentAddition.color??"As pictured"}</p><strong>{formatPrice(recentAddition.product.price)}</strong></div></div>
    <button className="btn w-full" onClick={()=>{dismissCelebration();openBag()}}>Continue to checkout</button><button className="floral-keep-shopping" onClick={dismissCelebration}>Keep shopping</button><p className="floral-note">Saved in this browser. No order has been placed.</p>
