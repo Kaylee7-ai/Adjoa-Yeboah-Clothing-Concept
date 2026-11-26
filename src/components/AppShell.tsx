@@ -14,18 +14,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    try {
-      if (window.sessionStorage.getItem("ayc-splash") === "true") {
-        setShowSplash(false);
-        return;
-      }
-    } catch {
-      // The intro still works when session storage is unavailable.
-    }
+    // Show the branded opening screen on every fresh app load.
+    // Do not persist a session flag: that caused repeat visits to skip the intro.
     const timer = window.setTimeout(() => {
-      try { window.sessionStorage.setItem("ayc-splash", "true"); } catch {}
       setShowSplash(false);
     }, 2800);
+
     return () => window.clearTimeout(timer);
   }, []);
 
