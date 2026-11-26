@@ -685,8 +685,8 @@ p {
   top: 0.65rem;
   right: 0.65rem;
   display: grid;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   place-items: center;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.94);
@@ -736,8 +736,8 @@ p {
 }
 
 .color-swatch {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   flex: 0 0 auto;
   border: 3px solid #FFFFFF;
   border-radius: 50%;
