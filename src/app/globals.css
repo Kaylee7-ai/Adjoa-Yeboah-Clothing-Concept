@@ -515,3 +515,122 @@ body{background:#fbf5eb;color:#171311}
 .floral-card .btn{border-radius:999px!important}
 @media(max-width:640px){.luxury-hero{min-height: min(760px,calc(100svh - 3.5rem))}.product-card{border-radius:17px 17px 6px 6px!important}.btn,.luxury-hero a:first-child,.luxury-hero a:last-child{min-height:48px;padding-inline:21px!important}}
 @media(prefers-reduced-motion:reduce){.rose-petal{animation:none!important;display:none!important}}
+
+
+/* NOIR LUMIÈRE — carry the opening-screen identity through the storefront */
+:root{
+  --noir:#09090b;
+  --noir-plum:#171014;
+  --noir-panel:#21171c;
+  --noir-panel-soft:#281b21;
+  --noir-ivory:#fff8ed;
+  --noir-muted:#c5b4aa;
+  --noir-gold:#e2bd80;
+  --noir-rose:#9d3948;
+}
+html,body{background:#09090b!important;color:var(--noir-ivory)!important}
+body{background:radial-gradient(ellipse at 50% 0%,rgba(107,36,49,.16),transparent 38%),linear-gradient(145deg,#09090b,#171014 58%,#0b0a0b)!important}
+::selection{background:rgba(226,189,128,.34);color:#fff8ed}
+.site-header{
+  background:rgba(9,9,11,.94)!important;
+  border-bottom:1px solid rgba(226,189,128,.28)!important;
+  box-shadow:0 8px 36px rgba(0,0,0,.3),0 1px 18px rgba(157,57,72,.12)!important;
+}
+.site-header a,.site-header button{color:#fff8ed!important}
+.site-header a:hover,.site-header button:hover{color:#f3d9aa!important;text-shadow:0 0 16px rgba(226,189,128,.42)}
+.home-page>.luxury-collection{
+  background:radial-gradient(ellipse at 50% 0%,rgba(107,36,49,.22),transparent 48%),linear-gradient(145deg,#171014,#09090b 76%)!important;
+  color:#fff8ed!important;border-top:1px solid rgba(226,189,128,.25)!important;
+}
+.luxury-collection .section-title,.home-page>.luxury-collection h2{color:#fff8ed!important;text-shadow:0 0 28px rgba(226,189,128,.14)}
+.luxury-collection .eyebrow,.luxury-collection>div>div:first-child>a{color:#e8bd83!important}
+.product-card{
+  background:linear-gradient(150deg,rgba(40,27,33,.98),rgba(19,15,18,.98))!important;
+  border:1px solid rgba(226,189,128,.24)!important;
+  box-shadow:0 14px 38px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.035)!important;
+  color:#fff8ed!important;
+}
+.product-card:hover{
+  border-color:rgba(226,189,128,.68)!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 28px rgba(157,57,72,.28),0 0 34px rgba(226,189,128,.14)!important;
+}
+.product-card h3,.product-card .price{color:#fff4e4!important;text-shadow:0 0 16px rgba(226,189,128,.12)}
+.product-card .product-meta{color:#c5b4aa!important}
+.product-card .card-link,.inspect-link{color:#e8bd83!important}
+.product-card .image-frame{border-color:rgba(226,189,128,.25)!important;box-shadow:0 5px 24px rgba(0,0,0,.3)!important}
+.product-card .save-button{background:rgba(23,16,20,.94)!important;color:#f3d9aa!important;border-color:rgba(226,189,128,.52)!important;box-shadow:0 0 18px rgba(226,189,128,.12)!important}
+.product-card .save-button.saved{background:#9d3948!important;color:#fff8ed!important;box-shadow:0 0 22px rgba(157,57,72,.48)!important}
+.product-card .look-pairing{background:#21171c!important;border-color:rgba(226,189,128,.2)!important;color:#fff8ed!important}
+.product-card .pairing-line{border-color:rgba(226,189,128,.16)!important}
+.product-card .pairing-line small{color:#c5b4aa!important}
+
+/* Deep plum-black buttons with a bright champagne edge and a moving light sweep */
+.btn,.lookbook-add,.pairing-line button,.product-card button.btn{
+  isolation:isolate;overflow:hidden;position:relative;
+  color:#fff8ed!important;
+  background:linear-gradient(112deg,#211219 0%,#3a1d29 34%,#1a1218 72%,#29171e 100%)!important;
+  border:1px solid rgba(238,205,151,.82)!important;
+  box-shadow:0 8px 25px rgba(0,0,0,.38),0 0 0 1px rgba(226,189,128,.12) inset,0 0 18px rgba(157,57,72,.32),0 0 24px rgba(226,189,128,.13)!important;
+  text-shadow:0 0 12px rgba(255,248,237,.24);
+  transition:transform .25s ease,box-shadow .3s ease,filter .3s ease!important;
+}
+.btn:before,.lookbook-add:before,.pairing-line button:before{
+  content:"";position:absolute;z-index:-1;inset:-2px;pointer-events:none;
+  background:linear-gradient(112deg,transparent 12%,rgba(255,248,237,.02) 34%,rgba(255,232,190,.42) 49%,rgba(255,248,237,.04) 61%,transparent 82%);
+  transform:translateX(-130%);animation:noir-button-shine 4.2s ease-in-out infinite;
+}
+.btn:hover,.lookbook-add:hover,.pairing-line button:hover{
+  transform:translateY(-2px)!important;filter:brightness(1.16);
+  box-shadow:0 12px 32px rgba(0,0,0,.42),0 0 0 1px rgba(255,239,205,.22) inset,0 0 24px rgba(157,57,72,.48),0 0 38px rgba(226,189,128,.3)!important;
+}
+.btn-outline{background:rgba(23,16,20,.48)!important;color:#fff8ed!important;border-color:rgba(226,189,128,.64)!important}
+.btn-outline:hover{background:#29171e!important;color:#fff8ed!important}
+.luxury-hero a:first-child{background:linear-gradient(112deg,#211219,#3a1d29 45%,#1a1218)!important;color:#fff8ed!important;border-color:rgba(238,205,151,.82)!important;box-shadow:0 0 26px rgba(157,57,72,.34),0 0 30px rgba(226,189,128,.18)!important}
+.luxury-hero a:last-child{color:#fff8ed!important;border-color:rgba(226,189,128,.75)!important;text-shadow:0 0 14px rgba(255,248,237,.3);box-shadow:0 0 22px rgba(226,189,128,.16)!important}
+.luxury-cta{background:radial-gradient(ellipse at 50% 0%,rgba(107,36,49,.28),transparent 52%),linear-gradient(145deg,#171014,#09090b 76%)!important}
+.site-footer{background:linear-gradient(145deg,#171014,#09090b 76%)!important;border-top:1px solid rgba(226,189,128,.28)!important}
+.site-footer h2{color:#e8bd83!important}
+.site-footer p,.site-footer li{color:#c5b4aa}
+.field,.swatch-choice,.collection-filter{
+  background:#21171c!important;color:#fff8ed!important;
+  border-color:rgba(226,189,128,.28)!important;
+}
+.field::placeholder{color:#a9959a!important}
+.field:focus,.field:focus-visible{border-color:#e2bd80!important;box-shadow:0 0 0 3px rgba(226,189,128,.18),0 0 20px rgba(157,57,72,.18)!important}
+.collection-filter{color:#e8d9ca!important}
+.collection-filter.active{background:#3a1d29!important;border-color:#e2bd80!important;color:#fff8ed!important;box-shadow:0 0 20px rgba(157,57,72,.28)!important}
+.quickview-panel,.bag-drawer,.saved-drawer{
+  background:linear-gradient(145deg,#21171c,#100d10)!important;
+  color:#fff8ed!important;border:1px solid rgba(226,189,128,.34)!important;
+  box-shadow:0 24px 90px rgba(0,0,0,.55),0 0 36px rgba(157,57,72,.16)!important;
+}
+.quickview-content,.bag-drawer-body{color:#fff8ed!important}
+.quickview-panel h2,.quickview-panel h3,.bag-drawer h2,.bag-drawer h3{color:#fff8ed!important}
+.bag-drawer-header,.bag-drawer-footer,.saved-header{
+  background:#171014!important;border-color:rgba(226,189,128,.22)!important;
+}
+.bag-total-row,.quantity-control button,.quantity-control span{color:#fff8ed!important}
+.quantity-control,.quantity-control button{background:#21171c!important;border-color:rgba(226,189,128,.28)!important}
+.payment-choice,.demo-warning,.floral-added-product,.look-pairing,.fit-helper{
+  background:#281b21!important;border-color:rgba(226,189,128,.22)!important;color:#fff8ed!important;
+}
+.payment-choice strong,.floral-added-product strong,.floral-added-product p{color:#fff8ed!important}
+.payment-choice small,.demo-warning,.bag-drawer p,.quickview-panel p{color:#c5b4aa}
+.floral-card{background:linear-gradient(145deg,#21171c,#100d10)!important;color:#fff8ed!important;border-color:rgba(226,189,128,.62)!important;box-shadow:0 32px 100px rgba(0,0,0,.62),0 0 54px rgba(157,57,72,.3),0 0 32px rgba(226,189,128,.14)!important}
+.floral-heading,.floral-copy strong{color:#fff0df!important}
+.floral-copy{color:#d2bdba!important}
+.floral-added-product{background:#281b21!important}
+.floral-close,.bag-close,.quickview-close{background:#21171c!important;color:#fff8ed!important;border-color:rgba(226,189,128,.42)!important}
+.floral-keep-shopping,.bag-back-link{color:#e8bd83!important}
+.atelier-promises{background:rgba(226,189,128,.18)!important;border-color:rgba(226,189,128,.18)!important}
+.atelier-promises>div{background:#171014!important}
+.atelier-promises strong{color:#fff8ed!important}
+.atelier-promises small{color:#c5b4aa!important}
+@keyframes noir-button-shine{
+  0%,58%{transform:translateX(-130%)}
+  82%,100%{transform:translateX(130%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .btn:before,.lookbook-add:before,.pairing-line button:before{animation:none!important}
+  .btn,.lookbook-add,.pairing-line button{transition:none!important}
+}
