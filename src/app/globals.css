@@ -50,7 +50,7 @@ img { max-width: 100%; }
 
 /* Floral add-to-bag celebration + responsive checkout drawer */
 .floral-celebration{position:fixed;inset:0;z-index:120;display:grid;place-items:center;overflow:hidden;padding:22px;background:rgba(38,29,24,.55);backdrop-filter:blur(7px);animation:floral-fade-in .25s ease-out both}
-.floral-card{position:relative;z-index:2;width:min(100%,440px);padding:36px 30px 27px;border:1px solid rgba(177,138,98,.55);background:rgba(255,253,249,.98);box-shadow:0 28px 90px rgba(27,19,14,.28);text-align:center;animation:floral-card-in .48s cubic-bezier(.2,.8,.2,1) both}
+.floral-card{position:relative;z-index:4;width:min(100%,440px);padding:36px 30px 27px;border:1px solid rgba(177,138,98,.55);background:rgba(255,253,249,.98);box-shadow:0 28px 90px rgba(27,19,14,.28);text-align:center;animation:floral-card-in .48s cubic-bezier(.2,.8,.2,1) both}
 .floral-close,.bag-close{display:grid;place-items:center;width:38px;height:38px;border:1px solid #e4dbcf;border-radius:50%;background:#fffdf9;color:#30251f;font-size:24px;line-height:1}
 .floral-close{position:absolute;top:12px;right:12px}
 .floral-ornament{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:19px;color:#a77b55;font-size:22px}
@@ -65,9 +65,9 @@ img { max-width: 100%; }
 .floral-added-product strong{font-size:12px}
 .floral-keep-shopping{display:inline-block;padding:13px 16px;color:#6f5747;font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
 .floral-note{margin-top:9px;color:#82776e;font-size:9px;line-height:1.6}
-.floral-particles{position:absolute;inset:0;z-index:1;pointer-events:none;display:grid;place-items:center}
-.floral-petal{position:absolute;left:50%;top:50%;color:#bd9976;font-size:var(--petal-size);opacity:0;transform:translate(-50%,-50%);animation:petal-burst 2.35s cubic-bezier(.12,.72,.26,1) var(--delay) both}
-.petal-kind-1{color:#c58c91}.petal-kind-2{color:#d1b477}
+.floral-rain{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+.falling-flower{position:absolute;top:-12vh;left:var(--flower-left);display:block;font-size:var(--flower-size);line-height:1;opacity:0;filter:drop-shadow(0 3px 3px rgba(49,31,24,.18));transform-origin:center;animation:real-flower-rain var(--flower-duration) cubic-bezier(.28,.05,.7,.98) var(--flower-delay) 1 both}
+@keyframes real-flower-rain{0%{opacity:0;transform:translate3d(0,-8vh,0) rotate(0deg) scale(.72)}8%{opacity:.96}28%{transform:translate3d(calc(var(--flower-drift)*.28),22vh,0) rotate(calc(var(--flower-spin)*.25)) scale(1)}55%{transform:translate3d(calc(var(--flower-drift)*.72),57vh,0) rotate(calc(var(--flower-spin)*.65)) scale(.92)}82%{opacity:.92}100%{opacity:0;transform:translate3d(var(--flower-drift),112vh,0) rotate(var(--flower-spin)) scale(.78)}}
 .bag-backdrop{position:fixed;inset:0;z-index:121;display:flex;justify-content:flex-end;background:rgba(38,29,24,.48);backdrop-filter:blur(3px);animation:floral-fade-in .2s ease-out both}
 .bag-drawer{display:flex;width:min(100%,510px);height:100%;max-height:100dvh;flex-direction:column;background:#f8f5ef;box-shadow:-18px 0 60px rgba(30,20,15,.2);animation:drawer-slide-in .32s cubic-bezier(.2,.8,.2,1) both}
 .bag-drawer-header{display:flex;flex:0 0 auto;align-items:center;justify-content:space-between;gap:15px;padding:25px 25px 20px;border-bottom:1px solid #e4dbcf;background:#fffdf9}
@@ -93,4 +93,4 @@ img { max-width: 100%; }
 @keyframes drawer-slide-in{from{transform:translateX(30px);opacity:.7}to{transform:translateX(0);opacity:1}}
 @keyframes petal-burst{0%{opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.3)}12%{opacity:1}72%{opacity:.8}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(240deg) scale(1.05)}}
 @media(max-width:520px){.floral-card{padding:33px 20px 22px}.bag-drawer-header{padding:20px 18px 16px}.bag-drawer-body{padding:20px 18px}.bag-drawer-footer{padding-inline:18px}}
-@media(prefers-reduced-motion:reduce){.floral-celebration,.floral-card,.floral-petal,.bag-backdrop,.bag-drawer{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.floral-celebration,.floral-card,.falling-flower,.bag-backdrop,.bag-drawer{animation:none!important}}
