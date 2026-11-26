@@ -17,7 +17,7 @@ export function ProductCard({ product }: { product: Product }) {
         <Link href={`/shop/${product.slug}`} aria-label={`View ${product.name}`}>
           <img className="product-image" src={image} alt={`Concept image for ${product.name}`} loading="lazy" />
         </Link>
-        <button type="button" onClick={() => toggleSaved(product.id)} aria-label={saved ? `Unsave ${product.name}` : `Save ${product.name}`} aria-pressed={saved} className="absolute right-2 top-2 grid h-10 w-10 place-items-center rounded-full bg-white/95 text-[var(--color-espresso)] shadow-sm">
+        <button type="button" onClick={() => toggleSaved(product.id)} aria-label={saved ? `Unsave ${product.name}` : `Save ${product.name}`} aria-pressed={saved} className="absolute right-2 top-2 grid h-11 w-11 place-items-center rounded-full bg-white/95 text-[var(--color-espresso)] shadow-sm">
           <Heart size={17} fill={saved ? "currentColor" : "none"} />
         </button>
         {product.isNew && <span className="absolute left-2 top-2 rounded-full bg-[var(--color-emerald)] px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-white">New</span>}
