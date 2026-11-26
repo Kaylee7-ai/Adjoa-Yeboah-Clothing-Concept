@@ -17,12 +17,15 @@ export default function CartPage() {
     const code = promo.trim().toUpperCase();
     if (code === "AYC10") {
       setDiscount(subtotal * 0.1);
+      window.localStorage.setItem("ayc-demo-discount", String(subtotal * 0.1));
       setPromoMessage("Demo code applied: 10% off.");
     } else if (code === "KENTE15") {
       setDiscount(subtotal * 0.15);
+      window.localStorage.setItem("ayc-demo-discount", String(subtotal * 0.15));
       setPromoMessage("Demo code applied: 15% off.");
     } else {
       setDiscount(0);
+      window.localStorage.removeItem("ayc-demo-discount");
       setPromoMessage("Invalid code. Check the code and try again.");
     }
   }
