@@ -6,45 +6,30 @@ import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: {
-    default: "Adjoa Yeboah Clothing | Ghanaian Designer Fashion",
+    default: "Adjoa Yeboah Clothing | Premium Ghanaian Fashion",
     template: "%s | Adjoa Yeboah Clothing",
   },
   description:
-    "Discover expressive Ghanaian designer fashion, ready-to-wear pieces and bespoke creations from Adjoa Yeboah Clothing in Accra.",
+    "Adjoa Yeboah Clothing — contemporary Ghanaian fashion, bespoke occasionwear and distinctive African-inspired design.",
   manifest: "/manifest.webmanifest",
-  icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon", type: "image/png", sizes: "64x64" },
-    ],
-    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
-  },
+  icons: { icon: "/icon.svg", apple: "/icon.svg" },
   applicationName: "Adjoa Yeboah Clothing",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Adjoa Yeboah",
-  },
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "Adjoa Yeboah" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF7F2",
+  themeColor: "#09090b",
   width: "device-width",
   initialScale: 1,
-  viewportFit: "cover",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased">
+      <body className="min-h-screen bg-[#09090b] text-[#fff8ed] antialiased">
         <AppShell>
           <Header />
-          <main className="min-h-screen pt-[calc(var(--header-height)+env(safe-area-inset-top))]">{children}</main>
+          <main className="min-h-screen">{children}</main>
           <Footer />
         </AppShell>
       </body>

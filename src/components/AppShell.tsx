@@ -1,44 +1,48 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
 import BottomNav from "@/components/layout/BottomNav";
+import BagExperience from "@/components/cart/BagExperience";
+import SavedDrawer from "@/components/wishlist/SavedDrawer";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
 import { AuthProvider } from "@/lib/auth";
 import { SavedProvider } from "@/context/SavedContext";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
-  const [showIntro, setShowIntro] = useState(false);
-  const [introChecked, setIntroChecked] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     try {
-      setShowIntro(window.sessionStorage.getItem("ayc-onboarding-complete") !== "true");
+      if (window.sessionStorage.getItem("ayc-splash") === "true") {
+        setShowSplash(false);
+        return;
+      }
     } catch {
-      setShowIntro(false);
+      // The intro still works when session storage is unavailable.
     }
-    setIntroChecked(true);
-  }, []);
-
-  const finishIntro = useCallback(() => {
-    try {
-      window.sessionStorage.setItem("ayc-onboarding-complete", "true");
-    } catch {
-      // The intro can still be dismissed when storage is unavailable.
-    }
-    setShowIntro(false);
+    const timer = window.setTimeout(() => {
+      try { window.sessionStorage.setItem("ayc-splash", "true"); } catch {}
+      setShowSplash(false);
+    }, 2800);
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (
     <AuthProvider>
       <CartProvider>
-        <SavedProvider>
-        <div className="ay-app-shell">
-          {children}
-          <BottomNav />
-        </div>
-        {introChecked && showIntro && <SplashScreen onContinue={finishIntro} />}
-      </SavedProvider>
+        <WishlistProvider>
+          <SavedProvider>
+            {showSplash && <SplashScreen />}
+            <div className={showSplash ? "app-content app-content-hidden" : "app-content app-content-visible"} aria-hidden={showSplash}>
+              {children}
+            </div>
+            <BottomNav />
+            <BagExperience />
+            <SavedDrawer />
+          </SavedProvider>
+        </WishlistProvider>
       </CartProvider>
     </AuthProvider>
   );

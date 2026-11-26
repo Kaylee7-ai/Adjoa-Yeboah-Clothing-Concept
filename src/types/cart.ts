@@ -7,8 +7,4 @@ export interface CartItem {
   color?: string;
   notes?: string;
 }
-
-export interface Cart {
-  items: CartItem[];
-  updatedAt: number;
-}
+export interface Cart { items: CartItem[]; updatedAt: number; }
