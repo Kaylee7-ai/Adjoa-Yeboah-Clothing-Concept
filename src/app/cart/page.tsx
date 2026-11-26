@@ -20,14 +20,14 @@ export default function CartPage() {
               <img src={item.product.images[0]} alt={`Editorial concept image for ${item.product.name}`} className="h-36 w-28 shrink-0 bg-[#eee6dc] object-cover sm:h-44 sm:w-36" />
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-start justify-between gap-3">
-                  <div><p className="serif text-lg leading-snug">{item.product.name}</p><p className="mt-1 text-xs text-[#746960]">{item.product.category}{item.size ? ` · Size ${item.size}` : ""}</p></div>
-                  <button type="button" onClick={() => removeItem(item.product.id, item.size)} className="shrink-0 text-[10px] font-semibold uppercase tracking-widest text-[#8b5e55] underline underline-offset-4">Remove</button>
+                  <div><p className="serif text-lg leading-snug">{item.product.name}</p><p className="mt-1 text-xs text-[#746960]">{item.product.category}{item.size ? ` · Size ${item.size}` : ""}{item.color ? ` · ${item.color}` : ""}</p></div>
+                  <button type="button" onClick={() => removeItem(item.product.id, item.size, item.color)} className="shrink-0 text-[10px] font-semibold uppercase tracking-widest text-[#8b5e55] underline underline-offset-4">Remove</button>
                 </div>
                 <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-5">
                   <div className="flex items-center border border-[#d9cfc3] bg-[#fffdf9]">
-                    <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1, item.size)} className="px-3 py-2" aria-label="Decrease quantity">−</button>
+                    <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1, item.size, item.color)} className="px-3 py-2" aria-label="Decrease quantity">−</button>
                     <span className="min-w-8 text-center text-xs tabular-nums" aria-live="polite">{item.quantity}</span>
-                    <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity + 1, item.size)} className="px-3 py-2" aria-label="Increase quantity">+</button>
+                    <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity + 1, item.size, item.color)} className="px-3 py-2" aria-label="Increase quantity">+</button>
                   </div>
                   <p className="text-sm font-semibold">{formatPrice(item.product.price * item.quantity)}</p>
                 </div>
