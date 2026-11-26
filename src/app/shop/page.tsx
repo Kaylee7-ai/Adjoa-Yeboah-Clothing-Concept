@@ -4,7 +4,7 @@ export const metadata = { title: "Shop the Edit" };
 
 export default function Shop() {
   return (
-    <main>
+    <main className="shop-page">
       <section className="bg-[#eee6dc] px-5 py-20 text-center md:py-28">
         <p className="eyebrow">THE COLLECTION</p>
         <h1 className="serif mt-4 text-5xl leading-tight text-[#30251f] sm:text-6xl">Find your <em>signature.</em></h1>

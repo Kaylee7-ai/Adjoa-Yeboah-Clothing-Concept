@@ -31,7 +31,7 @@ export function ProductCard({product}:{product:Product}){
    <button type="button" disabled={sizes.length>0&&!size} onClick={()=>addItem(product,1,size||undefined,undefined,color)} className="btn product-add-button disabled:cursor-not-allowed disabled:opacity-50">Add to bag</button>
   </div>
   <button type="button" className="inspect-link" onClick={()=>setQuickOpen(true)}>View fabric, fit & care</button>
-  {pairings.length>0&&<div className="look-pairing"><p className="eyebrow">THE EDITOR'S PAIRING</p><p className="serif mt-1 text-lg">Shop the complete look</p>{pairings.map(piece=><div key={piece.id} className="pairing-line"><span>{piece.name}<small>{formatPrice(piece.price)}</small></span><button type="button" onClick={()=>setPairingToInspect(piece)}>Inspect & add</button></div>)}</div>}
+  {pairings.length>0&&<div className="look-pairing"><p className="eyebrow">THE EDITOR'S PAIRING</p><p className="serif mt-1 text-lg">Shop the complete look</p>{pairings.map(piece=><div key={piece.id} className="pairing-line"><span>{piece.name}<small>{formatPrice(piece.price)}</small></span><button type="button" onClick={()=>setPairingToInspect(piece)}>View & add</button></div>)}</div>}
   <Link href={`/shop/${product.slug}`} className="card-link">Discover piece ↗</Link>
   {quickOpen&&<ProductQuickView product={product} onClose={()=>setQuickOpen(false)}/>} {pairingToInspect&&<ProductQuickView product={pairingToInspect} onClose={()=>setPairingToInspect(null)}/>}
  </article>
