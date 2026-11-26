@@ -93,7 +93,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
         const items: CartItem[] = existing
           ? previous.items.map((item) =>
-              item.product.id === product.id && item.size === size
+              item.product.id === product.id && item.size === size && item.color === color
                 ? {
                     ...item,
                     quantity: item.quantity + amount,
@@ -113,9 +113,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart((previous) => ({
       ...previous,
       items: previous.items.filter((item) =>
-        size === undefined
+        size === undefined && color === undefined
           ? item.product.id !== productId
-          : item.product.id !== productId || item.size !== size
+          : item.product.id !== productId || item.size !== size || item.color !== color
       ),
       updatedAt: Date.now(),
     }));
@@ -132,7 +132,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         ...previous,
         items: previous.items.map((item) =>
           item.product.id === productId &&
-          (size === undefined || item.size === size)
+          (size === undefined || item.size === size) &&
+          (color === undefined || item.color === color)
             ? { ...item, quantity: amount }
             : item
         ),
