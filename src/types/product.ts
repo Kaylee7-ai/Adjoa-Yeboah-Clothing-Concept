@@ -17,7 +17,8 @@ export type Fabric =
   | "silk"
   | "chiffon"
   | "organza"
-  | "cotton";
+  | "cotton"
+  | "satin";
 
 export interface Product {
   id: string;
