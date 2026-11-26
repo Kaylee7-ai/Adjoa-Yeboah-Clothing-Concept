@@ -36,7 +36,7 @@ const EMPTY: Design = {
   measurements: { bust: "", waist: "", hips: "", height: "" }, standardSize: "",
   dateNeeded: "", deliveryMethod: "", notes: "",
 };
-const STEP_TITLES = ["Garment", "Occasion", "Fabric", "Style details", "Measurements", "Delivery & timing", "Review", "Confirmation"];
+const STEP_TITLES = ["Department", "Garment", "Occasion", "Fabric", "Style details", "Measurements", "Delivery & timing", "Review"];
 
 function toggle(values: string[], id: string, limit?: number) {
   if (values.includes(id)) return values.filter((value) => value !== id);
@@ -85,13 +85,13 @@ function DesignWizard() {
     if (saved) {
       const restored = saved as unknown as { design?: Design; step?: number };
       if (restored.design) setDesign({ ...EMPTY, ...restored.design });
-      if (typeof restored.step === "number") setStep(Math.min(6, Math.max(0, restored.step)));
+      if (typeof restored.step === "number") setStep(Math.min(7, Math.max(0, restored.step)));
     }
     setHydrated(true);
   }, [user?.id]);
 
   useEffect(() => {
-    if (!hydrated || step === 7) return;
+    if (!hydrated || step === 8) return;
     saveDraft(user?.id ?? "guest", { design, step });
   }, [design, step, hydrated, user?.id]);
 
@@ -107,24 +107,25 @@ function DesignWizard() {
   ].filter((value) => value !== "Not selected"), [design]);
 
   function isValid() {
-    if (step === 0) return !!design.department && !!design.garment;
-    if (step === 1) return !!design.occasion;
-    if (step === 2) return !!design.fabricSource && (design.fabricSource === "own" ? !!design.ownFabricMethod : design.fabrics.length > 0);
-    if (step === 3) return !!design.neckline && !!design.sleeves && !!design.length && !!design.fit;
-    if (step === 4) {
+    if (step === 0) return !!design.department;
+    if (step === 1) return !!design.garment;
+    if (step === 2) return !!design.occasion;
+    if (step === 3) return !!design.fabricSource && (design.fabricSource === "own" ? !!design.ownFabricMethod : design.fabrics.length > 0);
+    if (step === 4) return !!design.neckline && !!design.sleeves && !!design.length && !!design.fit;
+    if (step === 5) {
       if (!design.measurementMethod) return false;
       if (design.measurementMethod === "manual") return Object.values(design.measurements).every((value) => value.trim().length > 0);
       if (design.measurementMethod === "standard") return !!design.standardSize;
       return true;
     }
-    if (step === 5) return !!design.dateNeeded && !!design.deliveryMethod;
+    if (step === 6) return !!design.dateNeeded && !!design.deliveryMethod;
     return true;
   }
 
   function next() {
     if (!isValid()) { setFormError("Please complete the required choice(s) before continuing."); return; }
     setFormError("");
-    setStep((current) => Math.min(6, current + 1));
+    setStep((current) => Math.min(7, current + 1));
   }
 
   function requestQuote() {
@@ -141,7 +142,7 @@ function DesignWizard() {
     }, design as unknown as Record<string, unknown>);
     clearDraft(user.id);
     setRequestReference(saved.reference);
-    setStep(7);
+    setStep(8);
   }
 
   if (!hydrated) return <main className="wrap section">Loading your saved design…</main>;
@@ -164,7 +165,7 @@ function DesignWizard() {
         <p className="mt-1 break-words text-sm leading-6">{summaryText}</p>
       </section>
 
-      {step < 7 && (
+      {step < 8 && (
         <div className="mb-8">
           <div className="mb-2 flex items-center justify-between gap-3 text-xs">
             <span className="font-semibold">Step {step + 1} of 8</span>
@@ -178,19 +179,19 @@ function DesignWizard() {
 
       {step === 0 && <section className="grid gap-7">
         <div><p className="eyebrow">01 · Required</p><h2 className="mb-4 font-display text-3xl">Who are we designing for?</h2><OptionGrid options={DEPARTMENTS} value={design.department} onChange={(v) => update("department", v as string)} /></div>
-        <div><p className="eyebrow">Choose one</p><h2 className="mb-4 font-display text-3xl">Choose your garment</h2><OptionGrid options={GARMENTS} value={design.garment} onChange={(v) => update("garment", v as string)} /></div>
       </section>}
 
-      {step === 1 && <section><p className="eyebrow">02 · Required</p><h2 className="mb-5 font-display text-3xl">What is the occasion?</h2><OptionGrid options={OCCASIONS} value={design.occasion} onChange={(v) => update("occasion", v as string)} /></section>}
+      {step === 1 && <section><p className="eyebrow">02 · Required</p><h2 className="mb-5 font-display text-3xl">Choose your garment</h2><OptionGrid options={GARMENTS} value={design.garment} onChange={(v) => update("garment", v as string)} /></section>}
+      {step === 2 && <section><p className="eyebrow">03 · Required</p><h2 className="mb-5 font-display text-3xl">What is the occasion?</h2><OptionGrid options={OCCASIONS} value={design.occasion} onChange={(v) => update("occasion", v as string)} /></section>}
 
-      {step === 2 && <section className="grid gap-8">
+      {step === 3 && <section className="grid gap-8">
         <div><p className="eyebrow">03 · Required</p><h2 className="mb-5 font-display text-3xl">Where will your fabric come from?</h2><OptionGrid options={FABRIC_SOURCES} value={design.fabricSource} onChange={(v) => { update("fabricSource", v as string); update("fabrics", []); update("ownFabricMethod", ""); }} /></div>
         {design.fabricSource === "studio" && <div><h3 className="mb-4 font-display text-2xl">Choose up to two fabrics</h3><OptionGrid options={FABRICS} value={design.fabrics} multi limit={2} onChange={(v) => update("fabrics", v as string[])} /><p className="mt-2 text-xs text-[var(--color-muted)]">Select no more than two fabric types. Fabric availability is a dummy selection to be confirmed.</p></div>}
         {design.fabricSource === "own" && <div className="border border-[var(--color-line)] bg-[var(--color-surface)] p-5"><h3 className="font-display text-2xl">How will you get it to us?</h3><p className="my-3 text-sm">Dummy studio address: {DUMMY_STUDIO_ADDRESS}</p><OptionGrid options={OWN_FABRIC_METHODS} value={design.ownFabricMethod} onChange={(v) => update("ownFabricMethod", v as string)} /><p className="mt-4 text-xs leading-6 text-[var(--color-muted)]">{OWN_FABRIC_QUANTITY_NOTE}</p></div>}
         <div><h3 className="mb-4 font-display text-2xl">Colour palette</h3><OptionGrid options={COLOURS} value={design.colours} multi limit={3} onChange={(v) => update("colours", v as string[])} /><p className="mt-2 text-xs text-[var(--color-muted)]">Choose up to three colours. Custom colour is optional.</p>{design.colours.includes("custom") && <input className="field mt-3" aria-label="Describe your custom colour" placeholder="Describe your custom colour" value={design.customColour} onChange={(e) => update("customColour", e.target.value)} />}</div>
       </section>}
 
-      {step === 3 && <section className="grid gap-7">
+      {step === 4 && <section className="grid gap-7">
         <p className="eyebrow">04 · Required choices</p>
         <div><h2 className="mb-3 font-display text-2xl">Neckline</h2><OptionGrid options={NECKLINES} value={design.neckline} onChange={(v) => update("neckline", v as string)} /></div>
         <div><h2 className="mb-3 font-display text-2xl">Sleeves</h2><OptionGrid options={SLEEVES} value={design.sleeves} onChange={(v) => update("sleeves", v as string)} /></div>
@@ -201,7 +202,7 @@ function DesignWizard() {
         <div><label className="field-label" htmlFor="styleNotes">Style notes (optional)</label><textarea id="styleNotes" className="field min-h-28" value={design.styleNotes} onChange={(e) => update("styleNotes", e.target.value)} placeholder="Tell the studio anything else about the look…" /></div>
       </section>}
 
-      {step === 4 && <section className="grid gap-6">
+      {step === 5 && <section className="grid gap-6">
         <p className="eyebrow">05 · Required</p><h2 className="font-display text-3xl">How would you like to get fitted?</h2>
         <OptionGrid options={MEASUREMENT_METHODS} value={design.measurementMethod} onChange={(v) => update("measurementMethod", v as string)} />
         {design.measurementMethod === "manual" && <div className="grid gap-3 sm:grid-cols-2"><p className="sm:col-span-2 text-sm text-[var(--color-muted)]">Enter your measurements. The studio will confirm the units and any extra measurements required.</p>{(["bust", "waist", "hips", "height"] as const).map((key) => <label key={key} className="field-label">{key}<input className="field mt-2" inputMode="decimal" value={design.measurements[key]} onChange={(e) => update("measurements", { ...design.measurements, [key]: e.target.value })} placeholder="Enter measurement" /></label>)}<Link className="text-sm underline sm:col-span-2" href="/size-guide">How to measure — view Size Guide ↗</Link></div>}
@@ -209,7 +210,7 @@ function DesignWizard() {
         {design.measurementMethod === "standard" && <div><p className="mb-3 text-sm">Choose a standard size (dummy size range; studio to confirm).</p><OptionGrid options={STANDARD_SIZES} value={design.standardSize} onChange={(v) => update("standardSize", v as string)} /></div>}
       </section>}
 
-      {step === 5 && <section className="grid gap-7">
+      {step === 6 && <section className="grid gap-7">
         <p className="eyebrow">06 · Required</p><h2 className="font-display text-3xl">When do you need your outfit?</h2>
         <label className="field-label" htmlFor="dateNeeded">Date needed<input id="dateNeeded" className="field mt-2" type="date" min={new Date().toISOString().slice(0, 10)} value={design.dateNeeded} onChange={(e) => update("dateNeeded", e.target.value)} /></label>
         <p className="border-l-2 border-[var(--color-sunset)] pl-4 text-sm leading-6 text-[var(--color-muted)]">{RUSH_REQUEST_NOTE}</p>
@@ -219,19 +220,20 @@ function DesignWizard() {
         <label className="field-label" htmlFor="extraNotes">Anything else the studio should know?<textarea id="extraNotes" className="field mt-2 min-h-28" value={design.notes} onChange={(e) => update("notes", e.target.value)} placeholder="Additional details (optional)" /></label>
       </section>}
 
-      {step === 6 && <section>
+      {step === 7 && <section>
         <p className="eyebrow">07 · Review</p><h2 className="mb-6 font-display text-3xl">Your design, at a glance.</h2>
         <div className="divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
           {[
-            ["Garment", `${selectedDepartment} · ${selectedGarment}`, 0],
-            ["Occasion", labelFor(OCCASIONS, design.occasion), 1],
-            ["Fabric", design.fabricSource === "own" ? `Own fabric · ${labelFor(OWN_FABRIC_METHODS, design.ownFabricMethod)}` : design.fabrics.map((id) => labelFor(FABRICS, id)).join(", "), 2],
-            ["Colours", design.colours.map((id) => labelFor(COLOURS, id)).join(", ") + (design.customColour ? ` · ${design.customColour}` : ""), 2],
-            ["Style", [labelFor(NECKLINES, design.neckline), labelFor(SLEEVES, design.sleeves), labelFor(LENGTHS, design.length), labelFor(FITS, design.fit)].join(" · "), 3],
-            ["Extras & notes", [...design.extras.map((id) => labelFor(EXTRAS, id)), design.styleNotes, design.inspirationNames.join(", ")].filter(Boolean).join(" · "), 3],
-            ["Measurements", design.measurementMethod === "manual" ? Object.entries(design.measurements).map(([key, value]) => `${key}: ${value}`).join(" · ") : design.measurementMethod === "standard" ? `Standard size ${design.standardSize}` : labelFor(MEASUREMENT_METHODS, design.measurementMethod), 4],
-            ["Date & delivery", `${design.dateNeeded} · ${labelFor(DELIVERY_METHODS, design.deliveryMethod)}`, 5],
-            ["Additional notes", design.notes || "None", 5],
+            ["Department", selectedDepartment, 0],
+            ["Garment", selectedGarment, 1],
+            ["Occasion", labelFor(OCCASIONS, design.occasion), 2],
+            ["Fabric", design.fabricSource === "own" ? `Own fabric · ${labelFor(OWN_FABRIC_METHODS, design.ownFabricMethod)}` : design.fabrics.map((id) => labelFor(FABRICS, id)).join(", "), 3],
+            ["Colours", design.colours.map((id) => labelFor(COLOURS, id)).join(", ") + (design.customColour ? ` · ${design.customColour}` : ""), 3],
+            ["Style", [labelFor(NECKLINES, design.neckline), labelFor(SLEEVES, design.sleeves), labelFor(LENGTHS, design.length), labelFor(FITS, design.fit)].join(" · "), 4],
+            ["Extras & notes", [...design.extras.map((id) => labelFor(EXTRAS, id)), design.styleNotes, design.inspirationNames.join(", ")].filter(Boolean).join(" · "), 4],
+            ["Measurements", design.measurementMethod === "manual" ? Object.entries(design.measurements).map(([key, value]) => `${key}: ${value}`).join(" · ") : design.measurementMethod === "standard" ? `Standard size ${design.standardSize}` : labelFor(MEASUREMENT_METHODS, design.measurementMethod), 5],
+            ["Date & delivery", `${design.dateNeeded} · ${labelFor(DELIVERY_METHODS, design.deliveryMethod)}`, 6],
+            ["Additional notes", design.notes || "None", 6],
           ].map(([heading, value, editStep]) => <div key={String(heading)} className="flex flex-wrap items-start justify-between gap-4 py-4"><div className="min-w-0 flex-1"><p className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)]">{heading}</p><p className="mt-1 break-words text-sm">{String(value)}</p></div><button type="button" onClick={() => setStep(Number(editStep))} className="min-h-11 px-3 text-sm font-semibold underline">Edit</button></div>)}
         </div>
         <div className="mt-7 bg-[var(--color-surface)] p-5"><p className="font-semibold">Quote first — no instant custom price.</p><p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">Your request is sent to the studio for review. No payment is collected now. Price, production time and payment terms are confirmed in the studio's quote.</p></div>
@@ -239,7 +241,7 @@ function DesignWizard() {
         <button type="button" className="btn mt-6 w-full" onClick={requestQuote}>Request a Quote</button>
       </section>}
 
-      {step === 7 && <section className="mx-auto max-w-2xl border border-[var(--color-champagne)]/50 bg-[var(--color-surface)] p-8 text-center shadow-[0_8px_30px_rgba(198,151,73,.18)]">
+      {step === 8 && <section className="mx-auto max-w-2xl border border-[var(--color-champagne)]/50 bg-[var(--color-surface)] p-8 text-center shadow-[0_8px_30px_rgba(198,151,73,.18)]">
         <span className="text-4xl" aria-hidden="true">✦</span><p className="eyebrow mt-4">Request received</p><h2 className="mt-3 font-display text-4xl">Thank you.</h2>
         <p className="mt-4 text-lg">Request received. The studio will send your price soon.</p>
         <p className="mt-3 text-sm text-[var(--color-muted)]">{QUOTE_TURNAROUND}</p>
@@ -247,9 +249,9 @@ function DesignWizard() {
         <Link href="/profile" className="btn mt-7">View My Custom Orders</Link>
       </section>}
 
-      {step < 7 && <div className="mt-10 flex items-center justify-between gap-3 border-t border-[var(--color-line)] pt-5">
+      {step < 8 && <div className="mt-10 flex items-center justify-between gap-3 border-t border-[var(--color-line)] pt-5">
         <button type="button" disabled={step === 0} onClick={() => { setFormError(""); setStep((current) => Math.max(0, current - 1)); }} className="min-h-12 min-w-24 border border-[var(--color-line)] px-5 text-sm disabled:opacity-35">Back</button>
-        {step < 6 ? <button type="button" onClick={next} disabled={!isValid()} className="btn min-w-32 disabled:cursor-not-allowed disabled:opacity-40">Next</button> : <span className="text-xs text-[var(--color-muted)]">Review your choices above.</span>}
+        {step < 7 ? <button type="button" onClick={next} disabled={!isValid()} className="btn min-w-32 disabled:cursor-not-allowed disabled:opacity-40">Next</button> : <span className="text-xs text-[var(--color-muted)]">Review your choices above.</span>}
       </div>}
       {formError && step !== 6 && <p role="alert" className="mt-3 text-sm text-[var(--color-burgundy)]">{formError}</p>}
       <p className="mt-8 text-center text-[10px] leading-5 text-[var(--color-muted)]">{CUSTOM_OPTIONS_NOTICE}. No custom price is displayed before studio review.</p>
