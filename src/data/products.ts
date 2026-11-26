@@ -9,7 +9,7 @@ export const products: Product[] = [
     name: "Royal Kente Bridal Gown",
     description: "A made-to-measure bridal statement pairing handwoven Ghanaian Kente accents with delicate lace, a structured bodice and a flowing ceremonial skirt.",
     price: 8500,
-    images: ["https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85"],
+    images: ["https://ayc.fashion/image/cache/catalog/products/WhatsApp%20Image%202024-07-12%20at%204.21.39%20PM-518x560.jpeg"],
     category: "Bridal",
     fulfillment: "bespoke",
     fabrics: ["kente", "lace", "organza"],
