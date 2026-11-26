@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
+import { Eye, EyeOff, LockKeyhole, Mail, Phone, UserRound } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 import { useAuth } from "@/lib/auth";
 
 function SignupForm() {
@@ -14,6 +16,7 @@ function SignupForm() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -32,31 +35,29 @@ function SignupForm() {
   }
 
   return (
-    <main className="wrap section min-h-[70vh] max-w-xl">
-      <p className="eyebrow">Your personal account</p>
-      <h1 className="section-title mt-3">Create an account.</h1>
-      <p className="mb-8 text-sm text-[var(--color-muted)]">Save your custom design, review quote requests and see your orders.</p>
-      <div className="mb-6 border border-[var(--color-champagne)]/40 bg-[var(--color-surface)] p-4 text-sm">
-        <strong>Prototype account — not secure.</strong>
-        <p className="mt-1 text-[var(--color-muted)]">Demo only. Do not use a real or reused password. Replace this prototype with real authentication before launch.</p>
+    <main className="auth-screen">
+      <div className="auth-panel">
+        <div className="mb-9 flex justify-center"><BrandLogo /></div>
+        <p className="eyebrow text-center">JOIN THE ATELIER</p>
+        <h1 className="mt-3 text-center font-display text-5xl leading-[1.04]">Create<br /><em>your account.</em></h1>
+        <p className="mx-auto mt-4 max-w-xs text-center text-sm leading-6 text-[var(--color-muted)]">Keep your designs, quotes and orders together.</p>
+        <div className="mt-6 rounded-2xl border border-[var(--color-champagne)]/35 bg-[var(--color-sand)] px-4 py-3 text-center text-xs leading-5 text-[var(--color-muted)]"><strong className="text-[var(--color-espresso)]">Demo account · not secure.</strong><br />Do not reuse a real password. This is a local prototype only.</div>
+        <form onSubmit={submit} className="mt-7 grid gap-3">
+          <label className="auth-field"><UserRound size={18} /><input aria-label="Full name" autoComplete="name" placeholder="Full name" required value={name} onChange={(event) => setName(event.target.value)} /></label>
+          <label className="auth-field"><Mail size={18} /><input aria-label="Email address" type="email" autoComplete="email" placeholder="Email address" required value={email} onChange={(event) => setEmail(event.target.value)} /></label>
+          <label className="auth-field"><Phone size={18} /><input aria-label="Phone number" type="tel" autoComplete="tel" placeholder="Phone number" required value={phone} onChange={(event) => setPhone(event.target.value)} /></label>
+          <label className="auth-field"><LockKeyhole size={18} /><input aria-label="Password" type={showPassword ? "text" : "password"} autoComplete="new-password" minLength={8} placeholder="Password (8 characters minimum)" required value={password} onChange={(event) => setPassword(event.target.value)} /><button type="button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Hide password" : "Show password"}>{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}</button></label>
+          {error && <p role="alert" className="text-sm text-[var(--color-burgundy)]">{error}</p>}
+          <button className="btn mt-2 min-h-[54px] w-full" type="submit" disabled={busy}>{busy ? <><span className="auth-spinner" />Creating account…</> : "Create account"}</button>
+        </form>
+        <div className="auth-divider"><span>or continue with</span></div>
+        <div className="grid grid-cols-3 gap-2">{["Google", "Facebook", "Apple"].map((name) => <button key={name} type="button" disabled className="min-h-12 rounded-full border border-[var(--color-line)] bg-white text-xs font-semibold text-[var(--color-muted)] opacity-70">{name}</button>)}</div>
+        <p className="mt-8 text-center text-sm text-[var(--color-muted)]">Already with us? <Link className="font-semibold text-[var(--color-espresso)] underline underline-offset-4" href={`/login?next=${encodeURIComponent(next)}`}>Log in</Link></p>
       </div>
-      <form onSubmit={submit} className="grid gap-3">
-        <label className="field-label" htmlFor="name">Full name</label>
-        <input className="field" id="name" autoComplete="name" required value={name} onChange={(e) => setName(e.target.value)} />
-        <label className="field-label" htmlFor="email">Email address</label>
-        <input className="field" id="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label className="field-label" htmlFor="phone">Phone number</label>
-        <input className="field" id="phone" type="tel" autoComplete="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} />
-        <label className="field-label" htmlFor="password">Password (8 characters minimum)</label>
-        <input className="field" id="password" type="password" autoComplete="new-password" minLength={8} required value={password} onChange={(e) => setPassword(e.target.value)} />
-        {error && <p role="alert" className="text-sm text-[var(--color-burgundy)]">{error}</p>}
-        <button className="btn mt-3 w-full" type="submit" disabled={busy}>{busy ? "Creating account…" : "Create demo account"}</button>
-      </form>
-      <p className="mt-7 text-sm text-[var(--color-muted)]">Already registered? <Link className="font-semibold underline" href={`/login?next=${encodeURIComponent(next)}`}>Sign in</Link></p>
     </main>
   );
 }
 
 export default function SignupPage() {
-  return <Suspense fallback={<main className="wrap section">Loading sign up…</main>}><SignupForm /></Suspense>;
+  return <Suspense fallback={<main className="auth-screen">Loading sign up…</main>}><SignupForm /></Suspense>;
 }
