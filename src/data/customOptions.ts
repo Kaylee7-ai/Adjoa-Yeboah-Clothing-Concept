@@ -20,18 +20,18 @@ export const DEPARTMENTS: VisualOption[] = [
 ];
 
 export const GARMENTS: VisualOption[] = [
-  { id: "bridal-gown", label: "Bridal gown", icon: "👰", image: "/images/custom/bridal-gown.jpg" },
-  { id: "kente-corset-dress", label: "Kente corset dress", icon: "🧵", image: "/images/custom/kente-corset.jpg" },
-  { id: "ankara-gown", label: "Ankara gown", icon: "🌺", image: "/images/custom/ankara-gown.jpg" },
-  { id: "kaftan", label: "Kaftan", icon: "✨", image: "/images/custom/kaftan.jpg" },
-  { id: "agbada-set", label: "Agbada set", icon: "🪡", image: "/images/custom/agbada.jpg" },
-  { id: "two-piece-set", label: "Two-piece set", icon: "🧵", image: "/images/custom/two-piece.jpg" },
-  { id: "occasion-dress", label: "Occasion dress", icon: "💃", image: "/images/custom/occasion-dress.jpg" },
-  { id: "christening-outfit", label: "Christening outfit", icon: "🕊️", image: "/images/custom/christening.jpg" },
-  { id: "corporate-dress", label: "Corporate dress", icon: "👜", image: "/images/custom/corporate.jpg" },
-  { id: "shirt-blouse", label: "Shirt / blouse", icon: "👚", image: "/images/custom/blouse.jpg" },
-  { id: "skirt", label: "Skirt", icon: "👗", image: "/images/custom/skirt.jpg" },
-  { id: "jumpsuit", label: "Jumpsuit", icon: "🪡", image: "/images/custom/jumpsuit.jpg" },
+  { id: "bridal-gown", label: "Bridal gown", icon: "👰", image: "/images/custom/bridal-gown.jpg", departments: ["women"] },
+  { id: "kente-corset-dress", label: "Kente corset dress", icon: "🧵", image: "/images/custom/kente-corset.jpg", departments: ["women"] },
+  { id: "ankara-gown", label: "Ankara gown", icon: "🌺", image: "/images/custom/ankara-gown.jpg", departments: ["women"] },
+  { id: "kaftan", label: "Kaftan", icon: "✨", image: "/images/custom/kaftan.jpg", departments: ["women", "men"] },
+  { id: "agbada-set", label: "Agbada set", icon: "🪡", image: "/images/custom/agbada.jpg", departments: ["men"] },
+  { id: "two-piece-set", label: "Two-piece set", icon: "🧵", image: "/images/custom/two-piece.jpg", departments: ["women", "men", "children"] },
+  { id: "occasion-dress", label: "Occasion dress", icon: "💃", image: "/images/custom/occasion-dress.jpg", departments: ["women", "children"] },
+  { id: "christening-outfit", label: "Christening outfit", icon: "🕊️", image: "/images/custom/christening.jpg", departments: ["children"] },
+  { id: "corporate-dress", label: "Corporate dress", icon: "👜", image: "/images/custom/corporate.jpg", departments: ["women"] },
+  { id: "shirt-blouse", label: "Shirt / blouse", icon: "👚", image: "/images/custom/blouse.jpg", departments: ["women", "men", "children"] },
+  { id: "skirt", label: "Skirt", icon: "👗", image: "/images/custom/skirt.jpg", departments: ["women", "children"] },
+  { id: "jumpsuit", label: "Jumpsuit", icon: "🪡", image: "/images/custom/jumpsuit.jpg", departments: ["women", "children"] },
 ];
 
 export const OCCASIONS: VisualOption[] = [
