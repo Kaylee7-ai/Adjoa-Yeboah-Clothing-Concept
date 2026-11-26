@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #30251f;
-  --paper: #f8f5ef;
-  --ivory: #f1ece3;
-  --champagne: #b18a62;
-  --rose: #a96f66;
-  --muted: #746960;
-  --line: #e4dbcf;
-  --surface: #fffdf9;
+  --ink: #181512;
+  --paper: #FAF7F2;
+  --ivory: #F2ECE1;
+  --champagne: #B88A44;
+  --rose: #9B7564;
+  --muted: #6E655D;
+  --line: rgba(24, 21, 18, 0.12);
+  --surface: #F2ECE1;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--paper); }
@@ -118,3 +118,31 @@ img { max-width: 100%; }
 @media(max-width:640px){.atelier-promises{grid-template-columns:1fr}.atelier-promises>div{padding:17px 5%}}
 
 .collection-tools{display:flex;flex-direction:column;gap:16px;margin-bottom:22px}.collection-search{max-width:430px}.collection-filters{display:flex;flex-wrap:wrap;gap:8px}.collection-filter{min-height:39px;padding:9px 13px;border:1px solid #d9cfc3;background:#fffdf9;color:#62564e;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}.collection-filter.active{border-color:#30251f;background:#30251f;color:#fffdf9}.quickview-view-note{position:absolute;bottom:15px;left:15px;padding:9px 12px;background:rgba(255,253,249,.94);color:#746960;font-size:9px;letter-spacing:.5px}
+
+
+/* Warm Runway Editorial — sculptural quiet-luxury system */
+html, body { background: #FAF7F2; color: #181512; }
+body { font-family: 'DM Sans', sans-serif; }
+::selection { background: rgba(184,138,68,.22); color: #181512; }
+.site-header { background: rgba(250,247,242,.88); border-bottom-color: rgba(24,21,18,.12); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.site-header a:hover, .inspect-link, .product-card .card-link { color: #9B7564; }
+.product-card .image-frame, .product-card .product-image, .quickview-image-wrap { background: #F2ECE1; }
+.product-card .product-meta, .muted { color: #6E655D; }
+.product-card h3, .section-title, .serif { font-family: 'Playfair Display', Georgia, serif; }
+.btn { background: #181512; border-color: #181512; color: #FAF7F2; transition: transform .22s ease, background-color .22s ease, border-color .22s ease; }
+.btn:hover { background: #B88A44; border-color: #B88A44; }
+.btn-outline { background: transparent; color: #181512; }
+.field, .swatch-choice, .collection-filter { background: #FAF7F2; border-color: rgba(24,21,18,.18); color: #181512; }
+.collection-filter.active { background: #181512; border-color: #181512; color: #FAF7F2; }
+.look-pairing, .fit-helper { background: #F2ECE1; border-color: rgba(24,21,18,.12); }
+.atelier-promises { background: rgba(24,21,18,.12); border-color: rgba(24,21,18,.12); }
+.atelier-promises>div { background: #FAF7F2; }
+.atelier-promises span, .eyebrow { color: #9B713A; }
+.floral-card, .quickview-panel, .bag-drawer-header, .bag-drawer-footer, .saved-header { background: #FAF7F2; }
+.floral-added-product, .demo-warning, .payment-choice { background: #F2ECE1; }
+.floral-heading, .floral-copy strong, .bag-total-row, .payment-choice strong { color: #181512; }
+.bag-drawer, .saved-drawer { background: #FAF7F2; }
+.floral-close, .bag-close, .quickview-close { color: #181512; border-color: rgba(24,21,18,.16); background: #FAF7F2; }
+.save-button { color: #8D604A; border-color: rgba(24,21,18,.18); background: #FAF7F2; }
+.save-button.saved { background: #9B7564; border-color: #9B7564; color: #fff; }
+@media (max-width: 390px) { .product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
