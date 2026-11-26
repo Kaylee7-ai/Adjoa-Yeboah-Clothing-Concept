@@ -1,1 +1,15 @@
-const ids=["photo-1534528741775-53994a69daeb","photo-1529139574466-a303027c1d8b","photo-1515886657613-9f3515b0c78f","photo-1595777457583-95e059d581b8","photo-1566174053879-31528523f8ae","photo-1483985988355-763728e1935b"];export default function Lookbook(){return <main className="wrap section"><p className="eyebrow">VISUAL JOURNAL</p><h1 className="section-title">The lookbook.</h1><p className="muted mt-4 max-w-xl text-sm">Illustrative fashion moodboard. Replace with brand-approved campaign photography before launch.</p><div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">{ids.map((id,i)=><img key={id} className="aspect-[3/4] w-full object-cover" src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=85`} alt={`Illustrative fashion moodboard image ${i+1}`}/>)}</div></main>}
+import LookbookExperience from "@/components/home/LookbookExperience";
+
+export default function Lookbook() {
+  return (
+    <main className="wrap section">
+      <p className="eyebrow">VISUAL JOURNAL · COLLECTION NOTES</p>
+      <h1 className="section-title">The lookbook.</h1>
+      <p className="muted mt-4 max-w-xl text-sm leading-7">
+        Explore considered combinations and add individual pieces to your bag.
+        Each look is a styling direction, ready to be made your own.
+      </p>
+      <LookbookExperience />
+    </main>
+  );
+}
