@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/formatPrice";
 
-const fallingPetals = Array.from({ length: 22 }, (_, i) => ({
+const fallingPetals = Array.from({ length: 54 }, (_, i) => ({
  id: i,
  left: (i * 43 + 7) % 96,
- delay: (i % 11) * 105,
- duration: 2100 + (i % 6) * 170,
- drift: ((i * 31) % 92) - 46,
- size: 13 + (i % 5) * 3,
+ delay: (i % 18) * 95,
+ duration: 4300 + (i % 8) * 390,
+ drift: ((i * 37) % 180) - 90,
+ size: 15 + (i % 6) * 3,
  rotation: (i * 47) % 150 - 75,
  tone: i % 4,
 }));
@@ -19,16 +19,16 @@ export default function BagExperience(){
  const [petalsOn,setPetalsOn]=useState(true);
  const [step,setStep]=useState<"bag"|"checkout"|"done">("bag");
  const [payment,setPayment]=useState("momo");
- useEffect(()=>{if(!recentAddition)return;setPetalsOn(true);const t=window.setTimeout(()=>setPetalsOn(false),4800);return()=>window.clearTimeout(t)},[recentAddition]);
+ useEffect(()=>{if(!recentAddition)return;setPetalsOn(true);const t=window.setTimeout(()=>setPetalsOn(false),8500);return()=>window.clearTimeout(t)},[recentAddition]);
  useEffect(()=>{if(isBagOpen)setStep("bag")},[isBagOpen]);
  useEffect(()=>{if(!recentAddition&&!isBagOpen)return;const f=(e:KeyboardEvent)=>{if(e.key==="Escape"){dismissCelebration();closeBag()}};window.addEventListener("keydown",f);return()=>window.removeEventListener("keydown",f)},[recentAddition,isBagOpen,dismissCelebration,closeBag]);
  function complete(e:FormEvent<HTMLFormElement>){e.preventDefault();setStep("done")}
  return <>
  {recentAddition&&<div className="floral-celebration" role="dialog" aria-modal="true" aria-labelledby="floral-title" onMouseDown={e=>{if(e.target===e.currentTarget)dismissCelebration()}}>
   
+  <div className="floral-petal-rain" aria-hidden="true">{petalsOn&&fallingPetals.map(p=><span key={p.id} className={`rose-petal rose-petal-tone-${p.tone}`} style={{"--petal-left":`${p.left}%`,"--petal-delay":`${p.delay}ms`,"--petal-duration":`${p.duration}ms`,"--petal-drift":`${p.drift}px`,"--petal-size":`${p.size}px`,"--petal-rotation":`${p.rotation}deg`} as React.CSSProperties}/>)}</div>
   <section className="floral-card"><button className="floral-close" onClick={dismissCelebration} aria-label="Close">×</button><div className="floral-ornament" aria-hidden="true">✿ <i/> ❀</div><p className="eyebrow">A LOVELY CHOICE</p><h2 id="floral-title" className="serif floral-heading">Congratulations!</h2><p className="floral-copy">You've added <strong>{recentAddition.product.name}</strong> to your bag.</p>
    <div className="floral-added-product"><img src={recentAddition.product.images[0]} alt=""/><div><p className="font-semibold">{recentAddition.product.name}</p><p>{recentAddition.size?`Size ${recentAddition.size} · `:""}{recentAddition.color??"As pictured"}</p><strong>{formatPrice(recentAddition.product.price)}</strong></div></div>
-   <div className="floral-petal-stage" aria-hidden="true">{petalsOn&&fallingPetals.map(p=><span key={p.id} className={`rose-petal rose-petal-tone-${p.tone}`} style={{"--petal-left":`${p.left}%`,"--petal-delay":`${p.delay}ms`,"--petal-duration":`${p.duration}ms`,"--petal-drift":`${p.drift}px`,"--petal-size":`${p.size}px`,"--petal-rotation":`${p.rotation}deg`} as React.CSSProperties}/>)}</div>
    <button className="btn w-full" onClick={()=>{dismissCelebration();openBag()}}>Continue to checkout</button><button className="floral-keep-shopping" onClick={dismissCelebration}>Keep shopping</button><p className="floral-note">Saved in this browser. No order has been placed.</p>
   </section>
  </div>}
