@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useCart } from "@/components/cart/CartProvider";
 import { formatPrice } from "@/lib/formatPrice";
+import RequireAuth from "@/components/auth/RequireAuth";
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const { cart, subtotal, totalItems } = useCart();
 
   if (totalItems === 0) {
@@ -203,4 +204,9 @@ export default function CheckoutPage() {
       </div>
     </main>
   );
+}
+
+
+export default function CheckoutPage() {
+  return <RequireAuth><CheckoutContent /></RequireAuth>;
 }
