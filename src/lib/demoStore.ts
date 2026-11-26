@@ -97,6 +97,23 @@ export function saveCustomRequest(
   return request;
 }
 
+
+export function approveCustomQuote(userId: string, requestId: string): DemoCustomRequest | null {
+  const store = readStore();
+  const requests = store.customRequestsByUser[userId] ?? [];
+  const index = requests.findIndex((request) => request.id === requestId);
+  if (index < 0 || !requests[index].quote || requests[index].status !== "QUOTE_SENT") return null;
+  const updated: DemoCustomRequest = {
+    ...requests[index],
+    status: "QUOTE_APPROVED",
+    updatedAt: new Date().toISOString(),
+  };
+  requests[index] = updated;
+  store.customRequestsByUser[userId] = requests;
+  writeStore(store);
+  return updated;
+}
+
 export function getCustomRequests(userId: string): DemoCustomRequest[] {
   return readStore().customRequestsByUser[userId] ?? [];
 }
