@@ -9,7 +9,7 @@ import {products} from "@/data/products";
 import ProductQuickView from "@/components/product/ProductQuickView";
 const lookPairs:Record<string,string[]>={"ayc-001":["ayc-006","ayc-004"],"ayc-002":["ayc-005","ayc-003"],"ayc-003":["ayc-002","ayc-006"],"ayc-004":["ayc-001"],"ayc-005":["ayc-002"],"ayc-006":["ayc-003","ayc-001"]};
 export function ProductCard({product}:{product:Product}){
- const {addItem}=useCart();const {toggle,isSaved}=useWishlist();const [size,setSize]=useState("");const [color,setColor]=useState(product.colors?.[0]??"As pictured");const [quickOpen,setQuickOpen]=useState(false);
+ const {addItem}=useCart();const {toggle,isSaved}=useWishlist();const [size,setSize]=useState("");const [color,setColor]=useState(product.colors?.[0]??"As pictured");const [quickOpen,setQuickOpen]=useState(false);const [pairingToInspect,setPairingToInspect]=useState<Product|null>(null);
  const sizes=product.fulfillment==="ready-to-wear"?product.sizes??[]:[];const colors=product.colors??["As pictured"];const image=product.images[0]??"/images/product-placeholder.jpg";
  const pairings=(lookPairs[product.id]??[]).map(id=>products.find(p=>p.id===id)).filter((p):p is Product=>!!p);
  return <article className="product-card">
@@ -24,7 +24,7 @@ export function ProductCard({product}:{product:Product}){
   </div>
   {sizes.length>0&&<select aria-label={`Choose colour for ${product.name}`} className="field mt-2 py-2 text-xs" value={color} onChange={e=>setColor(e.target.value)}>{colors.map(c=><option key={c} value={c}>{c}</option>)}</select>}
   <button type="button" className="inspect-link" onClick={()=>setQuickOpen(true)}>Inspect piece + fabric, fit & care</button>
-  {pairings.length>0&&<div className="look-pairing"><p className="eyebrow">THE EDITOR'S PAIRING</p><p className="serif mt-1 text-lg">Shop the complete look</p>{pairings.map(piece=><div key={piece.id} className="pairing-line"><span>{piece.name}<small>{formatPrice(piece.price)}</small></span><button type="button" onClick={()=>addItem(piece)}>Add piece</button></div>)}</div>}
+  {pairings.length>0&&<div className="look-pairing"><p className="eyebrow">THE EDITOR'S PAIRING</p><p className="serif mt-1 text-lg">Shop the complete look</p>{pairings.map(piece=><div key={piece.id} className="pairing-line"><span>{piece.name}<small>{formatPrice(piece.price)}</small></span><button type="button" onClick={()=>setPairingToInspect(piece)}>Inspect & add</button></div>)}</div>}
   <Link href={`/shop/${product.slug}`} className="card-link">Discover piece ↗</Link>
   {quickOpen&&<ProductQuickView product={product} onClose={()=>setQuickOpen(false)}/>}
  </article>
