@@ -1,1 +1,5 @@
-export default function Wishlist(){return <main className="wrap section"><p className="eyebrow">SAVED FOR LATER</p><h1 className="section-title">Your wishlist.</h1><p className="mt-5 text-sm text-[#77736b]">Wishlist storage will be enabled with customer authentication or local account storage.</p></main>}
+"use client";
+import Link from "next/link";
+import {useWishlist} from "@/context/WishlistContext";
+import {formatPrice} from "@/lib/formatPrice";
+export default function WishlistPage(){const {saved,toggle}=useWishlist();return <main className="wrap section"><p className="eyebrow">YOUR PERSONAL EDIT</p><h1 className="serif mt-3 text-4xl">Saved pieces</h1><p className="mt-3 text-sm text-[#746960]">A considered collection of pieces to return to.</p>{saved.length===0?<div className="py-16"><p className="serif text-2xl">Nothing saved just yet.</p><Link href="/shop" className="btn mt-6">Discover the collection</Link></div>:<div className="product-grid mt-9">{saved.map(p=><article key={p.id}><Link href={`/shop/${p.slug}`}><img src={p.images[0]} alt={p.name} className="aspect-[4/5] w-full object-cover"/><h2 className="serif mt-3 text-xl">{p.name}</h2><p className="mt-2 text-sm">{formatPrice(p.price)}</p></Link><button className="mt-3 text-[10px] uppercase tracking-widest underline" onClick={()=>toggle(p)}>Remove from saved</button></article>)}</div>}</main>}
