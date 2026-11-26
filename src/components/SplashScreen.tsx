@@ -5,12 +5,12 @@ import { useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
 
 const INTRO_PHOTOS = [
-  { src: "/images/products/royal-kente-bridal-1.jpg", alt: "Kente bridal fashion concept", shape: "intro-photo-tall" },
-  { src: "/images/products/afrocentric-kaftan-1.jpg", alt: "Bespoke kaftan concept", shape: "intro-photo-short" },
-  { src: "/images/products/emerald-ankara-1.jpg", alt: "Ankara occasionwear concept", shape: "intro-photo-tall" },
-  { src: "/images/products/christening-lace-1.jpg", alt: "White lace outfit concept", shape: "intro-photo-short" },
-  { src: "/images/products/gold-agbada-1.jpg", alt: "Agbada fashion concept", shape: "intro-photo-tall" },
-  { src: "/images/products/midnight-kente-1.jpg", alt: "Kente eveningwear concept", shape: "intro-photo-short" },
+  { src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80", alt: "Kente bridal fashion concept", shape: "intro-photo-tall" },
+  { src: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=80", alt: "Bespoke kaftan concept", shape: "intro-photo-short" },
+  { src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80", alt: "Ankara occasionwear concept", shape: "intro-photo-tall" },
+  { src: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80", alt: "White lace outfit concept", shape: "intro-photo-short" },
+  { src: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=500&q=80", alt: "Agbada fashion concept", shape: "intro-photo-tall" },
+  { src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=500&q=80", alt: "Kente eveningwear concept", shape: "intro-photo-short" },
 ];
 
 export default function SplashScreen({ onContinue }: { onContinue: () => void }) {
@@ -26,7 +26,7 @@ export default function SplashScreen({ onContinue }: { onContinue: () => void })
               {failed.includes(photo.src) ? (
                 <div className="intro-photo-fallback" aria-label={photo.alt} />
               ) : (
-                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 430px) 30vw, 130px" className="object-cover object-top" onError={() => setFailed((items) => [...items, photo.src])} />
+                <img src={photo.src} alt={photo.alt} className="h-full w-full object-cover object-top" onError={() => setFailed((items) => [...items, photo.src])} />
               )}
             </div>
           ))}
