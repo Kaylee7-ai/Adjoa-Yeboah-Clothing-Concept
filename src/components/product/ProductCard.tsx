@@ -18,11 +18,18 @@ export function ProductCard({product}:{product:Product}){
    <button type="button" className={`save-button product-save ${isSaved(product.id)?"saved":""}`} onClick={()=>toggle(product)} aria-label={isSaved(product.id)?"Remove from saved pieces":`Save ${product.name}`} aria-pressed={isSaved(product.id)}>{isSaved(product.id)?"♥":"♡"}</button>
   </div>
   <Link href={`/shop/${product.slug}`} className="group block"><div className="flex items-start justify-between gap-3"><h3 className="transition-colors group-hover:text-[#9a675b]">{product.name}</h3>{product.isFeatured&&<span className="mt-4 shrink-0 text-[9px] font-bold uppercase tracking-widest text-[#98675d]">Selected</span>}</div><p className="product-meta">{product.category}</p><div className="price">{formatPrice(product.price)}</div></Link>
-  <div className="mt-3 grid grid-cols-2 gap-2">
-   {sizes.length>0?<select aria-label={`Choose size for ${product.name}`} className="field min-w-0 py-2 text-xs" value={size} onChange={e=>setSize(e.target.value)}><option value="">Choose size</option>{sizes.map(s=><option key={s} value={s}>{s}</option>)}</select>:<select aria-label={`Choose finish for ${product.name}`} className="field min-w-0 py-2 text-xs" value={color} onChange={e=>setColor(e.target.value)}>{colors.map(c=><option key={c} value={c}>{c}</option>)}</select>}
-   <button type="button" disabled={sizes.length>0&&!size} onClick={()=>addItem(product,1,size||undefined,undefined,color)} className="btn min-w-0 px-2 text-[9px] disabled:cursor-not-allowed disabled:opacity-50">Add to bag</button>
+  <div className="product-options">
+   {sizes.length > 0 && <label className="product-option-label">Size
+    <select aria-label={`Choose size for ${product.name}`} className="field min-w-0 py-2 text-xs" value={size} onChange={e=>setSize(e.target.value)}>
+     <option value="">Choose size</option>{sizes.map(s=><option key={s} value={s}>{s}</option>)}
+    </select>
+   </label>}
+   <fieldset className="product-colour-options">
+    <legend className="product-option-label">Colour / finish</legend>
+    <div className="product-swatch-list">{colors.map((c,i)=><button key={c} type="button" aria-label={c} aria-pressed={color===c} title={c} onClick={()=>setColor(c)} className={`product-swatch ${color===c?"is-selected":""}`}><span className={`product-swatch-dot swatch-tone-${i%6}`}/><span>{c}</span></button>)}</div>
+   </fieldset>
+   <button type="button" disabled={sizes.length>0&&!size} onClick={()=>addItem(product,1,size||undefined,undefined,color)} className="btn product-add-button disabled:cursor-not-allowed disabled:opacity-50">Add to bag</button>
   </div>
-  {sizes.length>0&&<select aria-label={`Choose colour for ${product.name}`} className="field mt-2 py-2 text-xs" value={color} onChange={e=>setColor(e.target.value)}>{colors.map(c=><option key={c} value={c}>{c}</option>)}</select>}
   <button type="button" className="inspect-link" onClick={()=>setQuickOpen(true)}>View fabric, fit & care</button>
   {pairings.length>0&&<div className="look-pairing"><p className="eyebrow">THE EDITOR'S PAIRING</p><p className="serif mt-1 text-lg">Shop the complete look</p>{pairings.map(piece=><div key={piece.id} className="pairing-line"><span>{piece.name}<small>{formatPrice(piece.price)}</small></span><button type="button" onClick={()=>setPairingToInspect(piece)}>View & add</button></div>)}</div>}
   <Link href={`/shop/${product.slug}`} className="card-link">Discover piece ↗</Link>
