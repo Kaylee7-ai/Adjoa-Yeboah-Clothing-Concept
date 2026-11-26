@@ -15,10 +15,10 @@ export default function Hero() {
     <section className="luxury-hero relative isolate flex min-h-[min(790px,calc(100svh-5rem))] items-center overflow-hidden bg-[#F2ECE1]">
       <div className="absolute inset-0 -z-20">
         <img
-          src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2200&q=88"
+          src="https://images.pexels.com/photos/13998586/pexels-photo-13998586.jpeg?cs=srgb&dl=pexels-wo-nfoni-media-311038690-13998586.jpg&fm=jpg"
           alt=""
           aria-hidden="true"
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-[center_28%]"
         />
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#211812]/85 via-[#211812]/55 to-[#211812]/10" />
