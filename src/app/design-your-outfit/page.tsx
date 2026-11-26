@@ -185,7 +185,7 @@ function DesignWizard() {
       {step === 2 && <section><p className="eyebrow">03 · Required</p><h2 className="mb-5 font-display text-3xl">What is the occasion?</h2><OptionGrid options={OCCASIONS} value={design.occasion} onChange={(v) => update("occasion", v as string)} /></section>}
 
       {step === 3 && <section className="grid gap-8">
-        <div><p className="eyebrow">03 · Required</p><h2 className="mb-5 font-display text-3xl">Where will your fabric come from?</h2><OptionGrid options={FABRIC_SOURCES} value={design.fabricSource} onChange={(v) => { update("fabricSource", v as string); update("fabrics", []); update("ownFabricMethod", ""); }} /></div>
+        <div><p className="eyebrow">04 · Required</p><h2 className="mb-5 font-display text-3xl">Where will your fabric come from?</h2><OptionGrid options={FABRIC_SOURCES} value={design.fabricSource} onChange={(v) => { update("fabricSource", v as string); update("fabrics", []); update("ownFabricMethod", ""); }} /></div>
         {design.fabricSource === "studio" && <div><h3 className="mb-4 font-display text-2xl">Choose up to two fabrics</h3><OptionGrid options={FABRICS} value={design.fabrics} multi limit={2} onChange={(v) => update("fabrics", v as string[])} /><p className="mt-2 text-xs text-[var(--color-muted)]">Select no more than two fabric types. Fabric availability is a dummy selection to be confirmed.</p></div>}
         {design.fabricSource === "own" && <div className="border border-[var(--color-line)] bg-[var(--color-surface)] p-5"><h3 className="font-display text-2xl">How will you get it to us?</h3><p className="my-3 text-sm">Dummy studio address: {DUMMY_STUDIO_ADDRESS}</p><OptionGrid options={OWN_FABRIC_METHODS} value={design.ownFabricMethod} onChange={(v) => update("ownFabricMethod", v as string)} /><p className="mt-4 text-xs leading-6 text-[var(--color-muted)]">{OWN_FABRIC_QUANTITY_NOTE}</p></div>}
         <div><h3 className="mb-4 font-display text-2xl">Colour palette</h3><OptionGrid options={COLOURS} value={design.colours} multi limit={3} onChange={(v) => update("colours", v as string[])} /><p className="mt-2 text-xs text-[var(--color-muted)]">Choose up to three colours. Custom colour is optional.</p>{design.colours.includes("custom") && <input className="field mt-3" aria-label="Describe your custom colour" placeholder="Describe your custom colour" value={design.customColour} onChange={(e) => update("customColour", e.target.value)} />}</div>
@@ -203,7 +203,7 @@ function DesignWizard() {
       </section>}
 
       {step === 5 && <section className="grid gap-6">
-        <p className="eyebrow">05 · Required</p><h2 className="font-display text-3xl">How would you like to get fitted?</h2>
+        <p className="eyebrow">06 · Required</p><h2 className="font-display text-3xl">How would you like to get fitted?</h2>
         <OptionGrid options={MEASUREMENT_METHODS} value={design.measurementMethod} onChange={(v) => update("measurementMethod", v as string)} />
         {design.measurementMethod === "manual" && <div className="grid gap-3 sm:grid-cols-2"><p className="sm:col-span-2 text-sm text-[var(--color-muted)]">Enter your measurements. The studio will confirm the units and any extra measurements required.</p>{(["bust", "waist", "hips", "height"] as const).map((key) => <label key={key} className="field-label">{key}<input className="field mt-2" inputMode="decimal" value={design.measurements[key]} onChange={(e) => update("measurements", { ...design.measurements, [key]: e.target.value })} placeholder="Enter measurement" /></label>)}<Link className="text-sm underline sm:col-span-2" href="/size-guide">How to measure — view Size Guide ↗</Link></div>}
         {design.measurementMethod === "fitting" && <div className="border border-[var(--color-line)] bg-[var(--color-surface)] p-5"><p className="text-sm">Request a studio fitting. This opens the appointment enquiry page; an appointment is not confirmed until the studio replies.</p><Link className="btn mt-4" href="/book-appointment">Book a fitting ↗</Link></div>}
@@ -211,7 +211,7 @@ function DesignWizard() {
       </section>}
 
       {step === 6 && <section className="grid gap-7">
-        <p className="eyebrow">06 · Required</p><h2 className="font-display text-3xl">When do you need your outfit?</h2>
+        <p className="eyebrow">07 · Required</p><h2 className="font-display text-3xl">When do you need your outfit?</h2>
         <label className="field-label" htmlFor="dateNeeded">Date needed<input id="dateNeeded" className="field mt-2" type="date" min={new Date().toISOString().slice(0, 10)} value={design.dateNeeded} onChange={(e) => update("dateNeeded", e.target.value)} /></label>
         <p className="border-l-2 border-[var(--color-sunset)] pl-4 text-sm leading-6 text-[var(--color-muted)]">{RUSH_REQUEST_NOTE}</p>
         <h3 className="font-display text-2xl">How would you like to receive it?</h3>
@@ -221,7 +221,7 @@ function DesignWizard() {
       </section>}
 
       {step === 7 && <section>
-        <p className="eyebrow">07 · Review</p><h2 className="mb-6 font-display text-3xl">Your design, at a glance.</h2>
+        <p className="eyebrow">08 · Review</p><h2 className="mb-6 font-display text-3xl">Your design, at a glance.</h2>
         <div className="divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
           {[
             ["Department", selectedDepartment, 0],
