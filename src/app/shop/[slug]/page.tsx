@@ -16,7 +16,7 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params; const product = getProductBySlug(slug); if (!product) notFound();
   const related = products.filter((item) => item.id !== product.id && item.category === product.category).slice(0, 3);
   return (
-    <main className="wrap py-10 md:py-16">
+    <main className="product-detail-page wrap py-10 md:py-16">
       <nav aria-label="Breadcrumb" className="mb-8 text-xs text-[#746960]"><Link href="/shop" className="hover:text-[#9a675b]">Shop</Link><span className="mx-2">/</span><span>{product.name}</span></nav>
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
         <div><div className="aspect-[4/5] overflow-hidden bg-[#eee6dc]"><img src={product.images[0]} alt={`Editorial concept image for ${product.name}`} className="h-full w-full object-cover" /></div><p className="mt-3 text-xs leading-5 text-[#746960]">Editorial placeholder image for this independent concept. Brand-approved product photography is required before launch.</p></div>
