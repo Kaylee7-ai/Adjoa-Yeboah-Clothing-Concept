@@ -22,6 +22,8 @@ export default function Hero() {
         />
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#211812]/85 via-[#211812]/55 to-[#211812]/10" />
+      <div aria-hidden="true" className="pointer-events-none absolute -left-24 top-[-18%] -z-10 h-[70%] w-[70%] rounded-full bg-[radial-gradient(ellipse,rgba(244,183,160,.34),transparent_68%)] blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute -bottom-28 right-[-8%] -z-10 h-[55%] w-[55%] rounded-full bg-[radial-gradient(ellipse,rgba(211,157,105,.32),transparent_70%)] blur-3xl" />
       <div className="wrap relative z-10 py-28 text-left">
         <motion.p {...reveal(12, 0.2)} className="mb-5 text-[10px] font-semibold uppercase tracking-[0.34em] text-[#F2DCC0] sm:text-xs">
           Accra · Contemporary African Occasionwear
