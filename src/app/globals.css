@@ -192,3 +192,92 @@ body{background:radial-gradient(ellipse at 8% 5%,rgba(255,223,210,.32),transpare
 .look-pairing,.fit-helper{border-radius:18px;background:linear-gradient(145deg,#fbf0e9,#f1e4dc)}
 .site-footer{background:radial-gradient(ellipse at 90% 0%,rgba(181,100,100,.22),transparent 40%),linear-gradient(135deg,#392526,#211a1a)}
 @media(max-width:520px){.floral-card{border-radius:25px;padding-inline:18px}.floral-petal-stage{height:66px}.bag-drawer{border-radius:24px 24px 0 0}}
+
+
+/* Final Warm Runway Editorial system — authoritative palette and restrained finish */
+:root{
+  --ink:#181512;
+  --paper:#FAF7F2;
+  --ivory:#F2ECE1;
+  --surface:#F2ECE1;
+  --champagne:#B88A44;
+  --rose:#8C7567;
+  --muted:#6E655D;
+  --line:rgba(24,21,18,.12);
+}
+html,body{background:var(--paper);color:var(--ink)}
+body{background:var(--paper);font-family:'DM Sans',sans-serif}
+.site-header{background:rgba(250,247,242,.9);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-header a:hover,.inspect-link,.product-card .card-link{color:#80643f}
+.eyebrow{color:#8B693D}
+.section-title,.serif,.product-card h3{font-family:'Playfair Display',Georgia,serif;text-shadow:none}
+.product-card .image-frame{border:1px solid var(--line);border-radius:14px;box-shadow:none;background:var(--ivory)}
+.product-card .product-image{aspect-ratio:3/4;object-fit:cover;object-position:top}
+.product-card:hover .product-image{transform:scale(1.025);filter:none}
+.product-card h3{color:var(--ink)}
+.product-card .product-meta,.muted{color:var(--muted)}
+.product-card .price{color:var(--ink)}
+.btn{border-radius:2px;background:var(--ink);border-color:var(--ink);box-shadow:none;color:var(--paper)}
+.btn:hover{background:#6f5a40;border-color:#6f5a40;box-shadow:none}
+.btn-outline{background:transparent;color:var(--ink)}
+.field,.swatch-choice,.collection-filter{border-radius:2px;background:var(--paper);border-color:var(--line);color:var(--ink)}
+.collection-filter.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.save-button{border-radius:50%;box-shadow:none;border-color:var(--line);color:var(--ink)}
+.save-button.saved{background:#80643f;border-color:#80643f;color:#fff}
+.look-pairing,.fit-helper{border-radius:2px;background:var(--ivory);border:1px solid var(--line)}
+.quickview-panel{border-radius:4px;box-shadow:0 12px 40px rgba(24,21,18,.12);background:var(--paper)}
+.quickview-image-wrap{background:var(--ivory)}
+.bag-drawer,.saved-drawer{background:var(--paper);border-radius:0;box-shadow:-10px 0 34px rgba(24,21,18,.12)}
+.bag-drawer-header,.bag-drawer-footer,.saved-header{background:var(--paper);border-color:var(--line)}
+.atelier-promises{background:var(--line);border-color:var(--line)}
+.atelier-promises>div{background:var(--paper)}
+.atelier-promises span,.atelier-promises strong{color:var(--ink)}
+.site-footer{background:#28231e}
+.floral-card{border-radius:8px;background:var(--paper);box-shadow:0 18px 60px rgba(24,21,18,.18)}
+.floral-heading{color:var(--ink);background:none;-webkit-text-fill-color:currentColor;text-shadow:none}
+.floral-added-product{border-radius:3px;background:var(--ivory);box-shadow:none}
+.floral-card .btn{border-radius:2px;background:var(--ink);border-color:var(--ink);box-shadow:none}
+.floral-card .btn:hover{background:#6f5a40;box-shadow:none;transform:translateY(-1px)}
+.floral-keep-shopping{color:#80643f}
+.floral-petal-stage{height:70px}
+.rose-petal{filter:none}
+body{overflow-x:clip}
+img{max-width:100%}
+@media(max-width:520px){
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
+  .product-card h3{font-size:16px}
+  .quickview-panel{border-radius:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* Interactive editorial lookbook */
+.lookbook-edits{margin-top:clamp(42px,7vw,76px)}
+.lookbook-edit{padding-block:clamp(34px,5vw,58px);border-top:1px solid var(--line)}
+.lookbook-edit-heading{display:grid;grid-template-columns:1fr auto;align-items:end;gap:8px 24px;margin-bottom:24px}
+.lookbook-edit-heading .eyebrow{grid-column:1/-1}
+.lookbook-edit-heading h2{font-size:clamp(30px,4vw,46px);line-height:1.12}
+.lookbook-edit-heading>p:last-child{max-width:260px;color:var(--muted);font-size:12px;line-height:1.6}
+.lookbook-edit-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(16px,3vw,34px);align-items:start}
+.lookbook-feature>img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;background:var(--ivory)}
+.lookbook-companions{display:grid;gap:24px}
+.lookbook-companion>img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;background:var(--ivory)}
+.lookbook-piece-copy{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding-top:14px}
+.lookbook-piece-copy h3{margin-top:5px;font-size:clamp(17px,2vw,23px);line-height:1.2}
+.lookbook-piece-copy p:not(.eyebrow){margin-top:6px;color:var(--muted);font-size:12px}
+.lookbook-piece-action{display:flex;flex-direction:column;gap:8px;min-width:125px}
+.lookbook-add{min-height:40px;padding:10px 12px;font-size:9px;white-space:nowrap}
+.lookbook-add:disabled{opacity:.45;cursor:not-allowed}
+.lookbook-size{min-height:38px;padding:8px;font-size:11px}
+.lookbook-disclaimer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:10px;line-height:1.7}
+@media(max-width:700px){
+ .lookbook-edit-heading{grid-template-columns:1fr}
+ .lookbook-edit-heading>p:last-child{max-width:unset}
+ .lookbook-edit-grid{grid-template-columns:1fr}
+ .lookbook-companions{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .lookbook-piece-copy{flex-direction:column}
+ .lookbook-piece-action{width:100%;min-width:0}
+ .lookbook-add{width:100%;white-space:normal}
+}
+@media(max-width:390px){.lookbook-companions{grid-template-columns:1fr}}
