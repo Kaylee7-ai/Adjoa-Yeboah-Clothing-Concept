@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   appleWebApp: { capable: true, statusBarStyle: "default", title: "Adjoa Yeboah" }
 };
 
-export const viewport: Viewport = { themeColor: "#f8f5ef", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#171411", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen bg-[#f8f5ef] text-[#30251f] antialiased">
         <AppShell>
-          <div className="bg-[#eadfd2] px-3 py-2 text-center text-[9px] font-semibold tracking-[1.35px] text-[#5b4637]">
+          <div className="concept-ribbon bg-[#eadfd2] px-3 py-2 text-center text-[9px] font-semibold tracking-[1.35px] text-[#5b4637]">
             INDEPENDENT WEBSITE CONCEPT · NOT THE OFFICIAL BRAND STORE
           </div>
           <Header />
