@@ -12,7 +12,7 @@ export default function Hero() {
   });
 
   return (
-    <section className="relative isolate flex min-h-[min(790px,calc(100svh-5rem))] items-center overflow-hidden bg-[#F2ECE1]">
+    <section className="luxury-hero relative isolate flex min-h-[min(790px,calc(100svh-5rem))] items-center overflow-hidden bg-[#F2ECE1]">
       <div className="absolute inset-0 -z-20">
         <img
           src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2200&q=88"
