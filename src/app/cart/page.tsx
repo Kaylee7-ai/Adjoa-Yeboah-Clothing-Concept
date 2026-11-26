@@ -59,12 +59,12 @@ export default function CartPage() {
             <div className="flex min-w-0 flex-1 flex-col">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0"><Link href={`/shop/${item.product.slug}`} className="line-clamp-2 font-display text-lg leading-tight">{item.product.name}</Link><p className="mt-1 text-xs text-[var(--color-muted)]">{[item.color, item.size ? `Size ${item.size}` : null].filter(Boolean).join(" · ") || "Bespoke enquiry"}</p></div>
-                <button type="button" onClick={() => removeItem(item.product.id, item.size, item.color)} aria-label={`Remove ${item.product.name}`} className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[var(--color-muted)]"><Trash2 size={16} /></button>
+                <button type="button" onClick={() => removeItem(item.product.id, item.size, item.color)} aria-label={`Remove ${item.product.name}`} className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-[var(--color-muted)]"><Trash2 size={16} /></button>
               </div>
               <div className="mt-auto flex items-end justify-between gap-2 pt-3">
                 <strong className="text-sm">{formatPrice(item.product.price * item.quantity)}</strong>
                 <div className="flex h-9 items-center rounded-full border border-[var(--color-line)] px-1">
-                  <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1, item.size, item.color)} aria-label="Decrease quantity" className="grid h-8 w-8 place-items-center"><Minus size={13} /></button>
+                  <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity - 1, item.size, item.color)} aria-label="Decrease quantity" className="grid h-11 w-11 place-items-center"><Minus size={13} /></button>
                   <span className="min-w-6 text-center text-xs tabular-nums">{item.quantity}</span>
                   <button type="button" onClick={() => updateQuantity(item.product.id, item.quantity + 1, item.size, item.color)} aria-label="Increase quantity" className="grid h-8 w-8 place-items-center"><Plus size={13} /></button>
                 </div>
