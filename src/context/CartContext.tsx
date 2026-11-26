@@ -14,9 +14,9 @@ import type { Product } from "@/types/product";
 
 interface CartContextType {
   cart: Cart;
-  addItem: (product: Product, quantity?: number, size?: string, notes?: string) => void;
-  removeItem: (productId: string, size?: string) => void;
-  updateQuantity: (productId: string, quantity: number, size?: string) => void;
+  addItem: (product: Product, quantity?: number, size?: string, notes?: string, color?: string) => void;
+  removeItem: (productId: string, size?: string, color?: string) => void;
+  updateQuantity: (productId: string, quantity: number, size?: string, color?: string) => void;
   clearCart: () => void;
   totalItems: number;
   subtotal: number;
@@ -84,11 +84,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cart, hasLoaded]);
 
   const addItem = useCallback(
-    (product: Product, quantity = 1, size?: string, notes?: string) => {
+    (product: Product, quantity = 1, size?: string, notes?: string, color?: string) => {
       const amount = Number.isFinite(quantity) ? Math.max(1, Math.floor(quantity)) : 1;
       setCart((previous) => {
         const existing = previous.items.find(
-          (item) => item.product.id === product.id && item.size === size
+          (item) => item.product.id === product.id && item.size === size && item.color === color
         );
 
         const items: CartItem[] = existing
@@ -101,7 +101,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
                   }
                 : item
             )
-          : [...previous.items, { product, quantity: amount, size, notes }];
+          : [...previous.items, { product, quantity: amount, size, notes, color }];
 
         return { items, updatedAt: Date.now() };
       });
@@ -109,7 +109,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     []
   );
 
-  const removeItem = useCallback((productId: string, size?: string) => {
+  const removeItem = useCallback((productId: string, size?: string, color?: string) => {
     setCart((previous) => ({
       ...previous,
       items: previous.items.filter((item) =>
@@ -122,9 +122,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const updateQuantity = useCallback(
-    (productId: string, quantity: number, size?: string) => {
+    (productId: string, quantity: number, size?: string, color?: string) => {
       if (!Number.isFinite(quantity) || quantity < 1) {
-        removeItem(productId, size);
+        removeItem(productId, size, color);
         return;
       }
       const amount = Math.floor(quantity);
