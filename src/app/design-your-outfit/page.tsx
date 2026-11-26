@@ -58,7 +58,7 @@ function OptionGrid({ options, value, onChange, multi = false, limit }: {
         return (
           <button key={option.id} type="button" aria-pressed={active}
             onClick={() => onChange(multi ? toggle(selected, option.id, limit) : option.id)}
-            className={`flex min-h-[104px] min-w-0 flex-col items-start justify-between gap-3 rounded-sm border p-4 text-left transition duration-300 ${active ? "border-[var(--color-champagne)] bg-[var(--color-surface)] shadow-[0_8px_30px_rgba(198,151,73,.18)] ring-1 ring-[var(--color-champagne)]" : "border-[var(--color-line)] bg-white hover:border-[var(--color-champagne)]"}`}>
+            className={`flex min-h-[104px] min-w-0 flex-col items-start justify-between gap-3 rounded-2xl border p-4 text-left transition duration-300 ${active ? "border-[var(--color-champagne)] bg-[var(--color-surface)] shadow-[0_8px_30px_rgba(198,151,73,.18)] ring-1 ring-[var(--color-champagne)]" : "border-[var(--color-line)] bg-white hover:border-[var(--color-champagne)]"}`}>
             <span className="grid h-10 w-10 place-items-center rounded-full bg-[var(--color-surface)] text-xl" aria-hidden="true">{option.icon}</span>
             <span className="w-full break-words text-sm font-medium leading-snug">{option.label}</span>
             {option.accent && <span className="h-1.5 w-full rounded-full" style={{ background: option.accent }} />}
@@ -181,7 +181,7 @@ function DesignWizard() {
         <div><p className="eyebrow">01 · Required</p><h2 className="mb-4 font-display text-3xl">Who are we designing for?</h2><OptionGrid options={DEPARTMENTS} value={design.department} onChange={(v) => update("department", v as string)} /></div>
       </section>}
 
-      {step === 1 && <section><p className="eyebrow">02 · Required</p><h2 className="mb-5 font-display text-3xl">Choose your garment</h2><OptionGrid options={GARMENTS} value={design.garment} onChange={(v) => update("garment", v as string)} /></section>}
+      {step === 1 && <section><p className="eyebrow">02 · Required</p><h2 className="mb-5 font-display text-3xl">Choose your garment</h2><OptionGrid options={GARMENTS.filter((option) => !option.departments || option.departments.includes(design.department))} value={design.garment} onChange={(v) => update("garment", v as string)} /></section>}
       {step === 2 && <section><p className="eyebrow">03 · Required</p><h2 className="mb-5 font-display text-3xl">What is the occasion?</h2><OptionGrid options={OCCASIONS} value={design.occasion} onChange={(v) => update("occasion", v as string)} /></section>}
 
       {step === 3 && <section className="grid gap-8">
