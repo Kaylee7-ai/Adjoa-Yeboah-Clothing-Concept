@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, MapPin, Truck, Store, CreditCard, Smartphone } from "lucide-react";
 import RequireAuth from "@/components/auth/RequireAuth";
 import { useAuth } from "@/lib/auth";
@@ -17,7 +17,7 @@ function CheckoutContent() {
   const [delivery, setDelivery] = useState<"pickup" | "delivery">("pickup");
   const [payment, setPayment] = useState<"momo" | "card" | "studio">("momo");
   const [address, setAddress] = useState("");
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState(false);\n  const [discount, setDiscount] = useState(0);\n\n  useEffect(() => {\n    const stored = Number(window.localStorage.getItem("ayc-demo-discount") ?? 0);\n    setDiscount(Number.isFinite(stored) ? Math.max(0, stored) : 0);\n  }, []);\n\n  const total = Math.max(0, subtotal - discount);
 
   if (!totalItems) {
     return <main className="wrap flex min-h-[60vh] flex-col items-center justify-center text-center"><h1 className="font-display text-4xl">Your bag is empty.</h1><Link href="/shop" className="btn mt-6">Explore the collection</Link></main>;
@@ -34,7 +34,7 @@ function CheckoutContent() {
       quantity: item.quantity,
       unitPrice: item.product.price,
     })));
-    clearCart();
+    clearCart();\n    window.localStorage.removeItem("ayc-demo-discount");
     router.push(`/thank-you?ref=${encodeURIComponent(order.reference)}&delivery=${delivery}`);
   }
 
@@ -72,11 +72,11 @@ function CheckoutContent() {
         <p className="eyebrow">ORDER SUMMARY</p>
         <div className="mt-3 flex justify-between text-sm"><span>{totalItems} {totalItems === 1 ? "item" : "items"}</span><strong>{formatPrice(subtotal)}</strong></div>
         <div className="mt-2 flex justify-between text-xs text-[var(--color-muted)]"><span>Delivery</span><span>{delivery === "pickup" ? "Free" : "To be confirmed"}</span></div>
-        <div className="mt-4 flex justify-between border-t border-[var(--color-line)] pt-4 text-base font-bold"><span>Total</span><span>{formatPrice(subtotal)}</span></div>
+        <div className="mt-2 flex justify-between text-xs text-[var(--color-muted)]"><span>Discount</span><span>−{formatPrice(discount)}</span></div>\n        <div className="mt-4 flex justify-between border-t border-[var(--color-line)] pt-4 text-base font-bold"><span>Total</span><span>{formatPrice(total)}</span></div>
       </section>
 
       <div className="checkout-bottom-bar">
-        <div className="min-w-0"><span className="block text-[10px] text-[var(--color-muted)]">Total · {totalItems} items</span><strong className="text-base">{formatPrice(subtotal)}</strong></div>
+        <div className="min-w-0"><span className="block text-[10px] text-[var(--color-muted)]">Total · {totalItems} items</span><strong className="text-base">{formatPrice(total)}</strong></div>
         <button type="button" onClick={placeOrder} disabled={busy || (delivery === "delivery" && !address.trim())} className="btn min-h-[52px] flex-1 disabled:opacity-45">{busy ? "Placing…" : "Place Order"}</button>
       </div>
     </main>
