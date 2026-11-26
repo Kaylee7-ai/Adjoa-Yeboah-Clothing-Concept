@@ -8,7 +8,8 @@ import { approveCustomQuote, getCustomRequests, type DemoCustomRequest } from "@
 
 function CustomOrdersContent() {
   const { user } = useAuth();
-  const [requests, setRequests] = useState<DemoCustomRequest[]>([]);\n  const [paymentChoice, setPaymentChoice] = useState<Record<string, "full" | "deposit">>({});
+  const [requests, setRequests] = useState<DemoCustomRequest[]>([]);
+  const [paymentChoice, setPaymentChoice] = useState<Record<string, "full" | "deposit">>({});
   useEffect(() => { if (user) setRequests(getCustomRequests(user.id)); }, [user]);
   return (
     <main className="wrap section min-h-[70vh]">
