@@ -94,3 +94,22 @@ img { max-width: 100%; }
 @keyframes petal-burst{0%{opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.3)}12%{opacity:1}72%{opacity:.8}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(240deg) scale(1.05)}}
 @media(max-width:520px){.floral-card{padding:33px 20px 22px}.bag-drawer-header{padding:20px 18px 16px}.bag-drawer-body{padding:20px 18px}.bag-drawer-footer{padding-inline:18px}}
 @media(prefers-reduced-motion:reduce){.floral-celebration,.floral-card,.falling-flower,.bag-backdrop,.bag-drawer{animation:none!important}}
+
+/* Signature luxury product interactions */
+.save-button{display:grid;place-items:center;width:42px;height:42px;border:1px solid #d8cabe;background:rgba(255,253,249,.96);color:#6e4d43;font-size:22px;line-height:1;transition:transform .2s,background .2s,color .2s}
+.save-button:hover{transform:scale(1.06)}.save-button.saved{background:#8d5f55;color:white;border-color:#8d5f55}.product-save{position:absolute;right:12px;top:12px;z-index:2}
+.inspect-link{display:block;margin-top:13px;color:#805a46;font-size:10px;font-weight:700;letter-spacing:1.1px;text-align:left;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px}
+.look-pairing{margin-top:16px;padding:14px;background:#f1ebe2;border:1px solid #e3d9cd}
+.pairing-line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:11px;margin-top:10px;border-top:1px solid #ded3c6;font-size:11px}
+.pairing-line span{min-width:0;line-height:1.45}.pairing-line small{display:block;margin-top:3px;color:#76695f}.pairing-line button{flex:none;padding:8px 10px;background:#30251f;color:#fff;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.quickview-backdrop,.saved-backdrop{position:fixed;inset:0;z-index:130;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(37,28,23,.56);backdrop-filter:blur(5px)}
+.quickview-panel{position:relative;display:grid;width:min(100%,960px);max-height:min(90dvh,850px);grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:auto;background:#fffdf9;box-shadow:0 24px 80px rgba(24,17,13,.25)}
+.quickview-close{position:absolute;right:13px;top:13px;z-index:3;width:38px;height:38px;border:1px solid #ded3c6;border-radius:50%;background:#fffdf9;font-size:24px}
+.quickview-image-wrap{position:relative;min-height:460px;background:#eee6dc}.quickview-image-wrap>img{width:100%;height:100%;max-height:780px;object-fit:cover}.quickview-views{position:absolute;bottom:15px;left:15px;display:flex;gap:6px}.quickview-views button{padding:8px 10px;background:rgba(255,253,249,.94);font-size:9px;text-transform:uppercase;letter-spacing:1px}.quickview-views button[aria-pressed=true]{background:#30251f;color:white}
+.quickview-content{overflow-y:auto;padding:34px 30px}.story-block{margin-top:22px;padding-top:16px;border-top:1px solid #e4dbcf}.story-block .field-label:not(:first-child){margin-top:17px}
+.swatch-choice{min-height:38px;padding:8px 12px;border:1px solid #d9cfc3;background:#fffdf9;font-size:11px}.swatch-choice.selected{border-color:#30251f;box-shadow:inset 0 0 0 1px #30251f}
+.fit-helper{margin-top:12px;padding:14px;background:#f3eee7}.saved-backdrop{z-index:132;justify-content:flex-end;padding:0}.saved-drawer{display:flex;width:min(100%,480px);height:100%;max-height:100dvh;flex-direction:column;background:#f8f5ef;box-shadow:-18px 0 60px rgba(30,20,15,.2);animation:drawer-slide-in .3s ease both}
+.saved-header{display:flex;align-items:center;justify-content:space-between;padding:24px;border-bottom:1px solid #e4dbcf;background:#fffdf9}.saved-body{flex:1;overflow-y:auto;padding:22px}.saved-item{display:flex;gap:15px;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid #e4dbcf}.saved-item img{width:92px;height:118px;object-fit:cover;background:#eee6dc}
+.btn:active,.pairing-line button:active{transform:scale(.98)}
+@media(max-width:680px){.quickview-backdrop{padding:0;align-items:flex-end}.quickview-panel{width:100%;max-height:94dvh;grid-template-columns:1fr;border-radius:0}.quickview-image-wrap{min-height:0;height:42dvh}.quickview-image-wrap>img{height:100%}.quickview-content{padding:24px 20px max(24px,env(safe-area-inset-bottom))}.quickview-close{position:fixed;top:12px;right:12px}.quickview-views{bottom:10px;left:10px}.pairing-line button{min-height:36px}.saved-header{padding:19px}.saved-body{padding:18px}}
+@media(prefers-reduced-motion:reduce){.quickview-panel,.saved-drawer,.save-button,.btn{animation:none!important;transition:none!important}}
