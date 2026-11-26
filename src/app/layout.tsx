@@ -59,7 +59,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         <AppShell>
           <Header />
-          <main className="min-h-screen pt-16 md:pt-20">{children}</main>
+          <main className="min-h-screen pt-[calc(var(--header-height)+env(safe-area-inset-top))]">{children}</main>
           <Footer />
         </AppShell>
       </body>
