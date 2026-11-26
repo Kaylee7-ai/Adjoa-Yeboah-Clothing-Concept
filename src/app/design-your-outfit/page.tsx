@@ -101,10 +101,10 @@ function DesignWizard() {
     if (!hydrated) return;
     const requested = params.get("garment");
     if (!requested) return;
-    const match = GARMENTS.find((option) =>
-      requested.toLowerCase().includes(option.label.toLowerCase()) ||
-      option.label.toLowerCase().includes(requested.toLowerCase())
-    );
+    const match = GARMENTS.find((option) => {
+      const words = option.label.toLowerCase().split(/[\\s/]+/).filter((word) => word.length > 2);
+      return words.every((word) => requested.toLowerCase().includes(word));
+    });
     if (match) {
       setDesign((current) => ({
         ...current,
