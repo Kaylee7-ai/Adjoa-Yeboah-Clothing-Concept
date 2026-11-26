@@ -16,7 +16,7 @@ function PieceAction({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [size, setSize] = useState("");
   const sizes = product.fulfillment === "ready-to-wear" ? product.sizes ?? [] : [];
-  const color = product.colors?.[0] ?? "As pictured";
+  const color = product.colors?.[0]?.name ?? "As pictured";
 
   return (
     <div className="lookbook-piece-action">

@@ -7,10 +7,10 @@ import type { Product } from "@/types/product";
 export default function AddToBagButton({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState("As pictured");
+  const [selectedColor, setSelectedColor] = useState(() => product.colors?.[0]?.name ?? "As pictured");
   const sizes = product.fulfillment === "ready-to-wear" ? product.sizes ?? [] : [];
   const needsSize = sizes.length > 0;
-  const colors = product.colors ?? ["As pictured"];
+  const colors = product.colors?.map((color) => typeof color === "string" ? color : color.name) ?? ["As pictured"];
 
   function handleAdd() {
     if (needsSize && !selectedSize) return;

@@ -10,7 +10,7 @@ export default function ProductQuickView({product,onClose}:{product:Product;onCl
  const {addItem}=useCart();
  const {toggle,isSaved}=useWishlist();
  const [size,setSize]=useState("");
- const [color,setColor]=useState(product.colors?.[0]??"As pictured");
+ const [color,setColor]=useState(product.colors?.[0]?.name??"As pictured");
  const [view,setView]=useState(0);
  const [showFit,setShowFit]=useState(false);
  const [mounted,setMounted]=useState(false);
@@ -52,7 +52,7 @@ export default function ProductQuickView({product,onClose}:{product:Product;onCl
       <p className="field-label">Care</p>
       <p className="text-sm leading-6">Follow the garment care label. Ask for fabric-specific cleaning guidance for embellished, lace, Kente or structured pieces.</p>
      </div>
-     <div className="mt-5"><p className="field-label">Colour / finish</p><div className="flex flex-wrap gap-2">{(product.colors??["As pictured"]).map(c=><button type="button" key={c} onClick={()=>setColor(c)} aria-pressed={color===c} className={`swatch-choice ${color===c?"selected":""}`}>{c}</button>)}</div><p className="mt-2 text-[10px]">Colour options are illustrative until brand-approved product photography is supplied.</p></div>
+     <div className="mt-5"><p className="field-label">Colour / finish</p><div className="flex flex-wrap gap-2">{(product.colors?.map(c=>typeof c==="string"?c:c.name)??["As pictured"]).map(c=><button type="button" key={c} onClick={()=>setColor(c)} aria-pressed={color===c} className={`swatch-choice ${color===c?"selected":""}`}>{c}</button>)}</div><p className="mt-2 text-[10px]">Colour options are illustrative until brand-approved product photography is supplied.</p></div>
      {sizes.length>0&&<div className="mt-4"><label className="field-label" htmlFor="quick-size">Select size</label><select id="quick-size" className="field" value={size} onChange={e=>setSize(e.target.value)}><option value="">Choose size</option>{sizes.map(s=><option key={s} value={s}>{s}</option>)}</select></div>}
      <div className="mt-6 flex gap-2"><button type="button" className="btn flex-1" disabled={sizes.length>0&&!size} onClick={()=>{addItem(product,1,size||undefined,undefined,color);onClose()}}>Add piece to bag</button><button type="button" className={`save-button ${isSaved(product.id)?"saved":""}`} onClick={()=>toggle(product)} aria-label={isSaved(product.id)?"Remove from saved pieces":"Save piece"} aria-pressed={isSaved(product.id)}>{isSaved(product.id)?"♥":"♡"}</button></div>
      <p className="mt-4 text-[10px] leading-5">Concept preview only. Confirm fabric, measurements, care, price and availability with the atelier.</p>

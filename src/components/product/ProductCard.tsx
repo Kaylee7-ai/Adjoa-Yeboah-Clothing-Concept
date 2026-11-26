@@ -9,8 +9,8 @@ import {products} from "@/data/products";
 import ProductQuickView from "@/components/product/ProductQuickView";
 const lookPairs:Record<string,string[]>={"ayc-001":["ayc-006","ayc-004"],"ayc-002":["ayc-005","ayc-003"],"ayc-003":["ayc-002","ayc-006"],"ayc-004":["ayc-001"],"ayc-005":["ayc-002"],"ayc-006":["ayc-003","ayc-001"]};
 export function ProductCard({product}:{product:Product}){
- const {addItem}=useCart();const {toggle,isSaved}=useWishlist();const [size,setSize]=useState("");const [color,setColor]=useState(product.colors?.[0]??"As pictured");const [quickOpen,setQuickOpen]=useState(false);const [pairingToInspect,setPairingToInspect]=useState<Product|null>(null);
- const sizes=product.fulfillment==="ready-to-wear"?product.sizes??[]:[];const colors=product.colors??["As pictured"];const image=product.images[0]??"/images/product-placeholder.jpg";
+ const {addItem}=useCart();const {toggle,isSaved}=useWishlist();const [size,setSize]=useState("");const [color,setColor]=useState(product.colors?.[0]?.name??"As pictured");const [quickOpen,setQuickOpen]=useState(false);const [pairingToInspect,setPairingToInspect]=useState<Product|null>(null);
+ const sizes=product.fulfillment==="ready-to-wear"?product.sizes??[]:[];const colors=product.colors?.map(c=>typeof c==="string"?c:c.name)??["As pictured"];const image=product.images[0]??"/images/product-placeholder.jpg";
  const pairings=(lookPairs[product.id]??[]).map(id=>products.find(p=>p.id===id)).filter((p):p is Product=>!!p);
  return <article className="product-card">
   <div className="image-frame">
