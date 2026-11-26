@@ -22,7 +22,7 @@ export interface DemoOrder {
   id: string;
   userId: string;
   reference: string;
-  items: Array<{ productId: string; name: string; size?: string; quantity: number; unitPrice: number }>;
+  items: Array<{ productId: string; name: string; size?: string; color?: string; quantity: number; unitPrice: number }>;
   status: "PLACED" | "PROCESSING" | "FULFILMENT" | "COMPLETED";
   createdAt: string;
   updatedAt: string;
@@ -99,6 +99,27 @@ export function saveCustomRequest(
 
 export function getCustomRequests(userId: string): DemoCustomRequest[] {
   return readStore().customRequestsByUser[userId] ?? [];
+}
+
+
+export function saveDemoOrder(
+  userId: string,
+  items: DemoOrder["items"],
+): DemoOrder {
+  const store = readStore();
+  const now = new Date().toISOString();
+  const order: DemoOrder = {
+    id: crypto.randomUUID(),
+    userId,
+    reference: reference("AYO"),
+    items,
+    status: "PLACED",
+    createdAt: now,
+    updatedAt: now,
+  };
+  store.ordersByUser[userId] = [order, ...(store.ordersByUser[userId] ?? [])];
+  writeStore(store);
+  return order;
 }
 
 export function getDemoOrders(userId: string): DemoOrder[] {
