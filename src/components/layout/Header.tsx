@@ -1,85 +1,93 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { ShoppingBag, Menu, X, UserRound } from "lucide-react";
 import { useCart } from "@/components/cart/CartProvider";
 import BrandLogo from "@/components/BrandLogo";
 
-function Header() {
+const NAV_LINKS = [
+  { href: "/shop", label: "Shop" },
+  { href: "/design-your-outfit", label: "Bespoke" },
+  { href: "/bridal", label: "Bridal" },
+  { href: "/lookbook", label: "Lookbook" },
+  { href: "/book-appointment", label: "Book Fitting" },
+];
+
+const MOBILE_LINKS = [
+  ...NAV_LINKS,
+  { href: "/about", label: "About" },
+  { href: "/wishlist", label: "Saved" },
+  { href: "/profile", label: "Account" },
+];
+
+export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems } = useCart();
+  const pathname = usePathname();
 
   const closeMobileMenu = () => setMobileOpen(false);
 
+  useEffect(() => setMobileOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMobileMenu();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen]);
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-espresso)]/95 backdrop-blur-md border-b border-[var(--color-champagne)]/25">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 md:h-20">
-        <BrandLogo onClick={closeMobileMenu} light />
-
-        <nav
-          aria-label="Main navigation"
-          className="hidden md:flex items-center gap-10 text-sm tracking-widest uppercase text-stone-300"
-        >
-          <Link href="/shop" className="hover:text-amber-200 transition">Shop</Link>
-          <Link href="/design-your-outfit" className="hover:text-amber-200 transition">Bespoke</Link>
-          <Link href="/bridal" className="hover:text-amber-200 transition">Bridal</Link>
-          <Link href="/lookbook" className="hover:text-amber-200 transition">Lookbook</Link>
-          <Link href="/book-appointment" className="hover:text-amber-200 transition">Book Fitting</Link>
+    <header
+      className="ay-header fixed inset-x-0 top-0 z-40 border-b border-[var(--color-line)] bg-[rgba(250,247,242,.94)] backdrop-blur-xl"
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
+    >
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 sm:px-6 lg:px-10" style={{ minHeight: "var(--header-height)" }}>
+        <BrandLogo onClick={closeMobileMenu} />
+        <nav aria-label="Main navigation" className="hidden items-center gap-7 lg:gap-9 md:flex">
+          {NAV_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className={`min-h-11 inline-flex items-center text-[11px] font-semibold uppercase tracking-[.14em] transition-colors hover:text-[var(--color-champagne)] ${isActive(link.href) ? "text-[var(--color-champagne)]" : "text-[var(--color-muted)]"}`}>
+              {link.label}
+            </Link>
+          ))}
         </nav>
-
-        <div className="flex items-center gap-4 md:gap-6">
-          <Link href="/profile" className="hidden sm:inline text-stone-400 hover:text-amber-200 transition text-sm">Account</Link>
-          <Link
-            href="/wishlist"
-            className="hidden sm:inline text-stone-400 hover:text-amber-200 transition text-sm"
-          >
-            Wishlist
+        <div className="flex shrink-0 items-center gap-2">
+          <Link href="/profile" aria-label="Your account" className="round-icon-button hidden sm:inline-grid">
+            <UserRound size={17} strokeWidth={1.7} />
           </Link>
-          <Link
-            href="/cart"
-            className="relative text-stone-300 hover:text-amber-200 transition text-sm"
-            aria-label={totalItems > 0 ? `Shopping bag, ${totalItems} items` : "Shopping bag"}
-          >
-            Bag
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-3 min-w-4 h-4 px-1 bg-amber-400 text-[#0c0a09] text-[10px] rounded-full flex items-center justify-center font-medium">
-                {totalItems}
-              </span>
-            )}
+          <Link href="/cart" aria-label={totalItems ? `Shopping bag, ${totalItems} items` : "Shopping bag"} className="round-icon-button relative">
+            <ShoppingBag size={17} strokeWidth={1.7} />
+            {totalItems > 0 && <span className="absolute -right-1 -top-1 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-[var(--color-champagne)] px-1 text-[10px] font-bold text-[#181512]">{totalItems}</span>}
           </Link>
-
-          <button
-            type="button"
-            onClick={() => setMobileOpen((open) => !open)}
-            className="md:hidden text-stone-300 hover:text-amber-200 transition text-xs uppercase tracking-widest"
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-navigation"
-            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            {mobileOpen ? "Close" : "Menu"}
+          <button type="button" onClick={() => setMobileOpen((open) => !open)} className="round-icon-button md:hidden" aria-expanded={mobileOpen} aria-controls="mobile-navigation" aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}>
+            {mobileOpen ? <X size={19} /> : <Menu size={19} />}
           </button>
         </div>
       </div>
-
       {mobileOpen && (
-        <nav
-          id="mobile-navigation"
-          aria-label="Mobile navigation"
-          className="md:hidden bg-[var(--color-espresso)] border-t border-[var(--color-champagne)]/25 px-6 py-8 space-y-6 text-sm tracking-widest uppercase"
-        >
-          <Link href="/shop" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Shop</Link>
-          <Link href="/design-your-outfit" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Design Your Outfit</Link>
-          <Link href="/bridal" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Bridal</Link>
-          <Link href="/lookbook" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Lookbook</Link>
-          <Link href="/book-appointment" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Book Fitting</Link>
-          <Link href="/about" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">About</Link>
-          <Link href="/wishlist" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Wishlist</Link>
-          <Link href="/profile" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Account</Link>
-        </nav>
+        <>
+          <button aria-label="Close menu" className="fixed inset-0 z-40 bg-black/25 md:hidden" onClick={closeMobileMenu} />
+          <nav id="mobile-navigation" aria-label="Mobile navigation" className="absolute left-0 right-0 top-full z-50 max-h-[calc(100dvh-var(--header-height))] overflow-y-auto rounded-b-[24px] border-t border-[var(--color-line)] bg-[var(--color-ivory)] px-5 py-4 shadow-[var(--shadow-soft)] md:hidden">
+            <ul className="m-0 flex list-none flex-col p-0">
+              {MOBILE_LINKS.map((link) => (
+                <li key={link.href} className="border-b border-[var(--color-line)] last:border-0">
+                  <Link href={link.href} onClick={closeMobileMenu} className={`flex min-h-[52px] items-center justify-between text-sm font-medium ${isActive(link.href) ? "text-[var(--color-champagne)]" : "text-[var(--color-espresso)]"}`}>
+                    {link.label}<span aria-hidden="true" className="text-[var(--color-muted)]">↗</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
       )}
     </header>
   );
 }
 
 export { Header };
-export default Header;
