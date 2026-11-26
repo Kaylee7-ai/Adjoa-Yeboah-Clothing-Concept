@@ -1,51 +1,44 @@
 import Link from "next/link";
+import BrandLogo from "@/components/BrandLogo";
 
 export function Footer() {
   return (
-    <footer className="bg-[#0c0a09] border-t border-stone-800/60 mt-24">
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
-        <div className="grid md:grid-cols-4 gap-12">
+    <footer className="mt-20 border-t border-[var(--color-line)] bg-[var(--color-sand)]">
+      <div className="wrap py-12 md:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-serif text-2xl text-amber-50 mb-4">Adjoa Yeboah</p>
-            <p className="text-stone-400 text-sm leading-relaxed">
-              An independent website concept exploring a premium Ghanaian fashion storefront.
+            <BrandLogo />
+            <p className="mt-5 max-w-xs text-sm leading-6 text-[var(--color-muted)]">
+              Ready-to-wear style and thoughtful bespoke design, made with an Accra point of view.
             </p>
           </div>
-
           <div>
-            <h4 className="text-amber-100/80 text-xs tracking-widest uppercase mb-5">Explore</h4>
-            <ul className="space-y-3 text-sm text-stone-400">
-              <li><Link href="/shop" className="hover:text-amber-200 transition">Shop</Link></li>
-              <li><Link href="/bridal" className="hover:text-amber-200 transition">Bridal</Link></li>
-              <li><Link href="/lookbook" className="hover:text-amber-200 transition">Lookbook</Link></li>
-              <li><Link href="/press" className="hover:text-amber-200 transition">Press</Link></li>
+            <h2 className="eyebrow mb-4">Discover</h2>
+            <ul className="space-y-3 text-sm text-[var(--color-muted)]">
+              <li><Link href="/shop" className="hover:text-[var(--color-espresso)]">Shop all</Link></li>
+              <li><Link href="/bridal" className="hover:text-[var(--color-espresso)]">Bridal</Link></li>
+              <li><Link href="/lookbook" className="hover:text-[var(--color-espresso)]">Lookbook</Link></li>
+              <li><Link href="/explore" className="hover:text-[var(--color-espresso)]">Explore</Link></li>
             </ul>
           </div>
-
           <div>
-            <h4 className="text-amber-100/80 text-xs tracking-widest uppercase mb-5">Client Care</h4>
-            <ul className="space-y-3 text-sm text-stone-400">
-              <li><Link href="/book-appointment" className="hover:text-amber-200 transition">Book a Fitting</Link></li>
-              <li><Link href="/cart" className="hover:text-amber-200 transition">Shopping Bag</Link></li>
-              <li><Link href="/wishlist" className="hover:text-amber-200 transition">Wishlist</Link></li>
-              <li><Link href="/about" className="hover:text-amber-200 transition">About</Link></li>
+            <h2 className="eyebrow mb-4">Made for you</h2>
+            <ul className="space-y-3 text-sm text-[var(--color-muted)]">
+              <li><Link href="/design-your-outfit" className="hover:text-[var(--color-espresso)]">Design your outfit</Link></li>
+              <li><Link href="/book-appointment" className="hover:text-[var(--color-espresso)]">Book a fitting</Link></li>
+              <li><Link href="/size-guide" className="hover:text-[var(--color-espresso)]">Size guide</Link></li>
+              <li><Link href="/profile" className="hover:text-[var(--color-espresso)]">Your account</Link></li>
             </ul>
           </div>
-
           <div>
-            <h4 className="text-amber-100/80 text-xs tracking-widest uppercase mb-5">Studio</h4>
-            <p className="text-stone-400 text-sm leading-relaxed">
-              Accra, Ghana
-            </p>
-            <p className="text-stone-500 text-xs mt-4 leading-relaxed">
-              Studio address and contact details will be added after confirmation by the brand.
-            </p>
+            <h2 className="eyebrow mb-4">The studio</h2>
+            <p className="text-sm leading-6 text-[var(--color-muted)]">1 Levites Avenue<br />Accra, Ghana</p>
+            <a className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4" href="https://wa.me/233241224404">WhatsApp the studio</a>
           </div>
         </div>
-
-        <div className="border-t border-stone-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500 tracking-wide">
-          <p>© {new Date().getFullYear()} Adjoa Yeboah Clothing. Independent concept.</p>
-          <p>Not the official brand website. Brand approval is required before public launch.</p>
+        <div className="mt-10 flex flex-col gap-2 border-t border-[var(--color-line)] pt-6 text-xs text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Adjoa Yeboah Clothing.</p>
+          <p>Accra, Ghana · GHS</p>
         </div>
       </div>
     </footer>
