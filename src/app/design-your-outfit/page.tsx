@@ -7,7 +7,7 @@
  */
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import RequireAuth from "@/components/auth/RequireAuth";
 import { useAuth } from "@/lib/auth";
 import {
@@ -71,7 +71,8 @@ function OptionGrid({ options, value, onChange, multi = false, limit }: {
 
 function DesignWizard() {
   const { user } = useAuth();
-  const router = useRouter();\n  const params = useSearchParams();
+  const router = useRouter();
+  const params = useSearchParams();
   const [design, setDesign] = useState<Design>(EMPTY);
   const [step, setStep] = useState(0);
   const [hydrated, setHydrated] = useState(false);
