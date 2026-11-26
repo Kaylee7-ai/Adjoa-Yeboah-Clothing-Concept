@@ -6,7 +6,7 @@ export const products: Product[] = [
   {
     id: "ayc-001", slug: "royal-kente-bridal-gown", name: "Royal Kente Bridal Gown",
     description: "A made-to-measure bridal statement pairing handwoven Ghanaian Kente accents with delicate lace, a structured bodice and a flowing ceremonial skirt.",
-    price: 8500, images: ["https://mgkente.com/cdn/shop/files/d07a8024a2114141a21141c7b6a0fbef85e3-345025663_942930130356316_157920071165388583_n.jpg?v=1696114542"],
+    price: 8500, images: ["https://mgkente.com/cdn/shop/files/d07a8024a21141c7b6a0fbef85e3-345025663_942930130356316_157920071165388583_n.jpg?v=1696114542"],
     category: "Bridal", fulfillment: "bespoke", fabrics: ["kente", "lace", "organza"], occasions: ["bridal", "traditional"], leadTimeDays: 42, isFeatured: true, tags: ["bridal", "kente", "bespoke"]
   },
   {
