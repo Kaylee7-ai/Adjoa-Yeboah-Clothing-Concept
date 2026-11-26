@@ -1,6 +1,6 @@
 import type { Product } from "@/types/product";
 
-// DUMMY catalogue. Product descriptions, photos, garment availability, stock,
+// DUMMY catalogue. The remote editorial photos are temporary stock placeholders; replace with owner-approved Ghanaian campaign photos. Product descriptions, photos, garment availability, stock,
 // colours, sizes, prices and production details must all be confirmed by the owner.
 export const products: Product[] = [
   {
@@ -9,7 +9,7 @@ export const products: Product[] = [
     name: "Royal Kente Bridal Gown",
     description: "A made-to-measure bridal statement pairing handwoven Ghanaian Kente accents with delicate lace, a structured bodice and a flowing ceremonial skirt.",
     price: 8500,
-    images: ["/images/products/royal-kente-bridal-1.jpg"],
+    images: ["https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85"],
     category: "Bridal",
     fulfillment: "bespoke",
     fabrics: ["kente", "lace", "organza"],
@@ -25,7 +25,7 @@ export const products: Product[] = [
     name: "Classic Afrocentric Kaftan",
     description: "A relaxed, refined kaftan cut from richly textured brocade, finished with considered embroidery for polished day-to-evening dressing.",
     price: 1850,
-    images: ["/images/products/afrocentric-kaftan-1.jpg"],
+    images: ["https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85"],
     category: "Menswear",
     fulfillment: "ready-to-wear",
     fabrics: ["brocade", "cotton"],
@@ -44,7 +44,7 @@ export const products: Product[] = [
     description: "A tailored Ankara occasion gown with a clean fitted silhouette, complementary lace detailing and subtle hand-finished embellishment.",
     price: 1650,
     compareAtPrice: 1900,
-    images: ["/images/products/emerald-ankara-1.jpg"],
+    images: ["https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85"],
     category: "Occasion Wear",
     fulfillment: "ready-to-wear",
     fabrics: ["ankara", "lace"],
@@ -62,7 +62,7 @@ export const products: Product[] = [
     name: "White Lace Christening Outfit",
     description: "A delicate made-to-measure christening ensemble in soft white lace and cotton, designed with gentle finishing for a meaningful family celebration.",
     price: 1200,
-    images: ["/images/products/christening-lace-1.jpg"],
+    images: ["https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=85"],
     category: "Children",
     fulfillment: "bespoke",
     fabrics: ["lace", "cotton", "organza"],
@@ -78,7 +78,7 @@ export const products: Product[] = [
     name: "Gold Brocade Agbada Set",
     description: "A statement three-piece agbada concept in lustrous brocade, tailored with a generous flowing outer robe and coordinated traditional pieces.",
     price: 3800,
-    images: ["/images/products/gold-agbada-1.jpg"],
+    images: ["https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1000&q=85"],
     category: "Menswear",
     fulfillment: "bespoke",
     fabrics: ["brocade", "cotton"],
@@ -93,7 +93,7 @@ export const products: Product[] = [
     name: "Midnight Kente Corset Dress",
     description: "A dramatic evening dress combining deep-toned Kente panels with a structured corset-inspired bodice and a sculptural flowing skirt.",
     price: 3200,
-    images: ["/images/products/midnight-kente-1.jpg"],
+    images: ["https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85"],
     category: "Occasion Wear",
     fulfillment: "bespoke",
     fabrics: ["kente", "satin"],
