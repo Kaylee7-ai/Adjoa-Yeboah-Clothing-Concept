@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Check, Heart, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/types/product";
-import { formatPrice } from "@/lib/formatPrice";\nimport { useSaved } from "@/context/SavedContext";
+import { formatPrice } from "@/lib/formatPrice";
+import { useSaved } from "@/context/SavedContext";
 
 const SIZE_SETS = {
   women: ["XS", "S", "M", "L", "XL", "XXL"],
@@ -15,7 +16,8 @@ const SIZE_SETS = {
 };
 
 export default function AddToBagButton({ product }: { product: Product }) {
-  const { addItem } = useCart();\n  const { isSaved, toggleSaved } = useSaved();
+  const { addItem } = useCart();
+  const { isSaved, toggleSaved } = useSaved();
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [showToast, setShowToast] = useState(false);
