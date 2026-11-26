@@ -6,7 +6,7 @@ import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: { default: "Adjoa Yeboah Clothing | Premium Ghanaian Fashion", template: "%s | Adjoa Yeboah Clothing" },
-  description: "An independent premium Ghanaian fashion storefront concept.",
+  description: "Adjoa Yeboah Clothing — contemporary Ghanaian fashion, bespoke occasionwear and distinctive African-inspired design.",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon.svg", apple: "/icon.svg" },
   applicationName: "Adjoa Yeboah Clothing",
@@ -20,9 +20,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="min-h-screen bg-[#f8f5ef] text-[#30251f] antialiased">
         <AppShell>
-          <div className="concept-ribbon bg-[#eadfd2] px-3 py-2 text-center text-[9px] font-semibold tracking-[1.35px] text-[#5b4637]">
-            INDEPENDENT WEBSITE CONCEPT · NOT THE OFFICIAL BRAND STORE
-          </div>
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
