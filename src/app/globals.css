@@ -34,15 +34,15 @@
 }
 
 @theme inline {
-  --color-background: var(--color-ivory);
-  --color-foreground: var(--color-espresso);
-  --color-ivory: var(--color-ivory);
-  --color-sand: var(--color-sand);
-  --color-champagne: var(--color-champagne);
-  --color-emerald: var(--color-emerald);
-  --color-burgundy: var(--color-burgundy);
-  --color-sunset: var(--color-sunset);
-  --color-royal: var(--color-royal);
+  --color-background: #FAF7F2;
+  --color-foreground: #181512;
+  --color-ivory: #FAF7F2;
+  --color-sand: #F2ECE1;
+  --color-champagne: #C69749;
+  --color-emerald: #0F7B5F;
+  --color-burgundy: #8C1D40;
+  --color-sunset: #E8743B;
+  --color-royal: #1E3FA8;
   --font-sans: var(--font-dm-sans);
   --font-serif: var(--font-playfair);
 }
