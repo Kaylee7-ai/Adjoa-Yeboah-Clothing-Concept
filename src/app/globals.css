@@ -91,6 +91,6 @@ img { max-width: 100%; }
 @keyframes floral-fade-in{from{opacity:0}to{opacity:1}}
 @keyframes floral-card-in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes drawer-slide-in{from{transform:translateX(30px);opacity:.7}to{transform:translateX(0);opacity:1}}
-@keyframes petal-burst{0%{opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.3)}12%{opacity:1}72%{opacity:.8}100%{opacity:0;transform:translate(calc(-50% + cos(var(--angle))*135px),calc(-50% + sin(var(--angle))*135px)) rotate(240deg) scale(1.05)}}
+@keyframes petal-burst{0%{opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.3)}12%{opacity:1}72%{opacity:.8}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(240deg) scale(1.05)}}
 @media(max-width:520px){.floral-card{padding:33px 20px 22px}.bag-drawer-header{padding:20px 18px 16px}.bag-drawer-body{padding:20px 18px}.bag-drawer-footer{padding-inline:18px}}
 @media(prefers-reduced-motion:reduce){.floral-celebration,.floral-card,.floral-petal,.bag-backdrop,.bag-drawer{animation:none!important}}
