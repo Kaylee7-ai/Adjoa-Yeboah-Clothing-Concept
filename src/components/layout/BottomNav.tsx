@@ -15,7 +15,7 @@ const ITEMS = [
 
 export default function BottomNav() {
   const pathname = usePathname();
-  const { totalItems } = useCart();\n\n  if (pathname.startsWith("/shop/")) return null;
+  const { totalItems } = useCart();\n\n  if (pathname.startsWith("/shop/") || ["/cart", "/checkout", "/thank-you"].includes(pathname)) return null;
 
   return (
     <nav aria-label="Main app navigation" className="ay-bottom-nav md:hidden">
