@@ -6,13 +6,13 @@ export const products: Product[] = [
   {
     id: "ayc-001", slug: "royal-kente-bridal-gown", name: "Royal Kente Bridal Gown",
     description: "A made-to-measure bridal statement pairing handwoven Ghanaian Kente accents with delicate lace, a structured bodice and a flowing ceremonial skirt.",
-    price: 8500, images: ["https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=85"],
+    price: 8500, images: ["https://images.pexels.com/photos/13998586/pexels-photo-13998586.jpeg?cs=srgb&dl=pexels-wo-nfoni-media-311038690-13998586.jpg&fm=jpg"],
     category: "Bridal", fulfillment: "bespoke", fabrics: ["kente", "lace", "organza"], occasions: ["bridal", "traditional"], leadTimeDays: 42, isFeatured: true, tags: ["bridal", "kente", "bespoke"]
   },
   {
     id: "ayc-002", slug: "classic-afrocentric-kaftan", name: "Classic Afrocentric Kaftan",
     description: "A relaxed, refined kaftan cut from richly textured brocade, finished with considered embroidery for polished day-to-evening dressing.",
-    price: 1850, images: ["https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=85"],
+    price: 1850, images: ["https://images.pexels.com/photos/34328277/pexels-photo-34328277.jpeg?cs=srgb&dl=pexels-k-studios-914616102-34328277.jpg&fm=jpg"],
     category: "Occasion Wear", fulfillment: "ready-to-wear", fabrics: ["brocade", "cotton"], occasions: ["engagement", "gala", "corporate", "traditional"], sizes: ["S", "M", "L", "XL"], isFeatured: true, tags: ["kaftan", "occasion", "ready-to-wear"]
   },
   {
@@ -36,7 +36,7 @@ export const products: Product[] = [
   {
     id: "ayc-006", slug: "midnight-kente-corset-dress", name: "Midnight Kente Corset Dress",
     description: "A dramatic evening dress combining deep-toned Kente panels with a structured corset-inspired bodice and a sculptural flowing skirt.",
-    price: 3200, images: ["https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1000&q=85"],
+    price: 3200, images: ["https://images.pexels.com/photos/33610328/pexels-photo-33610328.jpeg"],
     category: "Occasion Wear", fulfillment: "bespoke", fabrics: ["kente", "satin"], occasions: ["gala", "engagement", "traditional"], leadTimeDays: 35, isFeatured: true, tags: ["kente", "corset", "bespoke"]
   },
 ];
