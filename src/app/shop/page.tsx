@@ -1,10 +1,9 @@
 import { products } from "@/data/products";
-import { ProductCard } from "@/components/product/ProductCard";
+import CollectionBrowser from "@/components/shop/CollectionBrowser";
 
 export const metadata = { title: "Shop the Edit" };
 
 export default function Shop() {
-  const categories = Array.from(new Set(products.map((product) => product.category)));
   return (
     <main>
       <section className="bg-[#eee6dc] px-5 py-20 text-center md:py-28">
@@ -23,12 +22,7 @@ export default function Shop() {
           </div>
           <p className="text-xs text-[#746960]">Indicative GHS prices · confirm details before purchase</p>
         </div>
-        <div className="mb-9 flex flex-wrap gap-2" aria-label="Collection categories">
-          {categories.map((category) => <span key={category} className="border border-[#d9cfc3] bg-[#fffdf9] px-4 py-2 text-[9px] font-semibold uppercase tracking-widest text-[#6b584a]">{category}</span>)}
-        </div>
-        <div className="product-grid">
-          {products.map((product) => <ProductCard key={product.id} product={product} />)}
-        </div>
+        <CollectionBrowser />
         <p className="mt-12 border-t border-[#e4dbcf] pt-6 text-xs leading-6 text-[#746960]">
           This is an independent website concept. Images are editorial placeholders and do not represent verified products. Prices, specifications and availability require confirmation by the brand.
         </p>
