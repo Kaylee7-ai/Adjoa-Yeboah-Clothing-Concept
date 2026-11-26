@@ -9,7 +9,8 @@ export interface VisualOption {
   icon: string;
   image?: string;
   accent?: string;
-  note?: string;\n  departments?: string[];
+  note?: string;
+  departments?: string[];
 }
 
 export const CUSTOM_OPTIONS_NOTICE = "DUMMY OPTIONS — TO BE CONFIRMED WITH THE STUDIO";
