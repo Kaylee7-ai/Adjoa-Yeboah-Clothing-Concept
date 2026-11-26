@@ -146,3 +146,49 @@ body { font-family: 'DM Sans', sans-serif; }
 .save-button { color: #8D604A; border-color: rgba(24,21,18,.18); background: #FAF7F2; }
 .save-button.saved { background: #9B7564; border-color: #9B7564; color: #fff; }
 @media (max-width: 390px) { .product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+
+/* Rose-petal celebration: petals fall in their own stage beneath the message */
+.floral-celebration{background:radial-gradient(ellipse at 50% 38%,rgba(255,224,216,.28),rgba(37,20,22,.72) 70%),rgba(37,20,22,.62)}
+.floral-card{overflow:visible;border:1px solid rgba(221,174,153,.7);border-radius:30px 30px 24px 24px;background:linear-gradient(145deg,#fffaf7 0%,#fff5f0 54%,#f9e9e4 100%);box-shadow:0 28px 90px rgba(38,12,19,.34),0 0 0 7px rgba(255,244,238,.10),0 0 54px rgba(231,153,143,.26)}
+.floral-ornament{color:#b34d5c}
+.floral-ornament i{background:linear-gradient(90deg,transparent,#d49b91,transparent)}
+.floral-heading{color:#572b32;background:linear-gradient(110deg,#54252e,#a94e5c 55%,#7e3945);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 5px 24px rgba(193,93,103,.12)}
+.floral-copy{color:#80656a}
+.floral-added-product{border:1px solid rgba(177,91,102,.13);border-radius:17px;background:rgba(255,255,255,.7);box-shadow:0 8px 24px rgba(106,54,58,.07)}
+.floral-added-product img{border-radius:10px}
+.floral-close{border-radius:50%;box-shadow:0 4px 14px rgba(93,43,48,.12)}
+.floral-card .btn{border:1px solid #9f3f50;border-radius:999px;background:linear-gradient(110deg,#8f3043,#c65e69 55%,#9d3b50);box-shadow:0 9px 24px rgba(160,55,73,.28),inset 0 1px 0 rgba(255,255,255,.28);transition:transform .25s,box-shadow .25s,filter .25s}
+.floral-card .btn:hover{transform:translateY(-2px);filter:saturate(1.12);box-shadow:0 13px 30px rgba(160,55,73,.38),0 0 22px rgba(230,147,147,.35)}
+.floral-keep-shopping{color:#9c4754}
+.floral-petal-stage{position:relative;height:76px;width:100%;margin:7px auto 5px;overflow:hidden;pointer-events:none;mask-image:linear-gradient(to bottom,transparent 0%,black 20%,black 80%,transparent 100%)}
+.rose-petal{position:absolute;top:-20px;left:var(--petal-left);width:var(--petal-size);height:calc(var(--petal-size)*1.48);border-radius:78% 12% 72% 18%;opacity:0;transform:rotate(var(--petal-rotation));transform-origin:center;filter:drop-shadow(0 3px 3px rgba(102,31,44,.2));animation:rose-petal-fall var(--petal-duration) cubic-bezier(.22,.62,.38,1) var(--petal-delay) 1 both}
+.rose-petal:after{content:"";position:absolute;left:48%;top:12%;width:1px;height:75%;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,0));transform:rotate(10deg);opacity:.65}
+.rose-petal-tone-0{background:linear-gradient(135deg,#ffb9bd 0%,#e96c7d 48%,#b92f4b 100%)}
+.rose-petal-tone-1{background:linear-gradient(135deg,#ffe0df 0%,#f4a3aa 50%,#d85d72 100%)}
+.rose-petal-tone-2{background:linear-gradient(135deg,#f7c5c9 0%,#d96b7d 55%,#a72d49 100%)}
+.rose-petal-tone-3{background:linear-gradient(135deg,#fff0ed 0%,#f2b5b7 52%,#d77b88 100%)}
+@keyframes rose-petal-fall{0%{opacity:0;transform:translate3d(0,-8px,0) rotate(var(--petal-rotation)) scale(.72)}12%{opacity:.98}55%{opacity:.95;transform:translate3d(calc(var(--petal-drift)*.55),42px,0) rotate(calc(var(--petal-rotation) + 85deg)) scale(1)}100%{opacity:0;transform:translate3d(var(--petal-drift),112px,0) rotate(calc(var(--petal-rotation) + 190deg)) scale(.82)}}
+/* Radiant atelier finish: warm light, curved geometry and rose-gold highlights */
+:root{--champagne:#d6a65f;--rose:#b85e68;--muted:#78635e;--line:rgba(92,50,48,.13)}
+body{background:radial-gradient(ellipse at 8% 5%,rgba(255,223,210,.32),transparent 28%),radial-gradient(ellipse at 92% 22%,rgba(238,202,173,.25),transparent 26%),#fffaf5}
+.section-title{text-shadow:0 8px 28px rgba(176,112,91,.10)}
+.site-header{background:rgba(255,249,244,.84);box-shadow:0 6px 30px rgba(103,65,53,.07)}
+.btn{border-radius:999px;box-shadow:0 7px 20px rgba(55,34,29,.14)}
+.btn:hover{box-shadow:0 10px 28px rgba(184,94,104,.28)}
+.product-card .image-frame{border-radius:48% 48% 18px 18px / 25% 25% 18px 18px;box-shadow:0 14px 34px rgba(100,63,48,.10)}
+.product-card .product-image{transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .75s}
+.product-card:hover .product-image{transform:scale(1.045);filter:saturate(1.08) brightness(1.025)}
+.product-card h3{color:#432a2b}
+.product-card .price{color:#9e4554}
+.atelier-promises>div{background:linear-gradient(145deg,#fffaf5,#f9eee7)}
+.atelier-promises strong{color:#4d3030}
+.quickview-panel,.bag-drawer,.saved-drawer{background:linear-gradient(150deg,#fffaf5,#f7ece6)}
+.quickview-panel{border-radius:28px;overflow:hidden;box-shadow:0 30px 100px rgba(57,30,31,.28),0 0 48px rgba(229,164,148,.15)}
+.quickview-image-wrap{background:linear-gradient(145deg,#f5e4dc,#ead4c8)}
+.field{border-radius:13px;background:rgba(255,252,249,.92)}
+.save-button{border-radius:50%;box-shadow:0 5px 17px rgba(64,39,37,.12)}
+.bag-drawer{border-radius:28px 0 0 28px;box-shadow:-18px 0 70px rgba(49,26,27,.22)}
+.collection-filter{border-radius:999px}
+.look-pairing,.fit-helper{border-radius:18px;background:linear-gradient(145deg,#fbf0e9,#f1e4dc)}
+.site-footer{background:radial-gradient(ellipse at 90% 0%,rgba(181,100,100,.22),transparent 40%),linear-gradient(135deg,#392526,#211a1a)}
+@media(max-width:520px){.floral-card{border-radius:25px;padding-inline:18px}.floral-petal-stage{height:66px}.bag-drawer{border-radius:24px 24px 0 0}}
