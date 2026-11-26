@@ -4,7 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import SplashScreen from "./SplashScreen";
 import BottomNav from "@/components/layout/BottomNav";
 import { CartProvider } from "@/context/CartContext";
-import { AuthProvider } from "@/lib/auth";\nimport { SavedProvider } from "@/context/SavedContext";
+import { AuthProvider } from "@/lib/auth";
+import { SavedProvider } from "@/context/SavedContext";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [showIntro, setShowIntro] = useState(false);
@@ -30,13 +31,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthProvider>
-      <CartProvider>\n        <SavedProvider>
+      <CartProvider>
+        <SavedProvider>
         <div className="ay-app-shell">
           {children}
           <BottomNav />
         </div>
         {introChecked && showIntro && <SplashScreen onContinue={finishIntro} />}
-      </SavedProvider>\n      </CartProvider>
+      </SavedProvider>
+      </CartProvider>
     </AuthProvider>
   );
 }
