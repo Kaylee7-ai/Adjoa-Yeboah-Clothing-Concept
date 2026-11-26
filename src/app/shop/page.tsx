@@ -1,4 +1,3 @@
-import { products } from "@/data/products";
 import CollectionBrowser from "@/components/shop/CollectionBrowser";
 
 export const metadata = { title: "Shop the Edit" };
