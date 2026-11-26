@@ -23,7 +23,7 @@ export default function HomePage() {
   const { totalItems } = useCart();
   const [search, setSearch] = useState("");
   const featured = useMemo(() => {
-    const source = getFeaturedProducts().length ? getFeaturedProducts() : products;
+    const source = search ? products : (getFeaturedProducts().length ? getFeaturedProducts() : products);
     return source.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
   }, [search]);
   const firstName = user?.name.trim().split(/\s+/)[0];
