@@ -15,7 +15,7 @@ export default function Hero() {
     <section className="luxury-hero relative isolate flex min-h-[min(790px,calc(100svh-5rem))] items-center overflow-hidden bg-[#F2ECE1]">
       <div className="absolute inset-0 -z-20">
         <img
-          src="https://afroculture.net/wp-content/uploads/2018/10/12006330_1151823554831827_80859612527772_n-7.jpg"
+          src="https://www.mgkente.com/cdn/shop/files/IMG-20230506_132206_099.jpg?v=1696114488&width=1946"
           alt=""
           aria-hidden="true"
           className="h-full w-full object-cover object-[center_28%]"
