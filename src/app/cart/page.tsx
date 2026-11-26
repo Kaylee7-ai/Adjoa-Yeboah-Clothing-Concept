@@ -85,7 +85,7 @@ export default function CartPage() {
         <div className="flex justify-between py-1 text-sm"><span className="text-[var(--color-muted)]">Discount</span><span>{discount ? `−${formatPrice(discount)}` : formatPrice(0)}</span></div>
         <div className="mt-3 flex justify-between border-t border-[var(--color-line)] pt-4 text-base font-bold"><span>Total</span><span>{formatPrice(total)}</span></div>
       </section>
-      <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-[var(--color-line)] bg-[rgba(250,247,242,.96)] p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-xl md:static md:mt-6 md:border-0 md:bg-transparent md:p-0 md:pb-0">
+      <div className="cart-checkout-bar border-t border-[var(--color-line)] bg-[rgba(250,247,242,.96)] p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-xl md:static md:mt-6 md:border-0 md:bg-transparent md:p-0 md:pb-0">
         <Link href="/checkout" className="btn min-h-[54px] w-full">Checkout <span aria-hidden="true">→</span></Link>
       </div>
     </main>
