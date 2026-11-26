@@ -26,12 +26,14 @@ function Header() {
           className="hidden md:flex items-center gap-10 text-sm tracking-widest uppercase text-stone-300"
         >
           <Link href="/shop" className="hover:text-amber-200 transition">Shop</Link>
+          <Link href="/design-your-outfit" className="hover:text-amber-200 transition">Bespoke</Link>
           <Link href="/bridal" className="hover:text-amber-200 transition">Bridal</Link>
           <Link href="/lookbook" className="hover:text-amber-200 transition">Lookbook</Link>
           <Link href="/book-appointment" className="hover:text-amber-200 transition">Book Fitting</Link>
         </nav>
 
         <div className="flex items-center gap-4 md:gap-6">
+          <Link href="/profile" className="hidden sm:inline text-stone-400 hover:text-amber-200 transition text-sm">Account</Link>
           <Link
             href="/wishlist"
             className="hidden sm:inline text-stone-400 hover:text-amber-200 transition text-sm"
@@ -71,11 +73,13 @@ function Header() {
           className="md:hidden bg-[#0c0a09] border-t border-stone-800 px-6 py-8 space-y-6 text-sm tracking-widest uppercase"
         >
           <Link href="/shop" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Shop</Link>
+          <Link href="/design-your-outfit" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Design Your Outfit</Link>
           <Link href="/bridal" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Bridal</Link>
           <Link href="/lookbook" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Lookbook</Link>
           <Link href="/book-appointment" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Book Fitting</Link>
           <Link href="/about" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">About</Link>
           <Link href="/wishlist" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Wishlist</Link>
+          <Link href="/profile" onClick={closeMobileMenu} className="block text-stone-200 hover:text-amber-200">Account</Link>
         </nav>
       )}
     </header>
