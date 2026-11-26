@@ -780,7 +780,7 @@ p {
 .product-sticky-action {
   position: sticky;
   z-index: 36;
-  bottom: calc(var(--mobile-tab-height) + env(safe-area-inset-bottom) + 0.65rem);
+  bottom: calc(env(safe-area-inset-bottom) + 0.65rem);
   display: flex;
   align-items: center;
   gap: 0.7rem;
@@ -876,7 +876,7 @@ p {
 
 @media (max-width: 767px) {
   .product-sticky-action {
-    bottom: calc(var(--mobile-tab-height) + env(safe-area-inset-bottom) + 0.5rem);
+    bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
   }
 }
 
