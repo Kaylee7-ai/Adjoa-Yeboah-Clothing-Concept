@@ -9,44 +9,48 @@ const displayFont = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   display: "swap",
-  weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700"],
 });
 
 const bodyFont = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
   display: "swap",
-  weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: {
     default: "Adjoa Yeboah Clothing | Ghanaian Designer Fashion",
-    template: "%s | Adjoa Yeboah Clothing"
+    template: "%s | Adjoa Yeboah Clothing",
   },
   description:
-    "Discover expressive Ghanaian designer fashion, considered details and contemporary pieces from Adjoa Yeboah Clothing.",
+    "Discover expressive Ghanaian designer fashion, ready-to-wear pieces and bespoke creations from Adjoa Yeboah Clothing in Accra.",
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg"
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon", type: "image/png", sizes: "64x64" },
+    ],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
   applicationName: "Adjoa Yeboah Clothing",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Adjoa Yeboah"
-  }
+    title: "Adjoa Yeboah",
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#FAF7F2",
   width: "device-width",
-  initialScale: 1
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -55,9 +59,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased">
         <AppShell>
           <Header />
-          <main className="min-h-screen pt-16 md:pt-20">
-            {children}
-          </main>
+          <main className="min-h-screen pt-16 md:pt-20">{children}</main>
           <Footer />
         </AppShell>
       </body>
