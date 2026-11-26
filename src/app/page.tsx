@@ -10,12 +10,12 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { formatPrice } from "@/lib/formatPrice";
 
 const categories = [
-  { name: "Women", image: "/images/products/emerald-ankara-1.jpg", href: "/shop?department=women" },
-  { name: "Men", image: "/images/products/gold-agbada-1.jpg", href: "/shop?department=men" },
-  { name: "Children", image: "/images/products/christening-lace-1.jpg", href: "/shop?department=children" },
-  { name: "Bridal", image: "/images/products/royal-kente-bridal-1.jpg", href: "/bridal" },
-  { name: "Accessories", image: "/images/products/midnight-kente-1.jpg", href: "/shop?category=accessories" },
-  { name: "Custom Sew", image: "/images/products/afrocentric-kaftan-1.jpg", href: "/design-your-outfit" },
+  { name: "Women", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=300&q=80", href: "/shop?department=women" },
+  { name: "Men", image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=300&q=80", href: "/shop?department=men" },
+  { name: "Children", image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=300&q=80", href: "/shop?department=children" },
+  { name: "Bridal", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80", href: "/bridal" },
+  { name: "Accessories", image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=300&q=80", href: "/shop?category=accessories" },
+  { name: "Custom Sew", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=300&q=80", href: "/design-your-outfit" },
 ];
 
 export default function HomePage() {
@@ -64,7 +64,7 @@ export default function HomePage() {
 
       <section className="mt-6">
         <div className="home-hero-banner">
-          <img src="/images/products/royal-kente-bridal-1.jpg" alt="Kente-inspired Ghanaian bridal fashion concept" className="home-hero-image" />
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Kente-inspired Ghanaian bridal fashion concept" className="home-hero-image" />
           <div className="home-hero-shade" />
           <div className="home-hero-copy">
             <p className="text-[10px] font-bold tracking-[.24em] text-white/80">NEW SEASON</p>
