@@ -1,55 +1,22 @@
+"use client";
+
 import Link from "next/link";
+import RequireAuth from "@/components/auth/RequireAuth";
+import { useAuth } from "@/lib/auth";
+import { getDemoOrders } from "@/lib/demoStore";
+import { useEffect, useState } from "react";
+import type { DemoOrder } from "@/lib/demoStore";
 
-export default function MyOrdersPage() {
+function OrdersContent() {
+  const { user } = useAuth();
+  const [orders, setOrders] = useState<DemoOrder[]>([]);
+  useEffect(() => { if (user) setOrders(getDemoOrders(user.id)); }, [user]);
   return (
-    <main className="min-h-screen bg-[#0c0a09] px-6 py-20">
-      <div className="mx-auto max-w-4xl">
-        <p className="mb-3 text-xs uppercase tracking-[0.3em] text-amber-200/60">
-          Client account
-        </p>
-        <h1 className="mb-5 font-serif text-3xl text-amber-50 md:text-4xl">
-          My Orders
-        </h1>
-        <p className="mb-10 max-w-2xl leading-7 text-stone-400">
-          Your order history will appear here once customer accounts and the
-          secure order database are connected.
-        </p>
-
-        <section
-          aria-labelledby="orders-status"
-          className="border border-stone-800 bg-stone-900/30 p-7 sm:p-9"
-        >
-          <h2 id="orders-status" className="text-sm font-medium uppercase tracking-widest text-amber-100">
-            Order history unavailable
-          </h2>
-          <p className="mt-4 text-sm leading-7 text-stone-400">
-            This independent website concept does not currently sign customers
-            in or retrieve real orders. No sample orders or payment statuses
-            are displayed, so this page will not give a misleading impression
-            that a purchase has been made.
-          </p>
-          <p className="mt-4 text-xs leading-6 text-stone-500">
-            Account access will be added after the business approves the
-            customer-account workflow and secure authentication and database
-            services are configured.
-          </p>
-        </section>
-
-        <div className="mt-9 flex flex-wrap gap-6">
-          <Link
-            href="/shop"
-            className="border-b border-amber-200/40 pb-1 text-sm text-amber-100 transition hover:border-amber-200"
-          >
-            Explore the collection
-          </Link>
-          <Link
-            href="/track-order"
-            className="border-b border-stone-600 pb-1 text-sm text-stone-300 transition hover:border-amber-200 hover:text-amber-100"
-          >
-            Order tracking preview
-          </Link>
-        </div>
-      </div>
+    <main className="wrap section min-h-[70vh]">
+      <p className="eyebrow">YOUR ACCOUNT</p><h1 className="section-title mt-3">My Orders.</h1>
+      <p className="mb-7 max-w-lg text-sm leading-6 text-[var(--color-muted)]">A record of demo orders placed from this browser profile.</p>
+      {!orders.length ? <div className="rounded-2xl border border-[var(--color-line)] bg-white p-8 text-center"><p className="font-display text-2xl">No orders yet.</p><p className="mt-2 text-sm text-[var(--color-muted)]">Your order history will appear here after you place a demo order.</p><Link href="/shop" className="btn mt-6">Explore the collection</Link></div> : <div className="grid gap-3">{orders.map((order) => <article key={order.id} className="rounded-2xl border border-[var(--color-line)] bg-white p-5"><div className="flex flex-wrap items-center justify-between gap-2"><strong>{order.reference}</strong><span className="rounded-full bg-[var(--color-sand)] px-3 py-1 text-[10px]">{order.status}</span></div><p className="mt-2 text-xs text-[var(--color-muted)]">{new Date(order.createdAt).toLocaleDateString()}</p><div className="mt-4 space-y-2">{order.items.map((item) => <div key={item.productId + (item.size ?? "") + (item.color ?? "")} className="flex justify-between gap-3 text-sm"><span className="min-w-0">{item.name} × {item.quantity}{item.size ? ` · ${item.size}` : ""}{item.color ? ` · ${item.color}` : ""}</span><span className="shrink-0">{item.unitPrice.toLocaleString("en-GH", { style: "currency", currency: "GHS" })}</span></div>)}</div><Link href={`/track-order?ref=${encodeURIComponent(order.reference)}`} className="mt-4 inline-flex min-h-10 items-center text-xs font-semibold underline">Track order →</Link></article>)}</div>}
     </main>
   );
 }
+export default function MyOrdersPage() { return <RequireAuth><OrdersContent /></RequireAuth>; }
