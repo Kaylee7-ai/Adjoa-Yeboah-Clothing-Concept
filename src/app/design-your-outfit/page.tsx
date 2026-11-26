@@ -6,7 +6,7 @@
  * confirmation. Inspiration uploads are UI-only; files are not uploaded.
  */
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import RequireAuth from "@/components/auth/RequireAuth";
 import { useAuth } from "@/lib/auth";
@@ -71,7 +71,7 @@ function OptionGrid({ options, value, onChange, multi = false, limit }: {
 
 function DesignWizard() {
   const { user } = useAuth();
-  const router = useRouter();
+  const router = useRouter();\n  const params = useSearchParams();
   const [design, setDesign] = useState<Design>(EMPTY);
   const [step, setStep] = useState(0);
   const [hydrated, setHydrated] = useState(false);
@@ -94,6 +94,25 @@ function DesignWizard() {
     if (!hydrated || step === 8) return;
     saveDraft(user?.id ?? "guest", { design, step });
   }, [design, step, hydrated, user?.id]);
+
+
+  useEffect(() => {
+    if (!hydrated) return;
+    const requested = params.get("garment");
+    if (!requested) return;
+    const match = GARMENTS.find((option) =>
+      requested.toLowerCase().includes(option.label.toLowerCase()) ||
+      option.label.toLowerCase().includes(requested.toLowerCase())
+    );
+    if (match) {
+      setDesign((current) => ({
+        ...current,
+        department: match.departments?.[0] ?? current.department,
+        garment: match.id,
+      }));
+      setStep(1);
+    }
+  }, [hydrated, params]);
 
   const update = <K extends keyof Design>(key: K, value: Design[K]) => {
     setDesign((current) => ({ ...current, [key]: value }));
