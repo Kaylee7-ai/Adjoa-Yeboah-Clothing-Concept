@@ -1,0 +1,2 @@
+# Product data
+Use one Product record per style. Store prices as integer pesewas (GH₵125.00 = 12500). Set fulfilment to READY_TO_WEAR or BESPOKE. Only enter verified fabrics, occasions, sizes, stock, images and care details. Bespoke lead times, deposit and fitting policies require written confirmation from the business.
