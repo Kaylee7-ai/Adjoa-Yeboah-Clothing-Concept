@@ -102,7 +102,7 @@ function DesignWizard() {
     const requested = params.get("garment");
     if (!requested) return;
     const match = GARMENTS.find((option) => {
-      const words = option.label.toLowerCase().split(/[\\s/]+/).filter((word) => word.length > 2);
+      const words = option.label.toLowerCase().split(/[\s/]+/).filter((word) => word.length > 2);
       return words.every((word) => requested.toLowerCase().includes(word));
     });
     if (match) {
