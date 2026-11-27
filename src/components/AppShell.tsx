@@ -16,7 +16,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const timer = window.setTimeout(() => {
       setShowSplash(false);
-    }, 2800);
+    }, 5000);
 
     return () => window.clearTimeout(timer);
   }, []);
@@ -27,7 +27,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <WishlistProvider>
           <SavedProvider>
             {showSplash && <SplashScreen />}
-            <div className={showSplash ? "app-content app-content-hidden" : "app-content app-content-visible"} aria-hidden={showSplash}>
+            <div
+              className={showSplash ? "app-content app-content-hidden" : "app-content app-content-visible"}
+              aria-hidden={showSplash}
+            >
               {children}
             </div>
             <BottomNav />
