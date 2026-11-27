@@ -15,10 +15,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Show the branded opening screen on every fresh app load.
-    // Do not persist a session flag: that caused repeat visits to skip the intro.
+    // Keep it visible for five seconds before revealing the storefront.
     const timer = window.setTimeout(() => {
       setShowSplash(false);
-    }, 2800);
+    }, 5000);
 
     return () => window.clearTimeout(timer);
   }, []);
