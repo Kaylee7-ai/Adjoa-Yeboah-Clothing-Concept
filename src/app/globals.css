@@ -2013,3 +2013,139 @@ body{background:radial-gradient(ellipse at 50% 0%,rgba(107,36,49,.16),transparen
 @media(prefers-reduced-motion:reduce){
   .btn,.lookbook-add,.pairing-line button,.luxury-hero a:first-child,.luxury-cta a{animation:none!important}
 }
+
+
+/* AYC LIGHT STOREFRONT RESTORE — keep the approved ivory presentation. */
+:root {
+  color-scheme: light;
+  --color-ivory: #FAF7F2;
+  --color-sand: #F2ECE1;
+  --color-surface: #FFFFFF;
+  --color-espresso: #181512;
+  --color-muted: #6E655D;
+}
+html, body {
+  background: #FAF7F2 !important;
+  color: #181512 !important;
+}
+body {
+  background: #FAF7F2 !important;
+  color: #181512 !important;
+}
+.site-header {
+  background: rgba(255,255,255,.96) !important;
+  border-bottom: 1px solid rgba(24,21,18,.10) !important;
+  box-shadow: 0 6px 24px rgba(24,21,18,.06) !important;
+}
+.site-header a, .site-header button {
+  color: #181512 !important;
+  text-shadow: none !important;
+}
+.home-page > .luxury-collection,
+.shop-page,
+.shop-page > section:first-child {
+  background: #FAF7F2 !important;
+  color: #181512 !important;
+  border-color: rgba(24,21,18,.10) !important;
+}
+.home-page > .luxury-collection h2,
+.home-page > .luxury-collection .section-title,
+.shop-page > section:first-child h1,
+.shop-page > section:first-child p {
+  color: #181512 !important;
+  text-shadow: none !important;
+}
+.home-page > .luxury-collection .eyebrow,
+.luxury-collection .eyebrow {
+  color: #80643f !important;
+}
+.product-card {
+  background: #FFFFFF !important;
+  color: #181512 !important;
+  border: 1px solid rgba(24,21,18,.10) !important;
+  box-shadow: 0 8px 28px rgba(24,21,18,.07) !important;
+}
+.product-card h3, .product-card .price {
+  color: #181512 !important;
+  text-shadow: none !important;
+}
+.product-card .product-meta,
+.product-card .pairing-line small {
+  color: #6E655D !important;
+}
+.product-card .look-pairing,
+.field, .swatch-choice, .collection-filter {
+  background: #FFFFFF !important;
+  color: #181512 !important;
+  border-color: rgba(24,21,18,.12) !important;
+}
+.btn, .lookbook-add, .pairing-line button,
+.product-card button.btn, .luxury-hero a:first-child {
+  background: linear-gradient(115deg,#9d713b,#e0bd80 48%,#a77942) !important;
+  color: #17120d !important;
+  border: 1px solid #c69749 !important;
+  text-shadow: none !important;
+  box-shadow: 0 8px 24px rgba(153,108,52,.18) !important;
+  animation: none !important;
+}
+.btn-outline, .luxury-hero a:last-child {
+  background: #FFFFFF !important;
+  color: #181512 !important;
+  border: 1px solid rgba(24,21,18,.22) !important;
+  text-shadow: none !important;
+}
+.quickview-panel, .bag-drawer, .saved-drawer, .floral-card {
+  background: #FFFFFF !important;
+  color: #181512 !important;
+  border-color: rgba(198,151,73,.32) !important;
+  box-shadow: 0 24px 70px rgba(24,21,18,.18) !important;
+}
+.quickview-panel h2, .quickview-panel h3,
+.bag-drawer h2, .bag-drawer h3,
+.floral-heading, .floral-copy,
+.bag-drawer p, .quickview-panel p {
+  color: #181512 !important;
+  text-shadow: none !important;
+}
+.bag-drawer-header, .bag-drawer-footer, .saved-header,
+.quantity-control, .quantity-control button,
+.payment-choice, .demo-warning, .floral-added-product {
+  background: #FAF7F2 !important;
+  color: #181512 !important;
+  border-color: rgba(24,21,18,.12) !important;
+}
+.site-footer {
+  background: #F2ECE1 !important;
+  color: #181512 !important;
+  border-top: 1px solid rgba(24,21,18,.10) !important;
+}
+.site-footer h2, .site-footer p, .site-footer li,
+.site-footer a {
+  color: #181512 !important;
+  text-shadow: none !important;
+}
+/* Prevent long brand names and headings from overlapping on narrow screens. */
+h1, h2, h3, h4, p, a, button, label, small, span {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+h1, h2, h3 {
+  max-width: 100%;
+  line-height: 1.16;
+  text-wrap: pretty;
+}
+.site-header *, .ay-wordmark, .ay-wordmark-name {
+  min-width: 0;
+}
+.ay-wordmark-name {
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.12;
+}
+.product-card, .product-card h3, .product-card p {
+  min-width: 0;
+}
+@media (max-width: 420px) {
+  .section-title { font-size: clamp(1.9rem, 8vw, 2.5rem); }
+  .ay-wordmark-name { font-size: clamp(.95rem, 4.2vw, 1.15rem); }
+}
